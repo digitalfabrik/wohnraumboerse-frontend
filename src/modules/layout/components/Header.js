@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import style from './Header.css'
-import logoWide from '../assets/integreat-app-logo.png'
 import HeaderNavigationBar from './HeaderNavigationBar'
 import HeaderActionBar from './HeaderActionBar'
 import HeaderActionItem from '../HeaderActionItem'
@@ -21,6 +20,7 @@ class Header extends React.Component {
     navigationItems: PropTypes.arrayOf(PropTypes.instanceOf(HeaderNavigationItem)).isRequired,
     actionItems: PropTypes.arrayOf(PropTypes.instanceOf(HeaderActionItem)).isRequired,
     logoHref: PropTypes.string.isRequired,
+    logo: PropTypes.any.isRequired,
     viewportSmall: PropTypes.bool.isRequired
   }
 
@@ -36,7 +36,7 @@ class Header extends React.Component {
         <header className={style.header}>
           <div className={style.logoWide}>
             <Link href={this.props.logoHref}>
-              <img src={logoWide} />
+              <img src={this.props.logo} />
             </Link>
           </div>
           <HeaderActionBar className={style.actionBar} items={this.props.actionItems} />

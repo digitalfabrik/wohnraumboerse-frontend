@@ -19,6 +19,7 @@ import CategoriesPage from '../../../routes/categories/containers/CategoriesPage
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormularPage'
 import LivingPage from '../../../routes/living/containers/LivingPage'
 import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
+import LivingLayout from '../../layout/containers/LivingLayout'
 
 const LANGUAGE_CODE_LENGTH = 2
 
@@ -58,7 +59,7 @@ export class RouterFragment extends React.Component {
 
         {/* Matches one or more arguments like /augsburg/living */}
         <Fragment forRoute='/:location/living(/*)'>
-          <Layout>
+          <LivingLayout matchRoute={this.matchRoute}>
             {/* Matches /augsburg/living/form */}
             <Fragment forRoute='/form'>
               <LivingFormPage />
@@ -71,7 +72,7 @@ export class RouterFragment extends React.Component {
             <Fragment forNoMatch>
               <LivingPage />
             </Fragment>
-          </Layout>
+          </LivingLayout>
         </Fragment>
 
         {/* Matches two or more arguments like /augsburg/de */}

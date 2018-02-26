@@ -11,7 +11,7 @@ import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import Payload from '../../../endpoint/Payload'
 
-describe('LocationLayout', () => {
+describe('LivingLayout', () => {
   const matchRoute = id => {}
 
   const language = 'de'
