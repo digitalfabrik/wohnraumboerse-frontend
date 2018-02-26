@@ -12,6 +12,15 @@ const createRouteConfig = () => [
     path: '/'
   }),
   new Route({
+    path: '/:location/living/form'
+  }),
+  new Route({
+    path: '/:location/living/offer/:token/:action'
+  }),
+  new Route({
+    path: '/:location/living(/*)'
+  }),
+  new Route({
     id: SearchPage,
     path: '/:location/:language/search'
   }),

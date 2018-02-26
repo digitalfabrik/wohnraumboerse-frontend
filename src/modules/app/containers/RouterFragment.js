@@ -16,6 +16,9 @@ import PropTypes from 'prop-types'
 import RouteConfig from '../RouteConfig'
 import { connect } from 'react-redux'
 import CategoriesPage from '../../../routes/categories/containers/CategoriesPage'
+import LivingFormPage from '../../../routes/living-form/containers/LivingFormularPage'
+import LivingPage from '../../../routes/living/containers/LivingPage'
+import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
 
 const LANGUAGE_CODE_LENGTH = 2
 
@@ -51,6 +54,24 @@ export class RouterFragment extends React.Component {
         {/* No language was provided, so redirect to a specific language (e.g. the browsers language) */}
         <Fragment forRoute='/'>
           <I18nRedirect />
+        </Fragment>
+
+        {/* Matches one or more arguments like /augsburg/living */}
+        <Fragment forRoute='/:location/living(/*)'>
+          <Layout>
+            {/* Matches /augsburg/living/form */}
+            <Fragment forRoute='/form'>
+              <LivingFormPage />
+            </Fragment>
+            {/* Matches /augsburg/living/offer/asdf/:action */}
+            <Fragment forRoute='/offer/:token/:action'>
+              <LivingManageOfferPage />
+            </Fragment>
+            {/* Matches /augsburg/living/* */}
+            <Fragment forNoMatch>
+              <LivingPage />
+            </Fragment>
+          </Layout>
         </Fragment>
 
         {/* Matches two or more arguments like /augsburg/de */}
