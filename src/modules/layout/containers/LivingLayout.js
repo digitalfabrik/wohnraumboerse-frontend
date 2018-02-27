@@ -9,6 +9,7 @@ import LivingFooter from '../components/LivingFooter'
 export class LivingLayout extends React.Component {
   static propTypes = {
     matchRoute: PropTypes.func.isRequired,
+    currentPath: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
     viewportSmall: PropTypes.bool.isRequired,
     children: PropTypes.node
@@ -17,7 +18,8 @@ export class LivingLayout extends React.Component {
   render () {
     const {matchRoute} = this.props
     return <Layout header={<LivingHeader viewportSmall={this.props.viewportSmall}
-                                         matchRoute={matchRoute} location={this.props.location} />}
+                                         matchRoute={matchRoute} location={this.props.location}
+                                         currentPath={this.props.currentPath} />}
                    footer={<LivingFooter />}>
       {this.props.children}
     </Layout>
@@ -25,6 +27,7 @@ export class LivingLayout extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  currentPath: state.router.route,
   location: state.router.params.location,
   viewportSmall: state.viewport.is.small
 })
