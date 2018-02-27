@@ -24,8 +24,7 @@ export default new EndpointBuilder('living')
           parentId: category.parent,
           content: category.content,
           thumbnail: category.thumbnail,
-          order: category.order,
-          availableLanguages: category.available_languages
+          order: category.order
         })
       })
 

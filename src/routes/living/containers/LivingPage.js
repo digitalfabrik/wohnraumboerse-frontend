@@ -11,7 +11,6 @@ import Page from 'modules/common/components/Page'
 
 import Breadcrumbs from 'routes/categories/components/Breadcrumbs'
 import CategoryList from 'routes/categories/components/CategoryList'
-import LanguageFailure from 'routes/categories/containers/LanguageFailure'
 
 export class LivingPage extends React.Component {
   static propTypes = {
@@ -63,6 +62,6 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
-  withFetcher('living', LanguageFailure),
+  withFetcher('living'),
   withFetcher('locations')
 )(LivingPage)
