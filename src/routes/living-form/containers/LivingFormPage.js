@@ -140,7 +140,7 @@ export class LivingFormPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  location: state.router.params.location
+  location: 'neuburgschrobenhausenwohnraum'
 })
 
 export default connect(mapStateToProps)(LivingFormPage)

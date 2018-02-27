@@ -11,10 +11,9 @@ function getUrlWithoutCity (url) {
 }
 
 export default new EndpointBuilder('living')
-  .withStateToUrlMapper(state => `https://cms.integreat-app.de/${state.router.params.location}` +
-    `/de/wp-json/extensions/v0/modified_content/pages?since=1970-01-01T00:00:00Z`)
+  .withStateToUrlMapper(state => `https://cms.integreat-app.de/neuburgschrobenhausenwohnraum/de/wp-json/extensions/v0/modified_content/pages?since=1970-01-01T00:00:00Z`)
   .withMapper((json, state) => {
-    const baseUrl = `/${state.router.params.location}/living`
+    const baseUrl = ``
     const categories = json.filter(category => category.status === 'publish')
       .map(category => {
         return new CategoryModel({
