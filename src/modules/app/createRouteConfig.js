@@ -6,6 +6,7 @@ import EventsPage from '../../routes/events/containers/EventsPage'
 import SearchPage from '../../routes/search/containers/SearchPage'
 import CategoriesPage from '../../routes/categories/containers/CategoriesPage'
 import Route from './Route'
+import LivingPage from '../../routes/living/containers/LivingPage'
 
 const createRouteConfig = () => [
   new Route({
@@ -18,6 +19,7 @@ const createRouteConfig = () => [
     path: '/:location/living/offer/:token/:action'
   }),
   new Route({
+    id: LivingPage,
     path: '/:location/living(/*)'
   }),
   new Route({

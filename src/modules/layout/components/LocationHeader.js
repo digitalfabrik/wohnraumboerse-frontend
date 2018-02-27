@@ -14,6 +14,7 @@ import SearchPage from '../../../routes/search/containers/SearchPage'
 import LandingPage from '../../../routes/landing/containers/LandingPage'
 import CategoriesPage from '../../../routes/categories/containers/CategoriesPage'
 import EventsPage from '../../../routes/events/containers/EventsPage'
+import integreatLogo from '../assets/integreat-app-logo.png'
 
 class LocationHeader extends React.Component {
   static propTypes = {
@@ -81,6 +82,7 @@ class LocationHeader extends React.Component {
   render () {
     const {matchRoute} = this.props
     return <Header
+      logo={integreatLogo}
       viewportSmall={this.props.viewportSmall}
       logoHref={matchRoute(CategoriesPage).stringify(this.getCurrentParams())}
       actionItems={this.getActionItems()}
