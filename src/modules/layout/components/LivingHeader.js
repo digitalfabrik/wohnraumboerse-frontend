@@ -4,7 +4,7 @@ import { translate } from 'react-i18next'
 
 import Header from 'modules/layout/components/Header'
 import LivingPage from '../../../routes/living/containers/LivingPage'
-import neuburgLogo from '../assets/neuburg.jpg'
+import neuburgLogo from '../assets/neuburg.png'
 import HeaderNavigationItem from '../HeaderNavigationItem'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 
