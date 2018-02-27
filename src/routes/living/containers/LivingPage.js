@@ -48,9 +48,6 @@ export class LivingPage extends React.Component {
     if (!category) {
       return <Failure error='not-found:page.notFound' />
     }
-
-    console.log(this.props.living.getAncestors(category))
-
     return <div>
       <Breadcrumbs
         parents={this.props.living.getAncestors(category)}
