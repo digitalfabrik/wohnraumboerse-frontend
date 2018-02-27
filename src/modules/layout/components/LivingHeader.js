@@ -32,7 +32,13 @@ class LivingHeader extends React.Component {
       text: 'Form'
     })
 
-    return [form]
+    const info = new HeaderNavigationItem({
+      href: matchRoute(LivingPage).stringify(currentParams),
+      active: matchRoute(LivingPage).hasPath(currentPath),
+      text: 'Info'
+    })
+
+    return [info, form]
   }
 
   render () {
