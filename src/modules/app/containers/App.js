@@ -9,6 +9,7 @@ import languagesEndpoint from '../../endpoint/endpoints/languages'
 import categoriesEndpoint from '../../endpoint/endpoints/categories'
 import locationEndpoint from '../../endpoint/endpoints/locations'
 import eventsEndpoint from '../../endpoint/endpoints/events'
+import livingEndpoint from '../../endpoint/endpoints/living'
 import RouteConfig from '../RouteConfig'
 import RouterFragment from './RouterFragment'
 import createRouteConfig from '../createRouteConfig'
@@ -29,7 +30,7 @@ class App extends React.Component {
   render () {
     return <Provider store={this.store}>
       <EndpointProvider
-        endpoints={[languagesEndpoint, locationEndpoint, categoriesEndpoint, disclaimerEndpoint, eventsEndpoint]}>
+        endpoints={[livingEndpoint, languagesEndpoint, locationEndpoint, categoriesEndpoint, disclaimerEndpoint, eventsEndpoint]}>
         <I18nProvider>
           <RouterFragment routeConfig={this.routeConfig} />
         </I18nProvider>
