@@ -11,9 +11,9 @@ export default new EndpointBuilder('living')
     const baseUrl = `/${state.router.params.location}`
     const categories = json.filter(category => category.status === 'publish')
       .map(category => {
-        var tempUrl = category.permalink.url_page.split('/')
+        const tempUrl = category.permalink.url_page.split('/')
         tempUrl.shift()
-        var urlWithoutCity = tempUrl.join('/')
+        const urlWithoutCity = tempUrl.join('/')
         return new CategoryModel({
           id: category.id,
           url: normalizeUrl(`${baseUrl}/living/${urlWithoutCity}`),
