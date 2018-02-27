@@ -15,7 +15,7 @@ import CategoryList from 'routes/categories/components/CategoryList'
 export class LivingPage extends React.Component {
   static propTypes = {
     living: PropTypes.instanceOf(CategoriesMapModel).isRequired,
-    //  locations: PropTypes.arrayOf(PropTypes.instanceOf(LocationModel)).isRequired,
+    locations: PropTypes.arrayOf(PropTypes.instanceOf(LocationModel)).isRequired,
     path: PropTypes.string
   }
 
@@ -37,7 +37,10 @@ export class LivingPage extends React.Component {
                    content={category.content} />
     }
     // some level between, we want to display a list
-    return <CategoryList categories={children.map(model => ({model, children: categories.getChildren(model)}))}
+    return <CategoryList categories={children.map(model => ({
+      model,
+      children: categories.getChildren(model)
+    }))}
                          title={category.title}
                          content={category.content} />
   }
@@ -47,10 +50,11 @@ export class LivingPage extends React.Component {
     if (!category) {
       return <Failure error='not-found:page.notFound' />
     }
+    console.log(this.props.living)
     return <div>
-      {/* <Breadcrumbs */}
-        {/* parents={this.props.living.getAncestors(category)} */}
-        {/* locations={this.props.locations} /> */}
+      <Breadcrumbs
+        parents={this.props.living.getAncestors(category)}
+        locations={this.props.locations} />
       {this.getContent(category)}
     </div>
   }
@@ -62,6 +66,6 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
-  withFetcher('living')
-  // withFetcher('locations')
+  withFetcher('living'),
+  withFetcher('locations')
 )(LivingPage)
