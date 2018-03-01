@@ -3,6 +3,7 @@ import EndpointBuilder from '../EndpointBuilder'
 import normalizeUrl from 'normalize-url'
 import CategoryModel from '../models/CategoryModel'
 import CategoriesMapModel from '../models/CategoriesMapModel'
+import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
 
 function getUrlWithoutCity (url) {
   const tempUrl = url.split('/')
@@ -10,8 +11,10 @@ function getUrlWithoutCity (url) {
   return tempUrl.join('/')
 }
 
+const cityConfig = getCurrentCityConfig()
+
 export default new EndpointBuilder('living')
-  .withStateToUrlMapper(state => `https://cms.integreat-app.de/neuburgschrobenhausenwohnraum/de/wp-json/extensions/v0/modified_content/pages?since=1970-01-01T00:00:00Z`)
+  .withStateToUrlMapper(state => `https://cms.integreat-app.de/${cityConfig.cmsName}/de/wp-json/extensions/v0/modified_content/pages?since=1970-01-01T00:00:00Z`)
   .withMapper((json, state) => {
     const baseUrl = ``
     const categories = json.filter(category => category.status === 'publish')
