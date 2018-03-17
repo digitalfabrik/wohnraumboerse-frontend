@@ -4,9 +4,11 @@ import { translate } from 'react-i18next'
 
 import Header from 'modules/layout/components/Header'
 import LivingPage from '../../../routes/living/containers/LivingPage'
-import neuburgLogo from '../assets/neuburg.png'
 import HeaderNavigationItem from '../HeaderNavigationItem'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
+import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
+
+const cityConfig = getCurrentCityConfig()
 
 class LivingHeader extends React.Component {
   static propTypes = {
@@ -23,6 +25,9 @@ class LivingHeader extends React.Component {
   }
 
   getNavigationItems () {
+    if (!cityConfig.formsEnabled) {
+      return []
+    }
     const {matchRoute, currentPath} = this.props
     const currentParams = this.getCurrentParams()
 
@@ -44,7 +49,7 @@ class LivingHeader extends React.Component {
   render () {
     const {matchRoute} = this.props
     return <Header
-      logo={neuburgLogo}
+      logo={cityConfig.logo}
       viewportSmall={this.props.viewportSmall}
       logoHref={matchRoute(LivingPage).stringify(this.getCurrentParams())}
       actionItems={[]}
