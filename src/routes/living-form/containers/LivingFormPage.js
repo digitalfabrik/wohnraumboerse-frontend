@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Control, Errors, Fieldset, LocalForm } from 'react-redux-form'
 import { field } from './LivingFormPage.css'
-import Caption from '../../../modules/common/components/Caption'
+import { Caption } from '@integreat/shared'
 import { connect } from 'react-redux'
 
 const Address = () => (

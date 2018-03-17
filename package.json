@@ -7,6 +7,7 @@
     "npm": ">=3.8"
   },
   "dependencies": {
+    "@integreat/shared": "../integreat-webapp/dist",
     "babel-polyfill": "~6.26.0",
     "chunked-request": "~0.7.1",
     "classnames": "~2.2.5",
@@ -19,6 +20,7 @@
     "moment-timezone": "^0.5.14",
     "normalize-url": "^1.9.1",
     "normalize.css": "~7.0.0",
+    "styled-components": "^3.2.3",
     "react": "~16.2.0",
     "react-dom": "~16.2.0",
     "react-flexbox-grid": "~2.0.0",

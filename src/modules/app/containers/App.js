@@ -12,7 +12,9 @@ import eventsEndpoint from '../../endpoint/endpoints/events'
 import livingEndpoint from '../../endpoint/endpoints/living'
 import RouteConfig from '../RouteConfig'
 import RouterFragment from './RouterFragment'
+import { ThemeProvider } from 'styled-components'
 import createRouteConfig from '../createRouteConfig'
+import theme from '../constants/theme'
 
 class App extends React.Component {
   store
@@ -32,7 +34,9 @@ class App extends React.Component {
       <EndpointProvider
         endpoints={[livingEndpoint, languagesEndpoint, locationEndpoint, categoriesEndpoint, disclaimerEndpoint, eventsEndpoint]}>
         <I18nProvider>
-          <RouterFragment routeConfig={this.routeConfig} />
+          <ThemeProvider theme={theme}>
+            <RouterFragment routeConfig={this.routeConfig} />
+          </ThemeProvider>
         </I18nProvider>
       </EndpointProvider>
     </Provider>

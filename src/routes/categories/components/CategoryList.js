@@ -5,7 +5,7 @@ import CategoryModel from 'modules/endpoint/models/CategoryModel'
 import RemoteContent from 'modules/common/components/RemoteContent'
 
 import style from './CategoryList.css'
-import Caption from '../../../modules/common/components/Caption'
+import { Caption } from '@integreat/shared'
 import CategoryListItem from './CategoryListItem'
 
 /**

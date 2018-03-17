@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Caption from 'modules/common/components/Caption'
+import { Caption } from '@integreat/shared'
 import RemoteContent from 'modules/common/components/RemoteContent'
 
 class Page extends React.Component {

@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import compose from 'lodash/fp/compose'
-import Caption from '../../../modules/common/components/Caption'
+import { Caption } from '@integreat/shared'
 
 const NOT_STARTED = 'notstarted'
 const DONE = 'done'

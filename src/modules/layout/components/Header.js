@@ -7,7 +7,10 @@ import HeaderActionItem from '../HeaderActionItem'
 import HeaderNavigationItem from '../HeaderNavigationItem'
 import { Link } from 'redux-little-router'
 import { HALF_HEADER_HEIGHT_SMALL, HEADER_HEIGHT_LARGE } from '../constants'
-import Headroom from '../../common/components/Headroom'
+import * as shared from '@integreat/shared'
+
+console.log(shared)
+const Headroom = shared.Headroom
 
 /**
  * The standard header which can supplied to a Layout. Displays a logo left, a HeaderMenuBar in the middle and a

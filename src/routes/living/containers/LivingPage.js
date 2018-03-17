@@ -6,7 +6,7 @@ import compose from 'lodash/fp/compose'
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import CategoriesMapModel from 'modules/endpoint/models/CategoriesMapModel'
 import LocationModel from 'modules/endpoint/models/LocationModel'
-import Failure from 'modules/common/components/Failure'
+import { Failure } from '@integreat/shared'
 import Page from 'modules/common/components/Page'
 
 import Breadcrumbs from 'routes/categories/components/Breadcrumbs'
