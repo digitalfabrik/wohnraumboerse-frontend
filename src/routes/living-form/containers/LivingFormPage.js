@@ -4,7 +4,7 @@ import { Control, Errors, Fieldset, LocalForm } from 'react-redux-form'
 import { field } from './LivingFormPage.css'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import serverConfig from 'server.config'
-import { Caption } from '@integreat/shared'
+import { Caption } from '@integreat-app/shared'
 
 const cityConfig = getCurrentCityConfig()
 const Address = () => (

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import CategoryModel from 'modules/endpoint/models/CategoryModel'
 
 import style from './CategoryList.css'
-import { Caption, RemoteContent } from '@integreat/shared'
+import { Caption, RemoteContent } from '@integreat-app/shared'
 import CategoryListItem from './CategoryListItem'
 
 /**
