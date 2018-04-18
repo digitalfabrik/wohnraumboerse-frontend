@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Spinner from 'react-spinkit'
 
-import { Failure } from '@integreat/shared'
+import Failure from 'modules/common/components/Failure'
 import style from './withFetcher.css'
 import { getContext } from 'recompose'
 
