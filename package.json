@@ -7,7 +7,7 @@
     "npm": ">=3.8"
   },
   "dependencies": {
-    "@integreat/shared": "../integreat-webapp/dist",
+    "@integreat-app/shared": "^0.0.1",
     "babel-polyfill": "~6.26.0",
     "classnames": "~2.2.5",
     "font-awesome": "~4.7.0",

@@ -55,18 +55,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@integreat/shared@../integreat-webapp/dist":
-  version "1.0.0"
+"@integreat-app/shared@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@integreat-app/shared/-/shared-0.0.1.tgz#e6335a1fb57959dff6ef897b28af05ee4cb10289"
   dependencies:
-    is-url "^1.2.4"
     prop-types "~15.6.1"
     react "~16.3.1"
-    react-fontawesome "~1.6.1"
-    react-i18next "~7.5.1"
-    react-scroll "~1.7.8"
-    react-styled-flexboxgrid "^2.2.0"
-    redux-actions "~2.3.0"
-    redux-first-router-link "^1.4.2"
     styled-components "^3.2.5"
 
 "@types/node@*":
@@ -3163,7 +3157,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.5, fbjs@^0.8.9:
+fbjs@^0.8.1, fbjs@^0.8.16, fbjs@^0.8.5:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -4418,10 +4412,6 @@ is-url@^1.2.0, is-url@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.2.tgz#498905a593bf47cc2d9e7f738372bbf7696c7f26"
 
-is-url@^1.2.4:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/is-url/-/is-url-1.2.4.tgz#04a4df46d28c4cff3d73d01ff06abeb318a1aa52"
-
 is-utf8@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
@@ -5137,10 +5127,6 @@ lodash.isfinite@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/lodash.isfinite/-/lodash.isfinite-3.3.2.tgz#fb89b65a9a80281833f0b7478b3a5104f898ebb3"
 
-lodash.isinteger@^4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/lodash.isinteger/-/lodash.isinteger-4.0.4.tgz#619c0af3d03f8b04c31f5882840b77b11cd68343"
-
 lodash.isplainobject@^3.0.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-3.2.0.tgz#9a8238ae16b200432960cd7346512d0123fbf4c5"
@@ -5212,10 +5198,6 @@ lodash.templatesettings@^3.0.0:
   dependencies:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
-
-lodash.throttle@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
 
 lodash.topath@~4.5.2:
   version "4.5.2"
@@ -6113,12 +6095,6 @@ path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
 
-path-to-regexp@^1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-1.7.0.tgz#59fde0f435badacba103a84e9d3bc64e96b9937d"
-  dependencies:
-    isarray "0.0.1"
-
 path-to-regexp@~2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-2.1.0.tgz#7e30f9f5b134bd6a28ffc2e3ef1e47075ac5259b"
@@ -6766,13 +6742,6 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.5.10:
-  version "15.5.10"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.3.1"
-
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@~15.6.0:
   version "15.6.0"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
@@ -6964,14 +6933,6 @@ react-hot-loader@~3.1.3:
     redbox-react "^1.3.6"
     source-map "^0.6.1"
 
-react-i18next@~7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.5.1.tgz#5fe4cdfd2ecba22cc967213d880ab4cdd2c2ce61"
-  dependencies:
-    hoist-non-react-statics "^2.3.1"
-    html-parse-stringify2 "2.0.1"
-    prop-types "^15.6.0"
-
 react-i18next@~7.6.0:
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.6.0.tgz#abdb44b9dee5b43b4340590e25a6f7b04e2df6bc"
@@ -7029,13 +6990,6 @@ react-scroll@~1.7.5:
   dependencies:
     prop-types "^15.5.8"
 
-react-scroll@~1.7.8:
-  version "1.7.8"
-  resolved "https://registry.yarnpkg.com/react-scroll/-/react-scroll-1.7.8.tgz#45d8bd0f3fb104a7a1c3adb358e3a742a7091409"
-  dependencies:
-    lodash.throttle "^4.1.1"
-    prop-types "^15.5.8"
-
 react-spinkit@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/react-spinkit/-/react-spinkit-3.0.0.tgz#31fdaf4e18177766c57d1b1f3330290f8492a85a"
@@ -7044,12 +6998,6 @@ react-spinkit@~3.0.0:
     loaders.css "^0.1.2"
     object-assign "^4.1.0"
     prop-types "^15.5.8"
-
-react-styled-flexboxgrid@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-styled-flexboxgrid/-/react-styled-flexboxgrid-2.2.0.tgz#2b1ea9dba28da8c493c0f576b4d5b2dc8a07a30f"
-  dependencies:
-    lodash.isinteger "^4.0.4"
 
 react-test-renderer@^16.0.0-0:
   version "16.2.0"
@@ -7227,14 +7175,6 @@ redux-actions@~2.3.0:
     lodash "^4.13.1"
     lodash-es "^4.17.4"
     reduce-reducers "^0.1.0"
-
-redux-first-router-link@^1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/redux-first-router-link/-/redux-first-router-link-1.4.2.tgz#2cd5274fe12539f617068bb2412f329f437813d2"
-  dependencies:
-    path-to-regexp "^1.7.0"
-    prop-types "15.5.10"
-    rudy-match-path "^0.3.0"
 
 redux-little-router@~15.1.0:
   version "15.1.0"
@@ -7536,12 +7476,6 @@ rst-selector-parser@^2.2.3:
   dependencies:
     lodash.flattendeep "^4.4.0"
     nearley "^2.7.10"
-
-rudy-match-path@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/rudy-match-path/-/rudy-match-path-0.3.0.tgz#c90e23caac500f244d5e4ab448e2725f1254e2e8"
-  dependencies:
-    path-to-regexp "^1.7.0"
 
 run-async@^2.2.0:
   version "2.3.0"
