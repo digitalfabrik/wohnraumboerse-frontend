@@ -8,9 +8,9 @@ import CategoriesMapModel from 'modules/endpoint/models/CategoriesMapModel'
 import LocationModel from 'modules/endpoint/models/LocationModel'
 import { Page, Breadcrumbs } from '@integreat-app/shared'
 
-import Breadcrumbs from 'routes/categories/components/Breadcrumbs'
 import CategoryList from 'routes/categories/components/CategoryList'
 import Failure from '../../../modules/common/components/Failure'
+import { Link } from 'redux-little-router'
 
 export class LivingPage extends React.Component {
   static propTypes = {
@@ -45,15 +45,21 @@ export class LivingPage extends React.Component {
                          content={category.content} />
   }
 
+  getBreadcrumbs (category) {
+    return this.props.living.getAncestors(category).map(
+      category => <Link href={category.url}>{category.title}</Link>
+    )
+  }
+
   render () {
     const category = this.props.living.getCategoryByUrl(this.props.path)
     if (!category) {
       return <Failure error='not-found:page.notFound' />
     }
     return <div>
-      <Breadcrumbs
-        parents={this.props.living.getAncestors(category)}
-        locations={this.props.locations} />
+      <Breadcrumbs>
+        {this.getBreadcrumbs(category)}
+      </Breadcrumbs>
       {this.getContent(category)}
     </div>
   }
