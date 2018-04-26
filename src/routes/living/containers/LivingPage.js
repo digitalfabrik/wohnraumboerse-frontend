@@ -5,15 +5,17 @@ import compose from 'lodash/fp/compose'
 
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import CategoriesMapModel from 'modules/endpoint/models/CategoriesMapModel'
-import Failure from 'modules/common/components/Failure'
-import Page from 'modules/common/components/Page'
+import LocationModel from 'modules/endpoint/models/LocationModel'
+import { Page, Breadcrumbs } from '@integreat-app/shared'
 
 import CategoryList from 'routes/categories/components/CategoryList'
-import LanguageFailure from 'routes/categories/containers/LanguageFailure'
+import Failure from '../../../modules/common/components/Failure'
+import { Link } from 'redux-little-router'
 
 export class LivingPage extends React.Component {
   static propTypes = {
     living: PropTypes.instanceOf(CategoriesMapModel).isRequired,
+    locations: PropTypes.arrayOf(PropTypes.instanceOf(LocationModel)).isRequired,
     path: PropTypes.string
   }
 
@@ -35,9 +37,18 @@ export class LivingPage extends React.Component {
                    content={category.content} />
     }
     // some level between, we want to display a list
-    return <CategoryList categories={children.map(model => ({model, children: categories.getChildren(model)}))}
+    return <CategoryList categories={children.map(model => ({
+      model,
+      children: categories.getChildren(model)
+    }))}
                          title={category.title}
                          content={category.content} />
+  }
+
+  getBreadcrumbs (category) {
+    return this.props.living.getAncestors(category).map(
+      category => <Link href={category.url}>{category.title}</Link>
+    )
   }
 
   render () {
@@ -45,8 +56,10 @@ export class LivingPage extends React.Component {
     if (!category) {
       return <Failure error='not-found:page.notFound' />
     }
-
     return <div>
+      <Breadcrumbs>
+        {this.getBreadcrumbs(category)}
+      </Breadcrumbs>
       {this.getContent(category)}
     </div>
   }
@@ -58,6 +71,6 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
-  withFetcher('living', LanguageFailure),
+  withFetcher('living'),
   withFetcher('locations')
 )(LivingPage)

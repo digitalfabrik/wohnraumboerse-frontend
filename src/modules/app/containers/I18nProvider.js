@@ -1,6 +1,5 @@
 import i18n from 'i18next'
 import React from 'react'
-import { connect } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
 import { reduce, forEach } from 'lodash/collection'
 import WebFont from 'webfontloader'
@@ -8,7 +7,6 @@ import PropTypes from 'prop-types'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 import localesResources from 'locales.json'
-import { LANGUAGE_CODE_LENGTH } from '../constants'
 
 const RTL_LANGUAGES = ['ar', 'fa']
 const FALLBACK_LANGUAGE = 'en'
@@ -56,11 +54,6 @@ export class I18nProvider extends React.Component {
   setLanguage (language) {
     const targetLanguage = language || this.i18n.languages[0]
 
-    if (targetLanguage.length !== LANGUAGE_CODE_LENGTH) {
-      // No valid language code
-      return
-    }
-
     this.setState({language: targetLanguage})
 
     document.documentElement.lang = targetLanguage
@@ -103,6 +96,4 @@ export class I18nProvider extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({language: state.router.params.language})
-
-export default connect(mapStateToProps)(I18nProvider)
+export default I18nProvider

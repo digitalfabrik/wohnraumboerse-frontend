@@ -5,12 +5,14 @@ import compose from 'lodash/fp/compose'
 import Layout from '../components/Layout'
 import LivingHeader from '../components/LivingHeader'
 import LivingFooter from '../components/LivingFooter'
+import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
+
+const cityConfig = getCurrentCityConfig()
 
 export class LivingLayout extends React.Component {
   static propTypes = {
     matchRoute: PropTypes.func.isRequired,
     currentPath: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
     viewportSmall: PropTypes.bool.isRequired,
     children: PropTypes.node
   }
@@ -18,7 +20,7 @@ export class LivingLayout extends React.Component {
   render () {
     const {matchRoute} = this.props
     return <Layout header={<LivingHeader viewportSmall={this.props.viewportSmall}
-                                         matchRoute={matchRoute} location={this.props.location}
+                                         matchRoute={matchRoute} location={cityConfig.cmsName}
                                          currentPath={this.props.currentPath} />}
                    footer={<LivingFooter />}>
       {this.props.children}
@@ -28,7 +30,6 @@ export class LivingLayout extends React.Component {
 
 const mapStateToProps = state => ({
   currentPath: state.router.route,
-  location: state.router.params.location,
   viewportSmall: state.viewport.is.small
 })
 

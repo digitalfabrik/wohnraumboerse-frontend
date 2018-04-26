@@ -1,21 +1,8 @@
 import { Fragment } from 'redux-little-router'
 import React from 'react'
-
-import Layout from 'modules/layout/components/Layout'
-import GeneralHeader from '../../layout/components/GeneralHeader'
-import GeneralFooter from '../../layout/components/GeneralFooter'
-import LocationLayout from '../../layout/containers/LocationLayout'
-import SearchPage from 'routes/search/containers/SearchPage'
-import DisclaimerPage from 'routes/disclaimer/containers/DisclaimerPage'
-import EventsPage from 'routes/events/containers/EventsPage'
-import I18nRedirect from 'modules/app/containers/I18nRedirect'
-import LandingPage from 'routes/landing/containers/LandingPage'
-import MainDisclaimerPage from 'routes/main-disclaimer/components/MainDisclaimerPage'
-import PdfFetcherPage from 'routes/pdf-fetcher/containers/PdfFetcherPage'
 import PropTypes from 'prop-types'
 import RouteConfig from '../RouteConfig'
 import { connect } from 'react-redux'
-import CategoriesPage from '../../../routes/categories/containers/CategoriesPage'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 import LivingPage from '../../../routes/living/containers/LivingPage'
 import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
@@ -52,78 +39,20 @@ export class RouterFragment extends React.Component {
     return <Fragment forRoute='/'>
       {/* Routes */}
       <React.Fragment>
-        {/* No language was provided, so redirect to a specific language (e.g. the browsers language) */}
-        <Fragment forRoute='/'>
-          <I18nRedirect />
-        </Fragment>
-
-        {/* Matches one or more arguments like /augsburg/living */}
-        <Fragment forRoute='/:location/living(/*)'>
-          <LivingLayout matchRoute={this.matchRoute}>
-            {/* Matches /augsburg/living/form */}
-            <Fragment forRoute='/form'>
-              <LivingFormPage />
-            </Fragment>
-            {/* Matches /augsburg/living/offer/asdf/:action */}
-            <Fragment forRoute='/offer/:token/:action'>
-              <LivingManageOfferPage />
-            </Fragment>
-            {/* Matches /augsburg/living/* */}
-            <Fragment forNoMatch>
-              <LivingPage />
-            </Fragment>
-          </LivingLayout>
-        </Fragment>
-
-        {/* Matches two or more arguments like /augsburg/de */}
-        <Fragment forRoute='/:location/:language(/*)'>
-          <LocationLayout matchRoute={this.matchRoute}>
-            {/* Matches /augsburg/de/search -> Search */}
-            <Fragment forRoute='/search'>
-              <SearchPage />
-            </Fragment>
-            {/* Matches /augsburg/de/disclaimer -> Disclaimer */}
-            <Fragment forRoute='/disclaimer'>
-              <DisclaimerPage />
-            </Fragment>
-            {/* Matches /augsburg/de/events* -> Events */}
-            <Fragment forRoute='/events(/:id)'>
-              <EventsPage />
-            </Fragment>
-            {/* Matches /augsburg/de/fetch-pdf/* -> Redirect */}
-            <Fragment forRoute='/fetch-pdf'>
-              <PdfFetcherPage />
-            </Fragment>
-            {/* Matches /augsburg/de/* -> Content */}
-            <Fragment forNoMatch>
-              <CategoriesPage />
-            </Fragment>
-          </LocationLayout>
-        </Fragment>
-
-        {/* Matches /disclaimer */}
-        <Fragment forRoute='/disclaimer'>
-          <Layout header={<GeneralHeader viewportSmall={this.props.viewportSmall} />}
-                  footer={<GeneralFooter />}><MainDisclaimerPage /></Layout>
-        </Fragment>
-
-        {/* If language param is longer than 2, it is no language and is probably a location
-        -> redirect the language-specific location */}
-        <Fragment forRoute='/:language(/)' withConditions={this.redirectCondition}>
-          <I18nRedirect />
-        </Fragment>
-
-        {/* Matches one or zero arguments like /de */}
-        <Fragment forRoute='/:language(/)'>
-          <Layout footer={<GeneralFooter />}><LandingPage /></Layout>
-        </Fragment>
-
-        {/* There are no missing routes. Covered:
-          * Two or more arguments (Search/Disclaimer/Events/PdfFetcher/CategoriesPage)
-          * One argument (MainDisclaimer or LandingPage with language preselection)
-          * No arguments (LandingPage)
-          */}
-
+        <LivingLayout matchRoute={this.matchRoute}>
+          {/* Matches /augsburg/living/form */}
+          <Fragment forRoute='/form'>
+            <LivingFormPage />
+          </Fragment>
+          {/* Matches /augsburg/living/offer/asdf/:action */}
+          <Fragment forRoute='/offer/:token/:action'>
+            <LivingManageOfferPage />
+          </Fragment>
+          {/* Matches /augsburg/living/* */}
+          <Fragment forNoMatch>
+            <LivingPage />
+          </Fragment>
+        </LivingLayout>
       </React.Fragment>
     </Fragment>
   }
