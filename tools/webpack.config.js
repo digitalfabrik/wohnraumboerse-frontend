@@ -20,6 +20,7 @@ const config = {
   resolve: {
     modules: [
       path.resolve('./src'),
+      path.resolve('./node_modules/integreat-webapp/src'),
       path.resolve('./node_modules')
     ]
   },
@@ -85,6 +86,7 @@ const config = {
       {
         test: /\.jsx?$/,
         include: [
+          path.resolve(__dirname, '../node_modules/integreat-webapp'),
           path.resolve(__dirname, '../src')
         ],
         loader: 'babel-loader',

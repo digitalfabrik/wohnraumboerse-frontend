@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import CategoryModel from 'modules/endpoint/models/CategoryModel'
-import RemoteContent from 'modules/common/components/RemoteContent'
 
 import style from './CategoryList.css'
-import Caption from '../../../modules/common/components/Caption'
+import { Caption, RemoteContent } from '@integreat-app/shared'
 import CategoryListItem from './CategoryListItem'
 
 /**

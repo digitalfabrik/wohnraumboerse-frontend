@@ -43,6 +43,14 @@ class CategoryModel {
     this._parentUrl = parentUrl
   }
 
+  setId (Id) {
+    this._id = Id
+  }
+
+  setParentId (parentId) {
+    this._parentId = parentId
+  }
+
   get order () {
     return this._order
   }

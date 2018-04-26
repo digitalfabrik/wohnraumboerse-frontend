@@ -1,11 +1,12 @@
 /* eslint-disable */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Control, Errors, Fieldset, LocalForm } from 'react-redux-form'
 import { field } from './LivingFormPage.css'
-import Caption from '../../../modules/common/components/Caption'
-import { connect } from 'react-redux'
+import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
+import serverConfig from 'server.config'
+import { Caption } from '@integreat-app/shared'
 
+const cityConfig = getCurrentCityConfig()
 const Address = () => (
   <Fieldset model=".address">
     <div className={field}>
@@ -28,10 +29,6 @@ const Address = () => (
 )
 
 export class LivingFormPage extends React.Component {
-  static propTypes = {
-    location: PropTypes.string.isRequired
-  }
-
   constructor () {
     super()
     this.state = {success: false}
@@ -46,7 +43,7 @@ export class LivingFormPage extends React.Component {
   handleSubmit (values) {
     console.log(values)
     const {landlord, property} = values
-    fetch(`http://server11.integreat-app.de:8080/v0/${this.props.location}/`, {
+    fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/`, {
       body: JSON.stringify({email: landlord.email, duration: property.duration * 24 * 60 * 60, formData: {}}),
       method: 'PUT',
       headers: new Headers({
@@ -139,8 +136,4 @@ export class LivingFormPage extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  location: state.router.params.location
-})
-
-export default connect(mapStateToProps)(LivingFormPage)
+export default LivingFormPage

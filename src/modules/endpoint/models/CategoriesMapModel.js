@@ -26,6 +26,9 @@ class CategoriesMapModel {
    * @return {CategoryModel | undefined} The category
    */
   getCategoryByUrl (url) {
+    if (url === '') {
+      return this._categories.get(url)
+    }
     return this._categories.get(normalizeUrl(url))
   }
 

@@ -2,17 +2,16 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import createReduxStore from '../createReduxStore'
 import createHistory from '../createHistory'
-import I18nProvider from './I18nProvider'
 import EndpointProvider from '../../endpoint/EndpointProvider'
 import disclaimerEndpoint from '../../endpoint/endpoints/disclaimer'
-import languagesEndpoint from '../../endpoint/endpoints/languages'
-import categoriesEndpoint from '../../endpoint/endpoints/categories'
-import locationEndpoint from '../../endpoint/endpoints/locations'
-import eventsEndpoint from '../../endpoint/endpoints/events'
 import livingEndpoint from '../../endpoint/endpoints/living'
+import locationEndpoint from '../../endpoint/endpoints/locations'
 import RouteConfig from '../RouteConfig'
 import RouterFragment from './RouterFragment'
+import { ThemeProvider } from 'styled-components'
 import createRouteConfig from '../createRouteConfig'
+import theme from '../constants/theme'
+import I18nProvider from './I18nProvider'
 
 class App extends React.Component {
   store
@@ -30,9 +29,11 @@ class App extends React.Component {
   render () {
     return <Provider store={this.store}>
       <EndpointProvider
-        endpoints={[livingEndpoint, languagesEndpoint, locationEndpoint, categoriesEndpoint, disclaimerEndpoint, eventsEndpoint]}>
+        endpoints={[livingEndpoint, disclaimerEndpoint, locationEndpoint]}>
         <I18nProvider>
-          <RouterFragment routeConfig={this.routeConfig} />
+          <ThemeProvider theme={theme}>
+            <RouterFragment routeConfig={this.routeConfig} />
+          </ThemeProvider>
         </I18nProvider>
       </EndpointProvider>
     </Provider>

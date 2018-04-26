@@ -5,7 +5,6 @@ import { createLogger } from 'redux-logger'
 
 import RouteConfig from 'modules/app/RouteConfig'
 import endpointReducers from 'modules/endpoint/reducers'
-import setLanguageChangeUrlsReducer from '../language/reducers/setLanguageChangeUrls'
 import { createResponsiveStateReducer, responsiveStoreEnhancer } from 'redux-responsive'
 
 const createReduxStore = (createHistory, initialState = {}, routes = new RouteConfig()) => {
@@ -35,8 +34,7 @@ const createReduxStore = (createHistory, initialState = {}, routes = new RouteCo
   const reducer = combineReducers({
     ...endpointReducers,
     viewport: createResponsiveStateReducer({small: 750}, {infinity: 'large'}),
-    router: routerReducer,
-    languageChangeUrls: setLanguageChangeUrlsReducer
+    router: routerReducer
   })
 
   const enhancer = compose(responsiveStoreEnhancer, routerEnhancer, applyMiddleware(...middlewares))
