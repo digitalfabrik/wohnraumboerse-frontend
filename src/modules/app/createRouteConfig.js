@@ -1,5 +1,5 @@
 import Route from './Route'
-import LivingPage from '../../routes/living/containers/LivingPage'
+import CategoriesPage from '../../routes/categories/containers/CategoriesPage'
 import LivingFormPage from '../../routes/living-form/containers/LivingFormPage'
 
 const createRouteConfig = () => [
@@ -11,7 +11,7 @@ const createRouteConfig = () => [
     path: '/offer/:token/:action'
   }),
   new Route({
-    id: LivingPage,
+    id: CategoriesPage,
     path: '/(*)'
   })
 ]

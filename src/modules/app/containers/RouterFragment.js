@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import RouteConfig from '../RouteConfig'
 import { connect } from 'react-redux'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
-import LivingPage from '../../../routes/living/containers/LivingPage'
+import LivingPage from '../../../routes/categories/containers/CategoriesPage'
 import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
 import LivingLayout from '../../layout/containers/LivingLayout'
 

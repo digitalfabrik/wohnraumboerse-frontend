@@ -12,7 +12,7 @@ import CategoryList from 'routes/categories/components/CategoryList'
 import Failure from '../../../modules/common/components/Failure'
 import { Link } from 'redux-little-router'
 
-export class LivingPage extends React.Component {
+export class CategoriesPage extends React.Component {
   static propTypes = {
     living: PropTypes.instanceOf(CategoriesMapModel).isRequired,
     locations: PropTypes.arrayOf(PropTypes.instanceOf(LocationModel)).isRequired,
@@ -73,4 +73,4 @@ export default compose(
   connect(mapStateToProps),
   withFetcher('living'),
   withFetcher('locations')
-)(LivingPage)
+)(CategoriesPage)

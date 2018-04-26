@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 
 import Header from 'modules/layout/components/Header'
-import LivingPage from '../../../routes/living/containers/LivingPage'
+import CategoriesPage from '../../../routes/categories/containers/CategoriesPage'
 import HeaderNavigationItem from '../HeaderNavigationItem'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
@@ -38,8 +38,8 @@ class LivingHeader extends React.Component {
     })
 
     const info = new HeaderNavigationItem({
-      href: matchRoute(LivingPage).stringify(currentParams),
-      active: matchRoute(LivingPage).hasPath(currentPath),
+      href: matchRoute(CategoriesPage).stringify(currentParams),
+      active: matchRoute(CategoriesPage).hasPath(currentPath),
       text: 'Info'
     })
 
@@ -51,7 +51,7 @@ class LivingHeader extends React.Component {
     return <Header
       logo={cityConfig.logo}
       viewportSmall={this.props.viewportSmall}
-      logoHref={matchRoute(LivingPage).stringify(this.getCurrentParams())}
+      logoHref={matchRoute(CategoriesPage).stringify(this.getCurrentParams())}
       actionItems={[]}
       navigationItems={this.getNavigationItems()} />
   }
