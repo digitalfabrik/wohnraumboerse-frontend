@@ -12,6 +12,11 @@
   word-wrap: break-word;
 }
 
+.layout {
+  position: relative;
+  z-index: 0;
+}
+
 .rich-layout {
   position: relative;
   display: flex;

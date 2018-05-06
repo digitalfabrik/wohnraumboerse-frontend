@@ -5,6 +5,8 @@ import { field } from './LivingFormPage.css'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import serverConfig from 'server.config'
 import { Caption } from '@integreat-app/shared'
+import NeuburgForm from './NeuburgForm'
+import { MuiThemeProvider } from 'material-ui'
 
 const cityConfig = getCurrentCityConfig()
 const Address = () => (
@@ -55,84 +57,15 @@ export class LivingFormPage extends React.Component {
 
   render () {
     if (this.state.success) {
-      return <Caption title={'Angebot wurde erstellt. Überprüfen Sie ihr E-Mail Postfach :)'} />
+      return <Caption title={'Angebot wurde erstellt. Überprüfen Sie ihr E-Mail Postfach.'} />
     }
 
-    return (
-      <LocalForm
-        onUpdate={(form) => this.handleUpdate(form)}
-        onChange={(values) => this.handleChange(values)}
-        onSubmit={(values) => this.handleSubmit(values)}
-      >
-
-        <Caption title={'Angaben zum Vermieter'} />
-        <Fieldset model=".landlord">
-          {/*<div className={field}>*/}
-          {/*<label>Name:</label>*/}
-          {/*<Control.text model="landlord.name" />*/}
-          {/*</div>*/}
-
-          {/*<div className={field}>*/}
-          {/*<label>Nachname:</label>*/}
-          {/*<Control.text model="landlord.lastname" />*/}
-          {/*</div>*/}
-
-          {/*<div className={field}>*/}
-          {/*<label>Telefon:</label>*/}
-          {/*<Control.text model="landlord.phone" />*/}
-          {/*</div>*/}
-
-          <div className={field}>
-            <label>E-Mail:</label>
-            <Control.text type="email" model=".email" required />
-            <Errors
-              model=".email"
-              show="touched"
-              messages={{
-                valueMissing: 'Email fehlt.',
-                typeMismatch: 'Die Eingabe muss eine email sein.',
-                isEmail: 'Eingabe muss eine E-Mail sein'
-              }}
-            />
-          </div>
-
-          {/*<Address />*/}
-        </Fieldset>
-
-
-        <Caption title={'Angaben zum Mietobjekt'} />
-        <Fieldset model=".property">
-          {/*<Address />*/}
-
-          {/*<div className={field}>*/}
-          {/*<label>Gesamtfläche der Wohnung:</label>*/}
-          {/*<Control.text*/}
-          {/*type="number"*/}
-          {/*model=".space"*/}
-          {/*/>*/}
-          {/*</div>*/}
-
-          <div className={field}>
-            <label>Dauer des Angebots in Tage:</label>
-            <Control.text
-              type="number"
-              model=".duration"
-              min={1} required />
-            <Errors
-              model=".duration"
-              show="touched"
-              messages={{
-                valueMissing: 'Dauer fehlt.',
-                typeMismatch: 'Dauer muss eine Zahl sein',
-                rangeUnderflow: 'Die Dauer muss größer als 0 sein.'
-              }}
-            />
-          </div>
-        </Fieldset>
-
-        <button type="submit">Abschicken</button>
-      </LocalForm>
-    )
+    return <React.Fragment>
+      <Caption title={'Mietangebot erstellen'} />
+      <MuiThemeProvider>
+        <NeuburgForm />
+      </MuiThemeProvider>
+    </React.Fragment>
   }
 }
 
