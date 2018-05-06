@@ -12,7 +12,9 @@
       "privacy": "Datenschutz",
       "extras": "Extras",
       "categories": "Kategorien",
-      "news": "News"
+      "news": "News",
+      "information": "Informationen",
+      "toForm": "Zum Formular"
     },
     "en": {
       "imprintAndContact": "Imprint and contact",

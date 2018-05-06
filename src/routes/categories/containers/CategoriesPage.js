@@ -35,17 +35,18 @@ export class CategoriesPage extends React.Component {
                    content={category.content} />
     }
     // some level between, we want to display a list
-    return <CategoryList categories={children.map(model => ({
-      model,
-      children: categories.getChildren(model)
-    }))}
-                         title={category.title}
-                         content={category.content} />
+    return <CategoryList
+      categories={children.map(model => ({
+        model,
+        children: categories.getChildren(model)
+      }))}
+      title={category.title}
+      content={category.content} />
   }
 
   getBreadcrumbs (category) {
     return this.props.categories.getAncestors(category).map(
-      category => <Link href={category.url}>{category.title}</Link>
+      category => <Link key={category.url} href={category.url}>{category.title}</Link>
     )
   }
 

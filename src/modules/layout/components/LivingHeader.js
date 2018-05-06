@@ -15,7 +15,8 @@ class LivingHeader extends React.Component {
     matchRoute: PropTypes.func.isRequired,
     location: PropTypes.string.isRequired,
     currentPath: PropTypes.string.isRequired,
-    viewportSmall: PropTypes.bool.isRequired
+    viewportSmall: PropTypes.bool.isRequired,
+    t: PropTypes.func.isRequired
   }
 
   getCurrentParams () {
@@ -28,19 +29,19 @@ class LivingHeader extends React.Component {
     if (!cityConfig.formsEnabled) {
       return []
     }
-    const {matchRoute, currentPath} = this.props
+    const {matchRoute, currentPath, t} = this.props
     const currentParams = this.getCurrentParams()
 
     const form = new HeaderNavigationItem({
       href: matchRoute(LivingFormPage).stringify(currentParams),
       active: matchRoute(LivingFormPage).hasPath(currentPath),
-      text: 'Form'
+      text: t('toForm')
     })
 
     const info = new HeaderNavigationItem({
       href: matchRoute(CategoriesPage).stringify(currentParams),
       active: matchRoute(CategoriesPage).hasPath(currentPath),
-      text: 'Info'
+      text: t('information')
     })
 
     return [info, form]
