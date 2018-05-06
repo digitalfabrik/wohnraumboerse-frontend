@@ -25,54 +25,11 @@
   <meta name="msapplication-starturl" content="/">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
-
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   <link rel="apple-touch-icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
 
-  <style>
-    @keyframes show {
-      0% {
-        visibility: hidden;
-      }
-      99% {
-        visibility: hidden;
-      }
-      100% {
-        visibility: visible;
-      }
-    }
-
-    .splash {
-      position: fixed;
-      top: 0;
-      left: 0;
-
-      background-color: #fbda16;
-
-      height: 100vh;
-      width: 100vw;
-
-      animation-name: show;
-      animation-duration: 1s;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .splash-hidden {
-      visibility: hidden;
-      animation: none;
-    }
-
-    .splash-logo {
-      height: 50%;
-    }
-  </style>
 </head>
 <body>
-<div id="splash" class="splash"><img class="splash-logo" src="/progressive-logo.jpg"></div>
 <div id="container"></div>
 <script src="<%= bundle %>"></script>
 </body>
