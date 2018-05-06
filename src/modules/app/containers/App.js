@@ -4,7 +4,7 @@ import createReduxStore from '../createReduxStore'
 import createHistory from '../createHistory'
 import EndpointProvider from '../../endpoint/EndpointProvider'
 import disclaimerEndpoint from '../../endpoint/endpoints/disclaimer'
-import livingEndpoint from '../../endpoint/endpoints/living'
+import categoriesEndpoint from '../../endpoint/endpoints/categories'
 import RouteConfig from '../RouteConfig'
 import RouterFragment from './RouterFragment'
 import { ThemeProvider } from 'styled-components'
@@ -28,7 +28,7 @@ class App extends React.Component {
   render () {
     return <Provider store={this.store}>
       <EndpointProvider
-        endpoints={[livingEndpoint, disclaimerEndpoint]}>
+        endpoints={[categoriesEndpoint, disclaimerEndpoint]}>
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <RouterFragment routeConfig={this.routeConfig} />

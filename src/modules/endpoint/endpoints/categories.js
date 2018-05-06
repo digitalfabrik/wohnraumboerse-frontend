@@ -13,7 +13,7 @@ function getUrlWithoutCity (url) {
 
 const cityConfig = getCurrentCityConfig()
 
-export default new EndpointBuilder('living')
+export default new EndpointBuilder('categories')
   .withStateToUrlMapper(state => `https://cms.integreat-app.de/${cityConfig.cmsName}/de/wp-json/extensions/v0/modified_content/pages?since=1970-01-01T00:00:00Z`)
   .withMapper((json, state) => {
     const baseUrl = ``

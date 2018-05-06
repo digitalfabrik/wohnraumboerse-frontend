@@ -13,7 +13,7 @@ import { Link } from 'redux-little-router'
 
 export class CategoriesPage extends React.Component {
   static propTypes = {
-    living: PropTypes.instanceOf(CategoriesMapModel).isRequired,
+    categories: PropTypes.instanceOf(CategoriesMapModel).isRequired,
     path: PropTypes.string
   }
 
@@ -26,7 +26,7 @@ export class CategoriesPage extends React.Component {
    * @return {*} The content to be displayed
    */
   getContent (category) {
-    const categories = this.props.living
+    const categories = this.props.categories
     const children = categories.getChildren(category)
 
     if (children.length === 0) {
@@ -44,13 +44,13 @@ export class CategoriesPage extends React.Component {
   }
 
   getBreadcrumbs (category) {
-    return this.props.living.getAncestors(category).map(
+    return this.props.categories.getAncestors(category).map(
       category => <Link href={category.url}>{category.title}</Link>
     )
   }
 
   render () {
-    const category = this.props.living.getCategoryByUrl(this.props.path)
+    const category = this.props.categories.getCategoryByUrl(this.props.path)
     if (!category) {
       return <Failure error='not-found:page.notFound' />
     }
@@ -69,5 +69,5 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
-  withFetcher('living')
+  withFetcher('categories')
 )(CategoriesPage)

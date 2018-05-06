@@ -1,11 +1,11 @@
 import disclaimerEndpoint from '../endpoints/disclaimer'
-import livingEndpoint from '../endpoints/living'
+import categoriesEndpoint from '../endpoints/categories'
 
 /**
  * Contains all reducers from all endpoints which are defined in {@link './endpoints/'}
  */
 const endpoints = [
-  livingEndpoint,
+  categoriesEndpoint,
   disclaimerEndpoint
 ]
 const reducers = endpoints.reduce((result, endpoint) => {
