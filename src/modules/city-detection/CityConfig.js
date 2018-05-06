@@ -1,7 +1,7 @@
 class CityConfig {
-  constructor (cmsName, hostnames, formsEnabled, title, logo, impressumUrl) {
+  constructor (cmsName, hostname, formsEnabled, title, logo, impressumUrl) {
     this.cmsName = cmsName
-    this.hostNames = hostnames
+    this.hostName = hostname
     this.formsEnabled = formsEnabled
     this.title = title
     this.logo = logo

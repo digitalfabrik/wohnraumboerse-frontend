@@ -6,7 +6,12 @@ import cityConfigs from './cityConfigs'
  * @returns {CityConfig|undefined} the current cityConfig depending on the hostname (domain) the user client is on.
  */
 function getCurrentCityConfig () {
-  return cityConfigs.find(city => city.hostNames.includes(location.hostname))
+  const hostname = (window.localStorage && window.localStorage.getItem && window.localStorage.getItem('hostname')) || location.hostname
+  const cityConfig = cityConfigs.find(city => city.hostName === hostname)
+  if (!cityConfig) {
+    throw new Error(`Couldn't find a city configuration for hostname '${hostname}'.`)
+  }
+  return cityConfig
 }
 
 export default getCurrentCityConfig
