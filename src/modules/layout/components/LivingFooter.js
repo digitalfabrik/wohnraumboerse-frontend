@@ -1,16 +1,24 @@
 import React from 'react'
-import Footer from './Footer'
-import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
+import PropTypes from 'prop-types'
+import { Link } from 'redux-little-router'
 
-const cityConfig = getCurrentCityConfig()
+import Footer from './Footer'
+import DisclaimerPage from '../../../routes/disclaimer/containers/DisclaimerPage'
+import { translate } from 'react-i18next'
 
 class LivingFooter extends React.Component {
   static propTypes = {
+    matchRoute: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired
   }
 
   render () {
-    return <Footer><a href={cityConfig.impressumUrl} target='_blank'>Impressum</a></Footer>
+    return <Footer>
+      <Link href={this.props.matchRoute(DisclaimerPage).stringify()}>
+        {this.props.t('imprintAndContact')}
+      </Link>
+    </Footer>
   }
 }
 
-export default LivingFooter
+export default translate('app')(LivingFooter)

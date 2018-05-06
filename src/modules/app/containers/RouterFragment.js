@@ -2,25 +2,16 @@ import { Fragment } from 'redux-little-router'
 import React from 'react'
 import PropTypes from 'prop-types'
 import RouteConfig from '../RouteConfig'
-import { connect } from 'react-redux'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 import LivingPage from '../../../routes/categories/containers/CategoriesPage'
 import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
 import LivingLayout from '../../layout/containers/LivingLayout'
-
-const LANGUAGE_CODE_LENGTH = 2
+import DisclaimerPage from '../../../routes/disclaimer/containers/DisclaimerPage'
 
 export class RouterFragment extends React.Component {
   static propTypes = {
-    viewportSmall: PropTypes.bool.isRequired,
     routeConfig: PropTypes.instanceOf(RouteConfig).isRequired
   }
-
-  static isLanguageCode (language) {
-    return language && language.length === LANGUAGE_CODE_LENGTH
-  }
-
-  redirectCondition = location => !RouterFragment.isLanguageCode(location.params.language)
 
   /**
    * This is the matchRoute from the supplied {@link routeConfig}
@@ -40,15 +31,19 @@ export class RouterFragment extends React.Component {
       {/* Routes */}
       <React.Fragment>
         <LivingLayout matchRoute={this.matchRoute}>
-          {/* Matches /augsburg/living/form */}
+          {/* Matches /form */}
           <Fragment forRoute='/form'>
             <LivingFormPage />
           </Fragment>
-          {/* Matches /augsburg/living/offer/asdf/:action */}
+          {/* Matches /disclaimer */}
+          <Fragment forRoute='/disclaimer'>
+            <DisclaimerPage />
+          </Fragment>
+          {/* Matches /offer/:token/:action */}
           <Fragment forRoute='/offer/:token/:action'>
             <LivingManageOfferPage />
           </Fragment>
-          {/* Matches /augsburg/living/* */}
+          {/* Matches /* */}
           <Fragment forNoMatch>
             <LivingPage />
           </Fragment>
@@ -58,8 +53,4 @@ export class RouterFragment extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  viewportSmall: state.viewport.is.small
-})
-
-export default connect(mapStateToProps)(RouterFragment)
+export default RouterFragment

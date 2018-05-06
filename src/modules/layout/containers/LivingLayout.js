@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import compose from 'lodash/fp/compose'
+
 import Layout from '../components/Layout'
 import LivingHeader from '../components/LivingHeader'
 import LivingFooter from '../components/LivingFooter'
@@ -22,7 +22,7 @@ export class LivingLayout extends React.Component {
     return <Layout header={<LivingHeader viewportSmall={this.props.viewportSmall}
                                          matchRoute={matchRoute} location={cityConfig.cmsName}
                                          currentPath={this.props.currentPath} />}
-                   footer={<LivingFooter />}>
+                   footer={<LivingFooter matchRoute={matchRoute} />}>
       {this.props.children}
     </Layout>
   }
@@ -33,6 +33,4 @@ const mapStateToProps = state => ({
   viewportSmall: state.viewport.is.small
 })
 
-export default compose(
-  connect(mapStateToProps)
-)(LivingLayout)
+export default connect(mapStateToProps)(LivingLayout)
