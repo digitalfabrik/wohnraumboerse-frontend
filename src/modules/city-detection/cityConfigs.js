@@ -1,6 +1,6 @@
 import CityConfig from './CityConfig'
 
-import logoNeuburg from './assets/neuburg.png'
+import logoNeuburg from './assets/neuburg-project.svg'
 import logoBayreuth from './assets/bayreuth.png'
 
 const configs = [
