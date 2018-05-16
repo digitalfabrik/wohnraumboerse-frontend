@@ -3,7 +3,7 @@ import React from 'react'
 import { Control, Errors, Fieldset, LocalForm } from 'react-redux-form'
 import { field } from './LivingFormPage.css'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
-import serverConfig from 'server.config'
+import environment from 'environment.config'
 import { Caption } from '@integreat-app/shared'
 
 const cityConfig = getCurrentCityConfig()
@@ -43,7 +43,7 @@ export class LivingFormPage extends React.Component {
   handleSubmit (values) {
     console.log(values)
     const {landlord, property} = values
-    fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/`, {
+    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/`, {
       body: JSON.stringify({email: landlord.email, duration: property.duration * 24 * 60 * 60, formData: {}}),
       method: 'PUT',
       headers: new Headers({
