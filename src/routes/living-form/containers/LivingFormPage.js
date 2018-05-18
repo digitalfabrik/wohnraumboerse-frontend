@@ -1,6 +1,4 @@
-/* eslint-disable */
 import React from 'react'
-import { field } from './LivingFormPage.css'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import serverConfig from 'server.config'
 import { Caption } from '@integreat-app/shared'
@@ -8,6 +6,7 @@ import NeuburgForm from './NeuburgForm'
 import Failure from '../../../modules/common/components/Failure'
 
 const cityConfig = getCurrentCityConfig()
+const STATUS_OK = 200
 
 export class LivingFormPage extends React.Component {
   constructor () {
@@ -15,8 +14,8 @@ export class LivingFormPage extends React.Component {
     this.state = {success: false}
   }
 
-  sendRequest = (requestBody) => {
-    console.log('Sending request with body:');
+  sendRequest = requestBody => {
+    console.log('Sending request with body:')
     console.log(requestBody)
     this.setState({sending: true})
     fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/`, {
@@ -26,7 +25,7 @@ export class LivingFormPage extends React.Component {
         'Content-Type': 'application/json'
       })
     }).then(response => response.status)
-      .then(status => this.setState({success: status === 200}))
+      .then(status => this.setState({success: status === STATUS_OK}))
   }
 
   render () {
@@ -40,7 +39,7 @@ export class LivingFormPage extends React.Component {
 
     return <React.Fragment>
       <Caption title={'Mietangebot erstellen'} />
-        <NeuburgForm sendRequest={this.sendRequest} sending={this.state.sending} />
+      <NeuburgForm sendRequest={this.sendRequest} sending={this.state.sending} />
     </React.Fragment>
   }
 }
