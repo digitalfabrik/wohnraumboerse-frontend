@@ -191,7 +191,6 @@ export class LivingFormPage extends React.Component {
     requestBody.privacyConfirmed = requestBody.privacyConfirmed === 'true'
     requestBody.costs.hotWaterInHeatingCosts = requestBody.costs.hotWaterInHeatingCosts === 'true'
 
-    console.log(requestBody)
     this.props.sendRequest(requestBody)
   }
 }
