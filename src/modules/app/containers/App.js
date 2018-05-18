@@ -11,6 +11,8 @@ import { ThemeProvider } from 'styled-components'
 import createRouteConfig from '../createRouteConfig'
 import theme from '../constants/theme'
 import I18nProvider from './I18nProvider'
+import { MuiThemeProvider } from 'material-ui'
+import muiTheme from '../constants/muiTheme'
 
 class App extends React.Component {
   store
@@ -31,7 +33,9 @@ class App extends React.Component {
         endpoints={[categoriesEndpoint, disclaimerEndpoint]}>
         <I18nProvider>
           <ThemeProvider theme={theme}>
-            <RouterFragment routeConfig={this.routeConfig} />
+            <MuiThemeProvider theme={muiTheme}>
+              <RouterFragment routeConfig={this.routeConfig} />
+            </MuiThemeProvider>
           </ThemeProvider>
         </I18nProvider>
       </EndpointProvider>

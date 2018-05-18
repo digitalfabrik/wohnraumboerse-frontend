@@ -21,15 +21,12 @@
   position: relative;
   display: flex;
   min-height: 100vh;
+  overflow: hidden;
   flex-direction: column;
   justify-content: space-between;
   font-family: var(--decorative-font-family);
   font-size-adjust: var(--font-size-adjust);
   line-height: var(--decorative-line-height);
-}
-
-.layout p {
-  margin: var(--standard-paragraph-margin) 0;
 }
 
 /* https://aykevl.nl/2014/09/fix-jumping-scrollbar */
