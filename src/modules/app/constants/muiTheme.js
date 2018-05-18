@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core'
 
-const integreatPalette = {
+const colorPalette = {
   light: '#819ca9',
   main: '#546e7a',
   dark: '#29434e'
@@ -8,7 +8,7 @@ const integreatPalette = {
 
 export default createMuiTheme({
   palette: {
-    primary: integreatPalette,
-    secondary: integreatPalette
+    primary: colorPalette,
+    secondary: colorPalette
   }
 })
