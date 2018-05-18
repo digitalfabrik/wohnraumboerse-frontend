@@ -1,6 +1,6 @@
 import React from 'react'
 import { control } from 'react-validation'
-import { FormControl, FormHelperText, TextField } from 'material-ui'
+import { FormControl, FormHelperText, TextField } from '@material-ui/core'
 
 export const TextInput = control(({error, isChanged, isUsed, additionalLabel, ...props}) => (
   <FormControl error={(isChanged || isUsed) && !!error} fullWidth>

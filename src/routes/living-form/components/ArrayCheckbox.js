@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Input from 'react-validation/build/input'
-import { control } from 'react-validation'
-import { Checkbox, FormControl, FormControlLabel } from 'material-ui'
+import { Checkbox, FormControl, FormControlLabel } from '@material-ui/core'
 
 class ArrayCheckbox extends React.PureComponent {
   static propTypes = {

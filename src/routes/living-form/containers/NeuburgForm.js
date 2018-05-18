@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import Form from 'react-validation/build/form'
 import { set, forEach, map } from 'lodash'
-import { InputAdornment, MenuItem } from 'material-ui'
+import { InputAdornment, MenuItem } from '@material-ui/core'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
 import staatLogo from './assets/logo-stmas.png'
@@ -15,6 +15,7 @@ import needsAcceptance from '../validators/needsAcceptance'
 import SubmitButton from '../components/SubmitButton'
 import SingleCheckbox from '../components/SingleCheckbox'
 import LawParagraph from '../components/LawParagraph'
+import DateInput from '../components/DateInput'
 
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
@@ -34,7 +35,7 @@ const rooms = {
   balcony: 'Balkon / Terrasse'
 }
 
-const additionalCosts = {
+const runningServices = {
   heating: 'Heizung',
   water: 'Wasser/Abwasser',
   garbage: 'Müllabfuhr',
@@ -43,7 +44,7 @@ const additionalCosts = {
 }
 
 const additionalServices = {
-  garage: 'Garage',
+  garage: 'Garage/Stellplatz',
   other: 'Sonstiges'
 }
 
@@ -65,56 +66,62 @@ export class LivingFormPage extends React.Component {
       <Grid>
         <h3>Kontaktdaten VermieterIn</h3>
         <Row>
-          <StdCol><TextInput name='landlord.firstName' type='text' label='Vorname' validations={[required]} /></StdCol>
-          <StdCol><TextInput name='landlord.lastName' type='text' label='Nachname' validations={[required]} /></StdCol>
-          <StdCol><TextInput name='emailAddress' type='text' label='E-Mail-Adresse'
+          <StdCol><TextInput name='formData.landlord.firstName' type='text' label='Vorname' validations={[required]} /></StdCol>
+          <StdCol><TextInput name='formData.landlord.lastName' type='text' label='Nachname' validations={[required]} /></StdCol>
+          <StdCol><TextInput name='email' type='text' label='E-Mail-Adresse'
                              validations={[required, isEmail]} /></StdCol>
           <StdCol><TextInput name='landlord.phone' type='text' label='Telefon' /></StdCol>
         </Row>
 
         <h3>Mietobjekt</h3>
         <Row>
-          <StdCol><TextInput name='accommodation.totalArea' label='Gesamtfläche der Wohnung'
+          <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
                              validations={[required]} type='number'
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>qm</InputAdornment>
                              }} /></StdCol>
-          <StdCol><TextInput name='accommodation.totalRooms' label='Räume insgesamt'
+          <StdCol><TextInput name='formData.accommodation.totalRooms' label='Räume insgesamt'
                              validations={[required]} type='number' /></StdCol>
         </Row>
         <Row>
           {map(rooms, (label, key) => (
-            <NarrowCol key={key}><ArrayCheckbox name='accommodation.ofRooms' label={label} value={key} /></NarrowCol>
+            <NarrowCol key={key}><ArrayCheckbox name='formData.accommodation.ofRooms' label={label} value={key} /></NarrowCol>
           ))}
+        </Row>
+        <Row>
+          <StdCol><DateInput
+            label='Bezugsdatum'
+            name='formData.accommodation.moveInDate'
+          /></StdCol>
         </Row>
 
         <h3>Mietkosten</h3>
         <Row>
-          <StdCol><TextInput name='costs.baseRent' label='Grundmiete monatlich' validations={[required]}
+          <StdCol><TextInput name='formData.costs.baseRent' label='Grundmiete monatlich' validations={[required]}
                              type='number' additionalLabel='Ohne Nebenkosten, Garage und Heizung'
                              InputProps={{startAdornment: <InputAdornment position='start'>€</InputAdornment>}}
           /></StdCol>
-          <StdCol><TextInput name='costs.runningCosts' label='Nebenkosten monatlich' validations={[required]}
+          <StdCol><TextInput name='formData.costs.runningCosts' label='Nebenkosten monatlich' validations={[required]}
                              type='number'
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>€</InputAdornment>
                              }} /></StdCol>
         </Row>
         <Row>
-          {map(additionalCosts, (label, key) => (
-            <NarrowCol key={key}><ArrayCheckbox name='costs.ofAdditionalCosts' label={label} value={key} /></NarrowCol>
+          {map(runningServices, (label, key) => (
+            <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofRunningServices' label={label} value={key} /></NarrowCol>
           ))}
         </Row>
-        <Row><WideCol><SingleCheckbox name='costs.hotWaterInHeatingCosts'
+        <Row><WideCol><SingleCheckbox name='formData.costs.hotWaterInHeatingCosts'
                                       label='Warmwasser in Heizung enthalten' /></WideCol></Row>
-        <Row><StdCol><TextInput name='costs.additionalCosts' label='Zusatzkosten monatlich' validations={[required]}
+        <Row><StdCol><TextInput name='formData.costs.additionalCosts' label='Zusatzkosten monatlich' validations={[required]}
                                 type='number'
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
                                 }} /></StdCol></Row>
         <Row>
           {map(additionalServices, (label, key) => (
-            <NarrowCol key={key}><ArrayCheckbox name='costs.ofAdditionalServices' label={label}
+            <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofAdditionalServices' label={label}
                                                 value={key} /></NarrowCol>
           ))}
         </Row>
@@ -131,7 +138,7 @@ export class LivingFormPage extends React.Component {
         </Row>
         <Row>
           <WideCol>
-            <SingleCheckbox name='privacyConfirmed' label='Ich akzeptiere die Datenschutzerklärung:'
+            <SingleCheckbox name='agreedToDataProtection' label='Ich akzeptiere die Datenschutzerklärung:'
                             validations={[needsAcceptance]} />
             <LawParagraph>
               Ich willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
@@ -178,18 +185,18 @@ export class LivingFormPage extends React.Component {
     const requestBody = {}
     forEach(values, (value, key) => set(requestBody, key, value))
     // Make ofAdditionalCosts, ofRooms, ofAdditionalServices arrays (if not already)
-    if (!Array.isArray(requestBody.accommodation.ofRooms)) {
-      requestBody.accommodation.ofRooms = [requestBody.accommodation.ofRooms].filter(key => key)
+    if (!Array.isArray(requestBody.formData.accommodation.ofRooms)) {
+      requestBody.formData.accommodation.ofRooms = [requestBody.formData.accommodation.ofRooms].filter(key => key)
     }
-    if (!Array.isArray(requestBody.costs.ofAdditionalServices)) {
-      requestBody.costs.ofAdditionalServices = Array.of(requestBody.costs.ofAdditionalServices).filter(key => key)
+    if (!Array.isArray(requestBody.formData.costs.ofAdditionalServices)) {
+      requestBody.formData.costs.ofAdditionalServices = Array.of(requestBody.formData.costs.ofAdditionalServices).filter(key => key)
     }
-    if (!Array.isArray(requestBody.costs.ofAdditionalCosts)) {
-      requestBody.costs.ofAdditionalCosts = Array.of(requestBody.costs.ofAdditionalCosts).filter(key => key)
+    if (!Array.isArray(requestBody.formData.costs.ofRunningServices)) {
+      requestBody.formData.costs.ofRunningServices = Array.of(requestBody.formData.costs.ofRunningServices).filter(key => key)
     }
     // Convert boolean values to actual bools
-    requestBody.privacyConfirmed = requestBody.privacyConfirmed === 'true'
-    requestBody.costs.hotWaterInHeatingCosts = requestBody.costs.hotWaterInHeatingCosts === 'true'
+    requestBody.agreedToDataProtection = requestBody.agreedToDataProtection === 'true'
+    requestBody.formData.costs.hotWaterInHeatingCosts = requestBody.formData.costs.hotWaterInHeatingCosts === 'true'
 
     this.props.sendRequest(requestBody)
   }

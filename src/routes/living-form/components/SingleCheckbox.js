@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { control } from 'react-validation'
-import { Checkbox, FormControl, FormControlLabel, FormHelperText } from 'material-ui'
+import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@material-ui/core'
 
 export class SingleCheckbox extends React.PureComponent {
   state = {checked: false}

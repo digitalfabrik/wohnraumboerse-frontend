@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { button } from 'react-validation'
-import { Button, FormHelperText } from 'material-ui'
+import { Button, FormHelperText } from '@material-ui/core'
 
 class SubmitButton extends React.Component {
   static propTypes = {

@@ -11,8 +11,12 @@ import { ThemeProvider } from 'styled-components'
 import createRouteConfig from '../createRouteConfig'
 import theme from '../constants/theme'
 import I18nProvider from './I18nProvider'
-import { MuiThemeProvider } from 'material-ui'
+import { MuiThemeProvider } from '@material-ui/core'
 import muiTheme from '../constants/muiTheme'
+import { MuiPickersUtilsProvider } from 'material-ui-pickers'
+import MomentUtils from 'material-ui-pickers/utils/moment-utils'
+import 'moment/locale/de'
+import moment from 'moment'
 
 class App extends React.Component {
   store
@@ -34,7 +38,9 @@ class App extends React.Component {
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <MuiThemeProvider theme={muiTheme}>
-              <RouterFragment routeConfig={this.routeConfig} />
+              <MuiPickersUtilsProvider utils={MomentUtils} locale='de' moment={moment}>
+                <RouterFragment routeConfig={this.routeConfig} />
+              </MuiPickersUtilsProvider>
             </MuiThemeProvider>
           </ThemeProvider>
         </I18nProvider>

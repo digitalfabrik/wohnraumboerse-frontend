@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { control } from 'react-validation'
-import { FormControl, FormHelperText, InputLabel, Select as MaterialSelect } from 'material-ui'
+import { FormControl, FormHelperText, InputLabel, Select as MaterialSelect } from '@material-ui/core'
 
 class SelectInput extends React.Component {
   static propTypes = {

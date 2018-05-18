@@ -1,4 +1,4 @@
-import { createMuiTheme } from 'material-ui'
+import { createMuiTheme } from '@material-ui/core'
 
 const integreatPalette = {
   light: '#819ca9',
