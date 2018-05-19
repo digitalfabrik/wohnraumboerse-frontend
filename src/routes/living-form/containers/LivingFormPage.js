@@ -1,138 +1,59 @@
-/* eslint-disable */
 import React from 'react'
-import { Control, Errors, Fieldset, LocalForm } from 'react-redux-form'
-import { field } from './LivingFormPage.css'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import serverConfig from 'server.config'
 import { Caption } from '@integreat-app/shared'
+import NeuburgForm from './NeuburgForm'
+import Failure from '../../../modules/common/components/Failure'
 
 const cityConfig = getCurrentCityConfig()
-const Address = () => (
-  <Fieldset model=".address">
-    <div className={field}>
-      <label>Adresse:</label>
-      <Control.text model=".address" />
-    </div>
-    <div className={field}>
-      <label>City:</label>
-      <Control.text model=".city" />
-    </div>
-    <div className={field}>
-      <label>Bundesland:</label>
-      <Control.text model=".state" />
-    </div>
-    <div className={field}>
-      <label>Postleitzahl:</label>
-      <Control.text model=".zip" />
-    </div>
-  </Fieldset>
-)
+const STATUS_CREATED = 201
 
 export class LivingFormPage extends React.Component {
   constructor () {
     super()
-    this.state = {success: false}
+    this.state = {success: false, serverError: null, sending: false, emailAddress: ''}
   }
 
-  handleChange (values) {
-
-  }
-
-  handleUpdate (form) { }
-
-  handleSubmit (values) {
-    console.log(values)
-    const {landlord, property} = values
+  sendRequest = requestBody => {
+    console.log('Sending request with body:')
+    console.log(requestBody)
+    this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
     fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/`, {
-      body: JSON.stringify({email: landlord.email, duration: property.duration * 24 * 60 * 60, formData: {}}),
+      body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json'
       })
-    }).then(response => response.status)
-      .then(status => this.setState({success: status === 200}))
+    }).then(response => {
+      if (response.status === STATUS_CREATED) {
+        this.setState({success: true, sending: false})
+      } else {
+        return response.text().then(text => this.setState({serverError: text, sending: false}))
+      }
+    })
   }
 
   render () {
-    if (this.state.success) {
-      return <Caption title={'Angebot wurde erstellt. Überprüfen Sie ihr E-Mail Postfach :)'} />
+    if (cityConfig.cmsName !== 'neuburgschrobenhausenwohnraum') {
+      return <Failure error='not-found:page.notFound' />
     }
 
-    return (
-      <LocalForm
-        onUpdate={(form) => this.handleUpdate(form)}
-        onChange={(values) => this.handleChange(values)}
-        onSubmit={(values) => this.handleSubmit(values)}
-      >
+    if (this.state.success) {
+      return <React.Fragment>
+        <Caption title='Fast fertig' />
+        <p>Ihr Angebot wurde erfolgreich erstellt. Sie müssen nur noch Ihre E-Mail-Adresse bestätigen:</p>
+        <p>
+          Wir haben Ihnen dazu eine E-Mail an <i>{this.state.emailAddress}</i> mit einem Bestätigungslink geschickt.
+           Klicken Sie darauf, um das Angebot freizuschalten.</p>
+        <p>Falls Sie keine E-Mail bekommen haben, überprüfen Sie bitte, ob Sie die richtige E-Mail-Adresse angegeben haben
+          und ob die E-Mail in Ihrem Spam-Ordner gelandet ist.</p>
+      </React.Fragment>
+    }
 
-        <Caption title={'Angaben zum Vermieter'} />
-        <Fieldset model=".landlord">
-          {/*<div className={field}>*/}
-          {/*<label>Name:</label>*/}
-          {/*<Control.text model="landlord.name" />*/}
-          {/*</div>*/}
-
-          {/*<div className={field}>*/}
-          {/*<label>Nachname:</label>*/}
-          {/*<Control.text model="landlord.lastname" />*/}
-          {/*</div>*/}
-
-          {/*<div className={field}>*/}
-          {/*<label>Telefon:</label>*/}
-          {/*<Control.text model="landlord.phone" />*/}
-          {/*</div>*/}
-
-          <div className={field}>
-            <label>E-Mail:</label>
-            <Control.text type="email" model=".email" required />
-            <Errors
-              model=".email"
-              show="touched"
-              messages={{
-                valueMissing: 'Email fehlt.',
-                typeMismatch: 'Die Eingabe muss eine email sein.',
-                isEmail: 'Eingabe muss eine E-Mail sein'
-              }}
-            />
-          </div>
-
-          {/*<Address />*/}
-        </Fieldset>
-
-
-        <Caption title={'Angaben zum Mietobjekt'} />
-        <Fieldset model=".property">
-          {/*<Address />*/}
-
-          {/*<div className={field}>*/}
-          {/*<label>Gesamtfläche der Wohnung:</label>*/}
-          {/*<Control.text*/}
-          {/*type="number"*/}
-          {/*model=".space"*/}
-          {/*/>*/}
-          {/*</div>*/}
-
-          <div className={field}>
-            <label>Dauer des Angebots in Tage:</label>
-            <Control.text
-              type="number"
-              model=".duration"
-              min={1} required />
-            <Errors
-              model=".duration"
-              show="touched"
-              messages={{
-                valueMissing: 'Dauer fehlt.',
-                typeMismatch: 'Dauer muss eine Zahl sein',
-                rangeUnderflow: 'Die Dauer muss größer als 0 sein.'
-              }}
-            />
-          </div>
-        </Fieldset>
-
-        <button type="submit">Abschicken</button>
-      </LocalForm>
-    )
+    return <React.Fragment>
+      <Caption title={'Mietangebot erstellen'} />
+      <NeuburgForm sendRequest={this.sendRequest} sending={this.state.sending} serverError={this.state.serverError} />
+    </React.Fragment>
   }
 }
 

@@ -132,36 +132,6 @@
       }
     }
   },
-  "pdf-fetcher": {
-    "ar": {
-      "creatingPdf": null,
-      "downloadPdfAt": null,
-      "page": {
-        "loadingFailed": null
-      }
-    },
-    "de": {
-      "creatingPdf": "Ihre PDF wird erstellt...",
-      "downloadPdfAt": "Sie können PDF hier herunterladen:",
-      "page": {
-        "loadingFailed": "Seite konnte leider nicht geladen werden."
-      }
-    },
-    "en": {
-      "creatingPdf": "Your PDF is being created...",
-      "downloadPdfAt": "You can download the PDF at:",
-      "page": {
-        "loadingFailed": "Sorry, but the requested page could not be loaded."
-      }
-    },
-    "fa": {
-      "creatingPdf": null,
-      "downloadPdfAt": null,
-      "page": {
-        "loadingFailed": null
-      }
-    }
-  },
   "disclaimer": {
     "ar": {
       "notAvailable": "البيانات الإدارية ليست متوفرة للأسف لهذه المدينة."
