@@ -3,11 +3,6 @@ import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
 import {Button, FormHelperText} from '@material-ui/core'
 
-const NOT_STARTED = 'notstarted'
-const DONE = 'done'
-const FAILED = 'failed'
-const PENDING = 'pending'
-
 export class DeleteOfferManager extends React.Component {
   static propTypes = {
     send: PropTypes.func.isRequired,
