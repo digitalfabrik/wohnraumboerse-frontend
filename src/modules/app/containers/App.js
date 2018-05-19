@@ -15,6 +15,7 @@ import { MuiThemeProvider } from '@material-ui/core'
 import muiTheme from '../constants/muiTheme'
 import { MuiPickersUtilsProvider } from 'material-ui-pickers'
 import MomentUtils from 'material-ui-pickers/utils/moment-utils'
+// We need to import the german locales for moment: https://material-ui-pickers.firebaseapp.com/localization/moment
 import 'moment/locale/de'
 import moment from 'moment'
 
