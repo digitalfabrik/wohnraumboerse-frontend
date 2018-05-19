@@ -1,14 +1,16 @@
-/* eslint-disable */
 import React from 'react'
 import PropTypes from 'prop-types'
+import serverConfig from 'server.config'
+import getCurrentCityConfig from '../../../modules/city-detection/getCurrentCityConfig'
+import DeleteOfferManager from '../components/DeleteOfferManager'
+import Failure from '../../../modules/common/components/Failure'
+import ExtendOfferManager from '../components/ExtendOfferManager'
+import ConfirmOfferManager from '../components/ConfirmOfferManager'
 import { connect } from 'react-redux'
-import compose from 'lodash/fp/compose'
-import { Caption } from '@integreat-app/shared'
 
-const NOT_STARTED = 'notstarted'
-const DONE = 'done'
-const FAILED = 'failed'
-const PENDING = 'pending'
+const cityConfig = getCurrentCityConfig()
+
+const STATUS_OK = 200
 
 export class LivingManageOfferPage extends React.Component {
   static propTypes = {
@@ -16,66 +18,53 @@ export class LivingManageOfferPage extends React.Component {
     action: PropTypes.string.isRequired
   }
 
-  constructor () {
-    super()
-    this.state = {success: NOT_STARTED}
-  }
+  state = {sending: false, success: false, serverError: null}
 
-  componentWillMount () {
-    if (this.props.action === 'confirm') {
-      this.send('POST', `/confirm`)
-    }
-  }
-
-  send (method, action = '') {
-    this.setState({success: PENDING})
-    fetch(`http://server11.integreat-app.de:8080/v0/${this.props.location}/${this.props.token}${action}`, {
-      method
-    }).then(response => {
-      console.log(response)
-      return response
+  send = (method, action = '', body = null) => {
+    this.setState({sending: true, serverError: null, success: false})
+    fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/${this.props.token}${action}`, {
+      method,
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: body && JSON.stringify(body)
     })
-      .then(response => response.status)
-      .then(status => this.setState({success: status === 200 ? DONE : FAILED}))
+      .then(response => {
+        if (response.status === STATUS_OK) {
+          this.setState({success: response.status === STATUS_OK, sending: false})
+        } else {
+          response.text().then(text => this.setState({success: false, sending: false, serverError: text}))
+        }
+      })
+  }
+
+  static getManagerForAction (action) {
+    switch (action) {
+      case 'confirm':
+        return ConfirmOfferManager
+      case 'delete':
+        return DeleteOfferManager
+      case 'extend':
+        return ExtendOfferManager
+      default:
+        return null
+    }
   }
 
   render () {
-    if (this.props.action === 'confirm') {
-      if (this.state.success === NOT_STARTED || this.state.success === PENDING) {
-        return <Caption title={'E-Mail wird bestätigt...'} />
-      } else if (this.state.success === DONE) {
-        return <Caption title={'E-Mail ist bestätigt.'} />
-      } else if (this.state.success === FAILED) {
-        return <Caption title={'Die E-Mail konnte nicht bestätigt werden.'} />
-      }
+    const Manager = LivingManageOfferPage.getManagerForAction(this.props.action)
+    if (!Manager) {
+      return <Failure error='not-found:page.notFound' />
     }
 
-    if (this.props.action === 'delete') {
-      if (this.state.success === NOT_STARTED) {
-        return <div>
-          <Caption title={'Soll das Angebot gelöscht werden?...'} />
-          <button onClick={() => this.send('DELETE')}>Ja</button>
-          <button onClick={() => alert('Ja dann halt nich')}>Nein</button>
-        </div>
-      } else if (this.state.success === PENDING) {
-        return <Caption title={'Angebot wird gelöscht..'} />
-      } else if (this.state.success === DONE) {
-        return <Caption title={'Angebot wurde gelöscht.'} />
-      } else if (this.state.success === FAILED) {
-        return <Caption title={'Das Angebot konnte nicht gelöscht werden.'} />
-      }
-    }
-
-    return <div>So eine Aktion wird nicht unterstützt!</div>
+    return <Manager send={this.send} sending={this.state.sending} success={this.state.success}
+                    serverError={this.state.serverError} />
   }
 }
 
 const mapStateToProps = state => ({
-  location: state.router.params.location,
   token: state.router.params.token,
   action: state.router.params.action
 })
 
-export default compose(
-  connect(mapStateToProps)
-)(LivingManageOfferPage)
+export default connect(mapStateToProps)(LivingManageOfferPage)
