@@ -20,6 +20,7 @@ import DateInput from '../components/DateInput'
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
 const WideCol = props => <Col xs={12} md={12} {...props} />
+const SubCaption = props => <p style={{margin: '5px 0', fontWeight: 'bold'}} {...props} />
 
 const rooms = {
   kitchen: 'Küche',
@@ -110,6 +111,7 @@ export class NeuburgForm extends React.Component {
                                startAdornment: <InputAdornment position='start'>€</InputAdornment>
                              }} /></StdCol>
         </Row>
+        <SubCaption>In Nebenkosten enthalten:</SubCaption>
         <Row>
           {map(runningServices, (label, key) => (
             <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofRunningServices' label={label}
@@ -124,6 +126,7 @@ export class NeuburgForm extends React.Component {
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
                                 }} /></StdCol></Row>
+        <SubCaption>In Zusatzkosten enthalten:</SubCaption>
         <Row>
           {map(additionalServices, (label, key) => (
             <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofAdditionalServices' label={label}
