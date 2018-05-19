@@ -85,7 +85,8 @@ export class LivingFormPage extends React.Component {
         </Row>
         <Row>
           {map(rooms, (label, key) => (
-            <NarrowCol key={key}><ArrayCheckbox name='formData.accommodation.ofRooms' label={label} value={key} /></NarrowCol>
+            <NarrowCol key={key}><ArrayCheckbox name='formData.accommodation.ofRooms' label={label}
+                                                value={key} /></NarrowCol>
           ))}
         </Row>
         <Row>
@@ -109,12 +110,14 @@ export class LivingFormPage extends React.Component {
         </Row>
         <Row>
           {map(runningServices, (label, key) => (
-            <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofRunningServices' label={label} value={key} /></NarrowCol>
+            <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofRunningServices' label={label}
+                                                value={key} /></NarrowCol>
           ))}
         </Row>
         <Row><WideCol><SingleCheckbox name='formData.costs.hotWaterInHeatingCosts'
                                       label='Warmwasser in Heizung enthalten' /></WideCol></Row>
-        <Row><StdCol><TextInput name='formData.costs.additionalCosts' label='Zusatzkosten monatlich' validations={[required]}
+        <Row><StdCol><TextInput name='formData.costs.additionalCosts' label='Zusatzkosten monatlich'
+                                validations={[required]}
                                 type='number'
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
@@ -154,8 +157,8 @@ export class LivingFormPage extends React.Component {
               Mietobjekte zielgerichtet zu vermitteln.
             </LawParagraph>
             <LawParagraph>
-              Die Einwilligung kann verweigert bzw. jederzeit ohne Angabe von Gründen
-              durch Mitteilung an (Kontakt-E-Mail-Adresse) widerrufen werden. In diesem
+              Die Einwilligung kann verweigert bzw. jederzeit ohne Angabe von Gründen über den in der Bestätigungsmail
+              versendeten Link zur dauerhaften Löschung widerrufen werden. In diesem
               Fall erfolgt keine Bearbeitung meines Mietangebots; alle gespeicherten
               personenbezogenen Daten werden gelöscht.
             </LawParagraph>
