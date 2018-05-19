@@ -7,6 +7,10 @@ import CategoriesPage from '../../../routes/categories/containers/CategoriesPage
 import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
 import LivingLayout from '../../layout/containers/LivingLayout'
 import DisclaimerPage from '../../../routes/disclaimer/containers/DisclaimerPage'
+import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
+import { Helmet } from 'react-helmet'
+
+const cityConfig = getCurrentCityConfig()
 
 export class RouterFragment extends React.Component {
   static propTypes = {
@@ -30,6 +34,9 @@ export class RouterFragment extends React.Component {
     return <Fragment forRoute='/'>
       {/* Routes */}
       <React.Fragment>
+        <Helmet>
+          <title>{cityConfig.title}</title>
+        </Helmet>
         <LivingLayout matchRoute={this.matchRoute}>
           {/* Matches /form */}
           <Fragment forRoute='/form'>
