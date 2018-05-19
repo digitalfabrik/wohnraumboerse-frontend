@@ -148,7 +148,7 @@ export class NeuburgForm extends React.Component {
             <LawParagraph>
               Ich willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
               Tür - Digital Factory gGmbH meine personenbezogenen Daten zum Zwecke
-              der Wohnraumakquise für Anerkannte Flüchtlinge und bleibeberechtigte
+              der Wohnraumakquise für anerkannte Flüchtlinge und bleibeberechtigte
               Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
               auf die Bearbeitung meines Mietangebots beschränkt.
             </LawParagraph>
