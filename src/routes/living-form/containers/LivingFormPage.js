@@ -6,26 +6,31 @@ import NeuburgForm from './NeuburgForm'
 import Failure from '../../../modules/common/components/Failure'
 
 const cityConfig = getCurrentCityConfig()
-const STATUS_OK = 200
+const STATUS_CREATED = 201
 
 export class LivingFormPage extends React.Component {
   constructor () {
     super()
-    this.state = {success: false}
+    this.state = {success: false, serverError: null, sending: false, emailAddress: ''}
   }
 
   sendRequest = requestBody => {
     console.log('Sending request with body:')
     console.log(requestBody)
-    this.setState({sending: true})
+    this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
     fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({
         'Content-Type': 'application/json'
       })
-    }).then(response => response.status)
-      .then(status => this.setState({success: status === STATUS_OK}))
+    }).then(response => {
+      if (response.status === STATUS_CREATED) {
+        this.setState({success: true, sending: false})
+      } else {
+        return response.text().then(text => this.setState({serverError: text, sending: false}))
+      }
+    })
   }
 
   render () {
@@ -34,12 +39,20 @@ export class LivingFormPage extends React.Component {
     }
 
     if (this.state.success) {
-      return <Caption title={'Angebot wurde erstellt. Überprüfen Sie ihr E-Mail Postfach.'} />
+      return <React.Fragment>
+        <Caption title='Fast fertig' />
+        <p>Ihr Angebot wurde erfolgreich erstellt. Sie müssen nur noch Ihre E-Mail-Adresse bestätigen:</p>
+        <p>
+          Wir haben Ihnen dazu eine E-Mail an <i>{this.state.emailAddress}</i> mit einem Bestätigungslink geschickt.
+           Klicken Sie darauf, um das Angebot freizuschalten.</p>
+        <p>Falls Sie keine E-Mail bekommen haben, überprüfen Sie bitte, ob Sie die richtige E-Mail-Adresse angegeben haben
+          und ob die E-Mail in Ihrem Spam-Ordner gelandet ist.</p>
+      </React.Fragment>
     }
 
     return <React.Fragment>
       <Caption title={'Mietangebot erstellen'} />
-      <NeuburgForm sendRequest={this.sendRequest} sending={this.state.sending} />
+      <NeuburgForm sendRequest={this.sendRequest} sending={this.state.sending} serverError={this.state.serverError} />
     </React.Fragment>
   }
 }

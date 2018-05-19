@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Grid, Row, Col } from 'react-flexbox-grid'
 import Form from 'react-validation/build/form'
 import { set, forEach, map } from 'lodash'
-import { InputAdornment, MenuItem } from '@material-ui/core'
+import { InputAdornment, MenuItem, FormControl, FormHelperText } from '@material-ui/core'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
 import staatLogo from './assets/logo-stmas.png'
@@ -48,11 +48,13 @@ const additionalServices = {
   other: 'Sonstiges'
 }
 
-export class LivingFormPage extends React.Component {
+export class NeuburgForm extends React.Component {
   state = {form: null}
 
   static propTypes = {
-    sendRequest: PropTypes.func.isRequired
+    sendRequest: PropTypes.func.isRequired,
+    sending: PropTypes.bool,
+    serverError: PropTypes.string
   }
 
   setRef = form => {
@@ -70,7 +72,7 @@ export class LivingFormPage extends React.Component {
           <StdCol><TextInput name='formData.landlord.lastName' type='text' label='Nachname' validations={[required]} /></StdCol>
           <StdCol><TextInput name='email' type='text' label='E-Mail-Adresse'
                              validations={[required, isEmail]} /></StdCol>
-          <StdCol><TextInput name='landlord.phone' type='text' label='Telefon' /></StdCol>
+          <StdCol><TextInput name='formData.landlord.phone' type='text' label='Telefon' /></StdCol>
         </Row>
 
         <h3>Mietobjekt</h3>
@@ -165,8 +167,14 @@ export class LivingFormPage extends React.Component {
           </WideCol>
         </Row>
         <Row style={{margin: '20px 0', justifyContent: 'center'}}>
-          <Col center='true'><SubmitButton validateAll={this.validateAll} type='submit' disabled={this.state.fetching}>
-            Mietangebot Senden</SubmitButton></Col>
+          <Col center='true'>
+            <FormControl>
+              <SubmitButton validateAll={this.validateAll} type='submit' disabled={this.props.sending}>
+                {this.props.sending ? 'Wird gesendet...' : 'Mietangebot Senden'}
+              </SubmitButton>
+              {this.props.serverError && <FormHelperText error>{this.props.serverError}</FormHelperText>}
+            </FormControl>
+          </Col>
         </Row>
         <Row>
           <StdCol>
@@ -205,4 +213,4 @@ export class LivingFormPage extends React.Component {
   }
 }
 
-export default (LivingFormPage)
+export default NeuburgForm

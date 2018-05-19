@@ -25,7 +25,7 @@ class SubmitButton extends React.Component {
     delete otherProps.validateAll
     return <div style={{textAlign: 'center'}}>
       <Button variant='raised' {...otherProps} onClick={this.handleClick} />
-      <FormHelperText>{hasErrors && this.state.clicked && 'Sie haben ungültige Eingaben.'}</FormHelperText>
+      <FormHelperText error>{hasErrors && this.state.clicked && 'Sie haben ungültige Eingaben.'}</FormHelperText>
     </div>
   }
 }
