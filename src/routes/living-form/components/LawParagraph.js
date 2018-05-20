@@ -1,3 +1,6 @@
-import React from 'react'
+import styled from 'styled-components'
 
-export default props => <p style={{fontSize: '0.8em', margin: '5px 0'}} {...props} />
+export default styled.p`
+  font-size: 0.8em;
+  margin: 5px 0;
+`
