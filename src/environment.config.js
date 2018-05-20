@@ -1,5 +1,5 @@
 const DEV_ENVIRONMENT = {
-  apiBaseUrl: 'http://localhost:8080/'
+  apiBaseUrl: 'http://localhost:8080/v0/'
 }
 
 const PROD_ENVIRONMENT = {
