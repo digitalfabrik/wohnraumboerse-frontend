@@ -199,20 +199,26 @@ export class NeuburgForm extends React.Component {
     const requestBody = {}
     forEach(values, (value, key) => set(requestBody, key, value))
     // Make ofAdditionalCosts, ofRooms, ofAdditionalServices arrays (if not already)
-    if (!Array.isArray(requestBody.formData.accommodation.ofRooms)) {
-      requestBody.formData.accommodation.ofRooms = [requestBody.formData.accommodation.ofRooms].filter(key => key)
-    }
-    if (!Array.isArray(requestBody.formData.costs.ofAdditionalServices)) {
-      requestBody.formData.costs.ofAdditionalServices = Array.of(requestBody.formData.costs.ofAdditionalServices).filter(key => key)
-    }
-    if (!Array.isArray(requestBody.formData.costs.ofRunningServices)) {
-      requestBody.formData.costs.ofRunningServices = Array.of(requestBody.formData.costs.ofRunningServices).filter(key => key)
-    }
+    NeuburgForm.transformFieldToArray(requestBody.formData.accommodation, 'ofRooms')
+    NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofAdditionalServices')
+    NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofRunningServices')
     // Convert boolean values to actual bools
-    requestBody.agreedToDataProtection = requestBody.agreedToDataProtection === 'true'
-    requestBody.formData.costs.hotWaterInHeatingCosts = requestBody.formData.costs.hotWaterInHeatingCosts === 'true'
+    NeuburgForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
+    NeuburgForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
 
     this.props.sendRequest(requestBody)
+  }
+
+  static transformFieldToBool (object, key) {
+    object[key] = object[key] === 'true'
+  }
+
+  static transformFieldToArray (object, key) {
+    if (object[key] === undefined) {
+      object[key] = []
+    } else if (!Array.isArray(object[key])) {
+      object[key] = [object[key]]
+    }
   }
 }
 
