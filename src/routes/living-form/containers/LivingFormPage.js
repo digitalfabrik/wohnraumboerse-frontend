@@ -1,6 +1,6 @@
 import React from 'react'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
-import serverConfig from 'server.config'
+import environment from 'environment.config'
 import { Caption } from '@integreat-app/shared'
 import NeuburgForm from './NeuburgForm'
 import Failure from '../../../modules/common/components/Failure'
@@ -13,7 +13,7 @@ export class LivingFormPage extends React.Component {
 
   sendRequest = requestBody => {
     this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
-    fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/`, {
+    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({

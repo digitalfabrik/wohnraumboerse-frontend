@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import RouteConfig from '../RouteConfig'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
-import LivingPage from '../../../routes/categories/containers/CategoriesPage'
+import CategoriesPage from '../../../routes/categories/containers/CategoriesPage'
 import LivingManageOfferPage from '../../../routes/living-manage-offer/containers/LivingManageOfferPage'
 import LivingLayout from '../../layout/containers/LivingLayout'
 import DisclaimerPage from '../../../routes/disclaimer/containers/DisclaimerPage'
@@ -45,7 +45,7 @@ export class RouterFragment extends React.Component {
           </Fragment>
           {/* Matches /* */}
           <Fragment forNoMatch>
-            <LivingPage />
+            <CategoriesPage />
           </Fragment>
         </LivingLayout>
       </React.Fragment>
