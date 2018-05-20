@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import serverConfig from 'server.config'
+import environment from 'environment.config'
 import getCurrentCityConfig from '../../../modules/city-detection/getCurrentCityConfig'
 import DeleteOfferManager from '../components/DeleteOfferManager'
 import Failure from '../../../modules/common/components/Failure'
@@ -22,7 +22,7 @@ export class LivingManageOfferPage extends React.Component {
 
   send = (method, action = '', body = null) => {
     this.setState({sending: true, serverError: null, success: false})
-    fetch(`${serverConfig.host}/v0/${cityConfig.cmsName}/${this.props.token}${action}`, {
+    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/${this.props.token}${action}`, {
       method,
       headers: new Headers({
         'Content-Type': 'application/json'
