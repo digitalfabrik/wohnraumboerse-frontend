@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import Form from 'react-validation/build/form'
 import { set, forEach, map } from 'lodash'
 import { InputAdornment, MenuItem, FormControl, FormHelperText } from '@material-ui/core'
+import styled from 'styled-components'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
 import staatLogo from './assets/logo-stmas.png'
@@ -20,6 +21,10 @@ import DateInput from '../components/DateInput'
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
 const WideCol = props => <Col xs={12} md={12} {...props} />
+const SubCaption = styled.p`
+  margin: 5px 0;
+  font-weight: bold;
+`
 
 const rooms = {
   kitchen: 'Küche',
@@ -110,6 +115,7 @@ export class NeuburgForm extends React.Component {
                                startAdornment: <InputAdornment position='start'>€</InputAdornment>
                              }} /></StdCol>
         </Row>
+        <SubCaption>In Nebenkosten enthalten:</SubCaption>
         <Row>
           {map(runningServices, (label, key) => (
             <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofRunningServices' label={label}
@@ -124,6 +130,7 @@ export class NeuburgForm extends React.Component {
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
                                 }} /></StdCol></Row>
+        <SubCaption>In Zusatzkosten enthalten:</SubCaption>
         <Row>
           {map(additionalServices, (label, key) => (
             <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofAdditionalServices' label={label}
@@ -148,7 +155,7 @@ export class NeuburgForm extends React.Component {
             <LawParagraph>
               Ich willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
               Tür - Digital Factory gGmbH meine personenbezogenen Daten zum Zwecke
-              der Wohnraumakquise für Anerkannte Flüchtlinge und bleibeberechtigte
+              der Wohnraumakquise für anerkannte Flüchtlinge und bleibeberechtigte
               Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
               auf die Bearbeitung meines Mietangebots beschränkt.
             </LawParagraph>
@@ -196,20 +203,26 @@ export class NeuburgForm extends React.Component {
     const requestBody = {}
     forEach(values, (value, key) => set(requestBody, key, value))
     // Make ofAdditionalCosts, ofRooms, ofAdditionalServices arrays (if not already)
-    if (!Array.isArray(requestBody.formData.accommodation.ofRooms)) {
-      requestBody.formData.accommodation.ofRooms = [requestBody.formData.accommodation.ofRooms].filter(key => key)
-    }
-    if (!Array.isArray(requestBody.formData.costs.ofAdditionalServices)) {
-      requestBody.formData.costs.ofAdditionalServices = Array.of(requestBody.formData.costs.ofAdditionalServices).filter(key => key)
-    }
-    if (!Array.isArray(requestBody.formData.costs.ofRunningServices)) {
-      requestBody.formData.costs.ofRunningServices = Array.of(requestBody.formData.costs.ofRunningServices).filter(key => key)
-    }
+    NeuburgForm.transformFieldToArray(requestBody.formData.accommodation, 'ofRooms')
+    NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofAdditionalServices')
+    NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofRunningServices')
     // Convert boolean values to actual bools
-    requestBody.agreedToDataProtection = requestBody.agreedToDataProtection === 'true'
-    requestBody.formData.costs.hotWaterInHeatingCosts = requestBody.formData.costs.hotWaterInHeatingCosts === 'true'
+    NeuburgForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
+    NeuburgForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
 
     this.props.sendRequest(requestBody)
+  }
+
+  static transformFieldToBool (object, key) {
+    object[key] = object[key] === 'true'
+  }
+
+  static transformFieldToArray (object, key) {
+    if (object[key] === undefined) {
+      object[key] = []
+    } else if (!Array.isArray(object[key])) {
+      object[key] = [object[key]]
+    }
   }
 }
 
