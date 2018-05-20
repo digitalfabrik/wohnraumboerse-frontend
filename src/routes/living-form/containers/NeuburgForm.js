@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid'
 import Form from 'react-validation/build/form'
 import { set, forEach, map } from 'lodash'
 import { InputAdornment, MenuItem, FormControl, FormHelperText } from '@material-ui/core'
+import styled from 'styled-components'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
 import staatLogo from './assets/logo-stmas.png'
@@ -20,7 +21,10 @@ import DateInput from '../components/DateInput'
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
 const WideCol = props => <Col xs={12} md={12} {...props} />
-const SubCaption = props => <p style={{margin: '5px 0', fontWeight: 'bold'}} {...props} />
+const SubCaption = styled.p`
+  margin: 5px 0;
+  font-weight: bold;
+`
 
 const rooms = {
   kitchen: 'Küche',
