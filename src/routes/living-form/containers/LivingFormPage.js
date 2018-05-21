@@ -26,6 +26,9 @@ export class LivingFormPage extends React.Component {
         return response.text().then(text => this.setState({serverError: text, sending: false}))
       }
     })
+      .catch(() => {
+        this.setState({success: false, sending: false, serverError: 'Verbindung fehlgeschlagen'})
+      })
   }
 
   render () {

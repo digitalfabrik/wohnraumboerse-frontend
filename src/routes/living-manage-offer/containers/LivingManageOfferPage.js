@@ -36,6 +36,9 @@ export class LivingManageOfferPage extends React.Component {
           response.text().then(text => this.setState({success: false, sending: false, serverError: text}))
         }
       })
+      .catch(() => {
+        this.setState({success: false, sending: false, serverError: 'Verbindung fehlgeschlagen'})
+      })
   }
 
   static getManagerForAction (action) {
