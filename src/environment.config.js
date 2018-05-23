@@ -3,7 +3,7 @@ const DEV_ENVIRONMENT = {
 }
 
 const PROD_ENVIRONMENT = {
-  apiBaseUrl: 'http://api.wohnen.integreat-app.de/v0/'
+  apiBaseUrl: 'https://api.wohnen.integreat-app.de/v0/'
 }
 
 const browserEnvironment = localStorage.getItem('environment')

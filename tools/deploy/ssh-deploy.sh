@@ -2,8 +2,7 @@
 
 HOST=$1
 REMOTE_DIR=$2
-
-yarn build
+CHOWN=$3
 
 rsync -vr -n --delete $(mktemp -d)/ ${HOST}:${REMOTE_DIR}
 
@@ -14,4 +13,4 @@ then
     rsync -vr --delete $(mktemp -d)/ ${HOST}:${REMOTE_DIR}
 fi
 
-rsync -vIacz --progress --stats --exclude=*.ejs www/* ${HOST}:${REMOTE_DIR}
+rsync -vIacz --progress --stats --exclude=*.ejs --chmod=774 --chown=${CHOWN} www/* ${HOST}:${REMOTE_DIR}
