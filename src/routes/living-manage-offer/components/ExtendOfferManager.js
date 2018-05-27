@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
-import { MenuItem, FormHelperText } from '@material-ui/core'
+import { MenuItem, FormHelperText, FormControl } from '@material-ui/core'
 import Form from 'react-validation/build/form'
 import required from '../../living-form/validators/required'
 import SelectInput from '../../living-form/components/SelectInput'
-import { FormControl } from '@material-ui/core/es/index'
 import SubmitButton from '../../living-form/components/SubmitButton'
 
 export class ExtendOfferManager extends React.Component {
