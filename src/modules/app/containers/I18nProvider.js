@@ -9,7 +9,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import localesResources from 'locales.json'
 
 const RTL_LANGUAGES = ['ar', 'fa']
-const FALLBACK_LANGUAGE = 'en'
+const FALLBACK_LANGUAGE = 'de'
 
 export class I18nProvider extends React.Component {
   i18n
