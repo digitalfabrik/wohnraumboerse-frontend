@@ -233,6 +233,7 @@ export class NeuburgForm extends React.Component {
     // Convert boolean values to actual bools
     NeuburgForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
     NeuburgForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
+    return requestBody
   }
 
   static transformFieldToBool (object, key) {
