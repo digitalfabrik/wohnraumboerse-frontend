@@ -95,7 +95,7 @@ export class NeuburgForm extends React.Component {
         <Row>
           {map(rooms, (label, key) => (
             <NarrowCol key={key}><ArrayCheckbox name='formData.accommodation.ofRooms' label={label}
-                                                value={key} min='0' /></NarrowCol>
+                                                value={key} /></NarrowCol>
           ))}
         </Row>
         <Row>
