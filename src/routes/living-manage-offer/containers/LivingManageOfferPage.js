@@ -22,7 +22,7 @@ export class LivingManageOfferPage extends React.Component {
 
   send = (method, action = '', body = null) => {
     this.setState({sending: true, serverError: null, success: false})
-    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/${this.props.token}${action}`, {
+    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/offer/${this.props.token}${action}`, {
       method,
       headers: new Headers({
         'Content-Type': 'application/json'

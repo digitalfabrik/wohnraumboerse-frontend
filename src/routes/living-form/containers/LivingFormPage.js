@@ -13,7 +13,7 @@ export class LivingFormPage extends React.Component {
 
   sendRequest = requestBody => {
     this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
-    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/`, {
+    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/offer/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({
