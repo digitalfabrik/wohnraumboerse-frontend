@@ -20,6 +20,10 @@ import DateInput from '../components/DateInput'
 import nonNegative from '../validators/nonNegative'
 import integer from '../validators/integer'
 import greaterEquals from '../validators/greaterEquals'
+import CustomValidation from '../components/CustomValidation'
+import oneRunningServiceIfRunningCostsPositive from '../validators/oneRunningServiceIfRunningCostsPositive'
+import oneAdditionalServiceIfAdditionalCostsPositive from '../validators/oneAdditionalServiceIfAdditionalCostsPositive'
+import oneRoom from '../validators/oneRoom'
 
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
@@ -86,18 +90,21 @@ export class NeuburgForm extends React.Component {
         <h3>Mietobjekt</h3>
         <Row>
           <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
-                             validations={[required, nonNegative]} type='number' inputProps={{min: '0'}}
+                             validations={[required, nonNegative]} type='number' inputProps={{min: '0', step: '0.01'}}
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>qm</InputAdornment>
                              }} /></StdCol>
           <StdCol><TextInput name='formData.accommodation.totalRooms' label='Räume insgesamt'
-                             validations={[required, greaterEquals(1), integer]} type='number' inputProps={{min: '1'}} /></StdCol>
+                             validations={[required, greaterEquals(1), integer]} type='number'
+                             inputProps={{min: '1', step: '1'}} /></StdCol>
         </Row>
         <Row>
           {map(rooms, (label, key) => (
             <NarrowCol key={key}><ArrayCheckbox name='formData.accommodation.ofRooms' label={label}
                                                 value={key} /></NarrowCol>
           ))}
+          <WideCol><CustomValidation name='customValidation'
+                                     validations={[oneRoom]} /></WideCol>
         </Row>
         <Row>
           <StdCol><DateInput
@@ -108,12 +115,15 @@ export class NeuburgForm extends React.Component {
 
         <h3>Mietkosten</h3>
         <Row>
-          <StdCol><TextInput name='formData.costs.baseRent' label='Grundmiete monatlich' validations={[required, nonNegative]}
-                             type='number' additionalLabel='Ohne Nebenkosten, Garage und Heizung' inputProps={{min: '0'}}
+          <StdCol><TextInput name='formData.costs.baseRent' label='Grundmiete monatlich'
+                             validations={[required, nonNegative]}
+                             type='number' additionalLabel='Ohne Nebenkosten, Garage und Heizung'
+                             inputProps={{min: '0', step: '0.01'}}
                              InputProps={{startAdornment: <InputAdornment position='start'>€</InputAdornment>}}
           /></StdCol>
-          <StdCol><TextInput name='formData.costs.runningCosts' label='Nebenkosten monatlich' validations={[required, nonNegative]}
-                             type='number' inputProps={{min: '0'}}
+          <StdCol><TextInput name='formData.costs.runningCosts' label='Nebenkosten monatlich'
+                             validations={[required, nonNegative]}
+                             type='number' inputProps={{min: '0', step: '0.01'}}
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>€</InputAdornment>
                              }} /></StdCol>
@@ -124,12 +134,14 @@ export class NeuburgForm extends React.Component {
             <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofRunningServices' label={label}
                                                 value={key} /></NarrowCol>
           ))}
+          <WideCol><CustomValidation name='customValidation'
+                                     validations={[oneRunningServiceIfRunningCostsPositive]} /></WideCol>
         </Row>
         <Row><WideCol><SingleCheckbox name='formData.costs.hotWaterInHeatingCosts'
                                       label='Warmwasser in Heizung enthalten' /></WideCol></Row>
         <Row><StdCol><TextInput name='formData.costs.additionalCosts' label='Zusatzkosten monatlich'
                                 validations={[required, nonNegative]}
-                                type='number' inputProps={{min: '0'}}
+                                type='number' inputProps={{min: '0', step: '0.01'}}
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
                                 }} /></StdCol></Row>
@@ -139,6 +151,8 @@ export class NeuburgForm extends React.Component {
             <NarrowCol key={key}><ArrayCheckbox name='formData.costs.ofAdditionalServices' label={label}
                                                 value={key} /></NarrowCol>
           ))}
+          <WideCol><CustomValidation name='customValidation'
+                                     validations={[oneAdditionalServiceIfAdditionalCostsPositive]} /></WideCol>
         </Row>
         <h3>Gültigkeitsdauer und Datenschutz</h3>
         <Row>
@@ -202,9 +216,16 @@ export class NeuburgForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     const values = this.state.form.getValues()
+    const requestBody = this.transformFormValuesToRequestBody(values)
+    this.props.sendRequest(requestBody)
+  }
+
+  transformFormValuesToRequestBody (values) {
     // Transform flat object with properties including a dot to nested object
     const requestBody = {}
     forEach(values, (value, key) => set(requestBody, key, value))
+    // Remove customValidation, since it's only a virtual input
+    delete requestBody.customValidation
     // Make ofAdditionalCosts, ofRooms, ofAdditionalServices arrays (if not already)
     NeuburgForm.transformFieldToArray(requestBody.formData.accommodation, 'ofRooms')
     NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofAdditionalServices')
@@ -212,8 +233,6 @@ export class NeuburgForm extends React.Component {
     // Convert boolean values to actual bools
     NeuburgForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
     NeuburgForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
-
-    this.props.sendRequest(requestBody)
   }
 
   static transformFieldToBool (object, key) {
