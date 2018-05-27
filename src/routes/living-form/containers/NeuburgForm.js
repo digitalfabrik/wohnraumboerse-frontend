@@ -216,6 +216,11 @@ export class NeuburgForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     const values = this.state.form.getValues()
+    const requestBody = this.transformFormValuesToRequestBody(values)
+    this.props.sendRequest(requestBody)
+  }
+
+  transformFormValuesToRequestBody (values) {
     // Transform flat object with properties including a dot to nested object
     const requestBody = {}
     forEach(values, (value, key) => set(requestBody, key, value))
@@ -228,10 +233,6 @@ export class NeuburgForm extends React.Component {
     // Convert boolean values to actual bools
     NeuburgForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
     NeuburgForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
-
-    console.log(requestBody)
-
-    this.props.sendRequest(requestBody)
   }
 
   static transformFieldToBool (object, key) {
