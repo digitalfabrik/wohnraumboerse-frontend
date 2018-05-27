@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Grid, Row, Col } from 'react-flexbox-grid'
+import { Col, Grid, Row } from 'react-flexbox-grid'
 import Form from 'react-validation/build/form'
-import { set, forEach, map } from 'lodash'
-import { InputAdornment, MenuItem, FormControl, FormHelperText } from '@material-ui/core'
+import { forEach, map, set } from 'lodash'
+import { FormControl, FormHelperText, InputAdornment, MenuItem } from '@material-ui/core'
 import styled from 'styled-components'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
@@ -17,6 +17,9 @@ import SubmitButton from '../components/SubmitButton'
 import SingleCheckbox from '../components/SingleCheckbox'
 import LawParagraph from '../components/LawParagraph'
 import DateInput from '../components/DateInput'
+import nonNegative from '../validators/nonNegative'
+import integer from '../validators/integer'
+import greaterEquals from '../validators/greaterEquals'
 
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
@@ -83,12 +86,12 @@ export class NeuburgForm extends React.Component {
         <h3>Mietobjekt</h3>
         <Row>
           <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
-                             validations={[required]} type='number'
+                             validations={[required, nonNegative]} type='number' inputProps={{min: '0'}}
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>qm</InputAdornment>
                              }} /></StdCol>
           <StdCol><TextInput name='formData.accommodation.totalRooms' label='Räume insgesamt'
-                             validations={[required]} type='number' /></StdCol>
+                             validations={[required, greaterEquals(1), integer]} type='number' inputProps={{min: '1'}} /></StdCol>
         </Row>
         <Row>
           {map(rooms, (label, key) => (
@@ -105,12 +108,12 @@ export class NeuburgForm extends React.Component {
 
         <h3>Mietkosten</h3>
         <Row>
-          <StdCol><TextInput name='formData.costs.baseRent' label='Grundmiete monatlich' validations={[required]}
-                             type='number' additionalLabel='Ohne Nebenkosten, Garage und Heizung'
+          <StdCol><TextInput name='formData.costs.baseRent' label='Grundmiete monatlich' validations={[required, nonNegative]}
+                             type='number' additionalLabel='Ohne Nebenkosten, Garage und Heizung' inputProps={{min: '0'}}
                              InputProps={{startAdornment: <InputAdornment position='start'>€</InputAdornment>}}
           /></StdCol>
-          <StdCol><TextInput name='formData.costs.runningCosts' label='Nebenkosten monatlich' validations={[required]}
-                             type='number'
+          <StdCol><TextInput name='formData.costs.runningCosts' label='Nebenkosten monatlich' validations={[required, nonNegative]}
+                             type='number' inputProps={{min: '0'}}
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>€</InputAdornment>
                              }} /></StdCol>
@@ -125,8 +128,8 @@ export class NeuburgForm extends React.Component {
         <Row><WideCol><SingleCheckbox name='formData.costs.hotWaterInHeatingCosts'
                                       label='Warmwasser in Heizung enthalten' /></WideCol></Row>
         <Row><StdCol><TextInput name='formData.costs.additionalCosts' label='Zusatzkosten monatlich'
-                                validations={[required]}
-                                type='number'
+                                validations={[required, nonNegative]}
+                                type='number' inputProps={{min: '0'}}
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
                                 }} /></StdCol></Row>
