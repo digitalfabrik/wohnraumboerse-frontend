@@ -19,6 +19,7 @@ import LawParagraph from '../components/LawParagraph'
 import DateInput from '../components/DateInput'
 import nonNegative from '../validators/nonNegative'
 import integer from '../validators/integer'
+import greaterEquals from '../validators/greaterEquals'
 
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
@@ -90,7 +91,7 @@ export class NeuburgForm extends React.Component {
                                startAdornment: <InputAdornment position='start'>qm</InputAdornment>
                              }} /></StdCol>
           <StdCol><TextInput name='formData.accommodation.totalRooms' label='Räume insgesamt'
-                             validations={[required, nonNegative, integer]} type='number' inputProps={{min: '0'}} /></StdCol>
+                             validations={[required, greaterEquals(1), integer]} type='number' inputProps={{min: '1'}} /></StdCol>
         </Row>
         <Row>
           {map(rooms, (label, key) => (
