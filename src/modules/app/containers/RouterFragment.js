@@ -36,6 +36,7 @@ export class RouterFragment extends React.Component {
       <React.Fragment>
         <Helmet>
           <title>{cityConfig.title}</title>
+          <link rel='icon' href={cityConfig.favicon} />
         </Helmet>
         <LivingLayout matchRoute={this.matchRoute}>
           {/* Matches /form */}
