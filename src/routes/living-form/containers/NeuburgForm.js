@@ -7,7 +7,7 @@ import { FormControl, FormHelperText, InputAdornment, MenuItem } from '@material
 import styled from 'styled-components'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
-import staatLogo from './assets/logo-stmas.png'
+import staatLogo from './assets/logo-stmas.jpg'
 import { TextInput } from '../components/TextInput'
 import required from '../validators/required'
 import isEmail from '../validators/isEmail'
@@ -200,11 +200,7 @@ export class NeuburgForm extends React.Component {
             </FormControl>
           </Col>
         </Row>
-        <Row>
-          <StdCol>
-            Dieses Projekt wird aus Mitteln des Bayerischen Staatsministeriums für Arbeit und Soziales, Familie und
-            Integration gefördert.
-          </StdCol>
+        <Row style={{justifyContent: 'center'}}>
           <StdCol>
             <img src={staatLogo} style={{width: '100%'}} />
           </StdCol>
