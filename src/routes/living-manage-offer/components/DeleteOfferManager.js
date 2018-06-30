@@ -19,7 +19,7 @@ export class DeleteOfferManager extends React.Component {
     if (this.props.success) {
       return <React.Fragment>
         <Caption title={'Angebot gelöscht'} />
-        <p>Wir haben Ihr Angebot samt Ihrer Daten erfolgreich gelöscht.</p>
+        <p>Ihr Angebot wurde erfolgreich gelöscht.</p>
       </React.Fragment>
     }
 
