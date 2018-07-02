@@ -45,7 +45,7 @@ export class ExtendOfferManager extends React.Component {
         </SelectInput>
         <FormControl>
           <SubmitButton validateAll={this.validateAll} type='submit' disabled={this.props.sending}>
-            {this.props.sending ? 'Wird erneuert...' : 'Mietangebot Erneuern'}
+            {this.props.sending ? 'Wird erneuert...' : 'Mietangebot erneuern'}
           </SubmitButton>
           {this.props.serverError && <FormHelperText error>{this.props.serverError}</FormHelperText>}
         </FormControl>
