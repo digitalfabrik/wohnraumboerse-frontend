@@ -28,14 +28,14 @@ export class ExtendOfferManager extends React.Component {
   render () {
     if (this.props.success) {
       return <React.Fragment>
-        <Caption title={'Angebot verlängert'} />
-        <p>Wir haben Ihr Angebot erfolgreich verlängert.</p>
+        <Caption title={'Angebot erneuert'} />
+        <p>Ihr Angebot wurde erfolgreich erneuert.</p>
       </React.Fragment>
     }
 
     return <React.Fragment>
-      <Caption title={'Angebot verlängern'} />
-      <p>Wie lange soll Ihr Angebot verlängert werden?</p>
+      <Caption title={'Angebot erneuern'} />
+      <p>Wie lange soll Ihr Angebot gültig sein?</p>
       <Form onSubmit={this.handleSubmit} ref={this.setRef}>
         <SelectInput name='duration' label='Gültigkeitsdauer des Angebots' validations={[required]}>
           <MenuItem value={3}>3 Tage</MenuItem>
@@ -45,7 +45,7 @@ export class ExtendOfferManager extends React.Component {
         </SelectInput>
         <FormControl>
           <SubmitButton validateAll={this.validateAll} type='submit' disabled={this.props.sending}>
-            {this.props.sending ? 'Wird verlängert...' : 'Mietangebot Verlängern'}
+            {this.props.sending ? 'Wird erneuert...' : 'Mietangebot erneuern'}
           </SubmitButton>
           {this.props.serverError && <FormHelperText error>{this.props.serverError}</FormHelperText>}
         </FormControl>
