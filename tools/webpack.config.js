@@ -160,7 +160,7 @@ const config = {
         ]
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        test: /\.(png|jpg|ico|jpeg|gif|svg|woff|woff2)$/,
         use: [
           {
             loader: 'url-loader',
