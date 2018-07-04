@@ -44,6 +44,7 @@ const rooms = {
   child2: 'Kinderzimmer 2',
   child3: 'Kinderzimmer 3',
   bed: 'Schlafzimmer',
+  livingroom: 'Wohnzimmer',
   hallway: 'Diele',
   store: 'Abstellraum',
   basement: 'Kellerraum',
@@ -180,10 +181,10 @@ export class NeuburgForm extends React.Component {
           <WideCol>
             <SingleCheckbox name='agreedToDataProtection'
                             label={<span>Ich akzeptiere die <a target='_blank'
-                                                               href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>:</span>}
+                                                               href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>.</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
-              Außerdem willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
+              Außerdem willige ich ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
               Tür - Digital Factory gGmbH meine personenbezogenen Daten zum Zwecke
               der Wohnraumakquise für anerkannte Flüchtlinge und bleibeberechtigte
               Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
