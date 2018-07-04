@@ -23,7 +23,7 @@ export class LivingFormPage extends React.Component {
       if (response.status === STATUS_CREATED) {
         this.setState({success: true, sending: false})
       } else {
-        return response.text().then(text => this.setState({serverError: text, sending: false}))
+        return response.json().then(error => this.setState({serverError: error.errorMessage, sending: false}))
       }
     })
       .catch(() => {
