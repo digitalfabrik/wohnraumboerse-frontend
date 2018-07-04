@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
-import {Button, FormHelperText} from '@material-ui/core'
+import { Button, FormHelperText } from '@material-ui/core'
 
 const STATUS_NOT_FOUND = 404
 
@@ -38,7 +38,7 @@ export class DeleteOfferManager extends React.Component {
       <p>Wollen Sie das Mietangebot wirklich löschen? Ihre Daten werden permanent gelöscht.</p>
       <Button disabled={this.props.sending} variant='raised' onClick={this.handleClick}>
         {this.props.sending ? 'Wird gelöscht...' : 'Mietangebot Löschen'}
-       </Button>
+      </Button>
       {this.props.serverError && <FormHelperText error>{this.getErrorMessage()}</FormHelperText>}
     </React.Fragment>
   }
