@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Col, Grid, Row } from 'react-flexbox-grid'
@@ -24,6 +25,8 @@ import CustomValidation from '../components/CustomValidation'
 import oneRunningServiceIfRunningCostsPositive from '../validators/oneRunningServiceIfRunningCostsPositive'
 import oneAdditionalServiceIfAdditionalCostsPositive from '../validators/oneAdditionalServiceIfAdditionalCostsPositive'
 import oneRoom from '../validators/oneRoom'
+import minMaxLength from '../validators/minMaxLength'
+import maxLength from '../validators/maxLength'
 
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
@@ -41,6 +44,7 @@ const rooms = {
   child2: 'Kinderzimmer 2',
   child3: 'Kinderzimmer 3',
   bed: 'Schlafzimmer',
+  livingroom: 'Wohnzimmer',
   hallway: 'Diele',
   store: 'Abstellraum',
   basement: 'Kellerraum',
@@ -88,6 +92,15 @@ export class NeuburgForm extends React.Component {
         </Row>
 
         <h3>Mietobjekt</h3>
+        <Row>
+          <WideCol><TextInput name='formData.accommodation.title' label='Kurzbeschreibung des Objekts'
+                              validations={[required, minMaxLength(10, 50)]}
+                              additionalLabel='z.B.: 2 ZKB mit Balkon und Garten, WG-geeignet' /></WideCol>
+        </Row>
+        <Row>
+          <WideCol><TextInput name='formData.accommodation.location' label='Standort (optional)'
+                              validations={[maxLength(85)]} /></WideCol>
+        </Row>
         <Row>
           <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
                              validations={[required, nonNegative]} type='number' inputProps={{min: '0', step: '0.01'}}
@@ -167,10 +180,12 @@ export class NeuburgForm extends React.Component {
         </Row>
         <Row>
           <WideCol>
-            <SingleCheckbox name='agreedToDataProtection' label='Ich akzeptiere die Datenschutzerklärung:'
+            <SingleCheckbox name='agreedToDataProtection'
+                            label={<span>Ich akzeptiere die <a target='_blank'
+                                                               href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>.</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
-              Ich willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
+              Außerdem willige ich ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
               Tür - Digital Factory gGmbH meine personenbezogenen Daten zum Zwecke
               der Wohnraumakquise für anerkannte Flüchtlinge und bleibeberechtigte
               Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
