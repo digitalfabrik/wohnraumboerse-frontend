@@ -7,6 +7,7 @@ import Failure from '../../../modules/common/components/Failure'
 
 const cityConfig = getCurrentCityConfig()
 const STATUS_CREATED = 201
+const SENDER_MAIL = 'keineantwort@integreat-app.de'
 
 export class LivingFormPage extends React.Component {
   state = { success: false, serverError: null, sending: false, emailAddress: '' }
@@ -40,7 +41,8 @@ export class LivingFormPage extends React.Component {
       return <React.Fragment>
         <Caption title='Fast fertig' />
         <p>Ihr Angebot wurde erfolgreich erstellt. Sie müssen nur noch Ihre E-Mail-Adresse bestätigen:</p>
-        <p>Wir haben Ihnen dazu eine E-Mail an <i>{this.state.emailAddress}</i> mit einem Bestätigungslink geschickt.
+        <p>Sie erhalten von <i>${SENDER_MAIL}</i> eine E-Mail an <i>{this.state.emailAddress}</i> mit
+          einem Bestätigungslink.
           Klicken Sie darauf, um das Angebot freizuschalten.</p>
         <p>Falls Sie keine E-Mail bekommen haben, überprüfen Sie bitte, ob Sie die richtige E-Mail-Adresse angegeben
           haben und ob die E-Mail in Ihrem Spam-Ordner gelandet ist.</p>
