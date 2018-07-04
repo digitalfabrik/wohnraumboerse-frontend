@@ -183,7 +183,7 @@ export class NeuburgForm extends React.Component {
                                                                href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>:</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
-              Ich willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
+              Außerdem willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
               Tür - Digital Factory gGmbH meine personenbezogenen Daten zum Zwecke
               der Wohnraumakquise für anerkannte Flüchtlinge und bleibeberechtigte
               Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
