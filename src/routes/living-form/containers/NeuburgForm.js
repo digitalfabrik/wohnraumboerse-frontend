@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Col, Grid, Row } from 'react-flexbox-grid'
@@ -24,6 +25,8 @@ import CustomValidation from '../components/CustomValidation'
 import oneRunningServiceIfRunningCostsPositive from '../validators/oneRunningServiceIfRunningCostsPositive'
 import oneAdditionalServiceIfAdditionalCostsPositive from '../validators/oneAdditionalServiceIfAdditionalCostsPositive'
 import oneRoom from '../validators/oneRoom'
+import minMaxLength from '../validators/minMaxLength'
+import maxLength from '../validators/maxLength'
 
 const StdCol = props => <Col xs={12} md={6} {...props} />
 const NarrowCol = props => <Col xs={6} md={4} {...props} />
@@ -88,6 +91,14 @@ export class NeuburgForm extends React.Component {
         </Row>
 
         <h3>Mietobjekt</h3>
+        <Row>
+          <WideCol><TextInput name='formData.accommodation.title' label='Kurzbeschreibung der Wohnung'
+                              validations={[required, minMaxLength(10, 40)]} /></WideCol>
+        </Row>
+        <Row>
+          <WideCol><TextInput name='formData.accommodation.location' label='Standort (optional)'
+                              validations={[maxLength(40)]} /></WideCol>
+        </Row>
         <Row>
           <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
                              validations={[required, nonNegative]} type='number' inputProps={{min: '0', step: '0.01'}}
