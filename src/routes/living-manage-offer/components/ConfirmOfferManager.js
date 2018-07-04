@@ -3,12 +3,18 @@ import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
 import Spinner from 'react-spinkit'
 
+const STATUS_GONE = 410
+const STATUS_NOT_FOUND = 404
+
 export class ConfirmOfferManager extends React.Component {
   static propTypes = {
     send: PropTypes.func.isRequired,
     sending: PropTypes.bool.isRequired,
     success: PropTypes.bool.isRequired,
-    serverError: PropTypes.string
+    serverError: PropTypes.shape({
+      status: PropTypes.number,
+      message: PropTypes.string
+    })
   }
 
   componentWillMount () {
@@ -36,9 +42,17 @@ export class ConfirmOfferManager extends React.Component {
       return <React.Fragment>
         <Caption title={'E-Mail-Adresse konnte nicht bestätigt werden'} />
         {this.props.serverError && <p>Folgender Fehler ist aufgetreten:</p>}
-        {this.props.serverError && <p>{this.props.serverError}</p>}
+        {this.props.serverError && <p>{getErrorMessage()}</p>}
       </React.Fragment>
     }
+  }
+
+  getErrorMessage() {
+    switch (this.props.serverError.status) {
+      case STATUS_GONE: return 'Der Bestätigungslink ist ungütltig.'
+      case STATUS_NOT_FOUND: return 'Konnte zugehöriges Angebot nicht finden.'
+    }
+    return this.props.serverError.message
   }
 }
 

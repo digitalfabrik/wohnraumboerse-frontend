@@ -33,11 +33,22 @@ export class LivingManageOfferPage extends React.Component {
         if (response.status === STATUS_OK) {
           this.setState({success: response.status === STATUS_OK, sending: false})
         } else {
-          response.text().then(text => this.setState({success: false, sending: false, serverError: text}))
+          response.json().then(error => this.setState({
+            success: false,
+            sending: false,
+            serverError: {
+              status: response.status,
+              message: error.errorMessage
+            }
+          }))
         }
       })
       .catch(() => {
-        this.setState({success: false, sending: false, serverError: 'Verbindung fehlgeschlagen'})
+        this.setState({
+          success: false,
+          sending: false,
+          serverError: {status: 0, message: 'Die Verbindung ist fehlgeschlagen.'}
+        })
       })
   }
 
