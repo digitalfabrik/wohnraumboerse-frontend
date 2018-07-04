@@ -178,7 +178,9 @@ export class NeuburgForm extends React.Component {
         </Row>
         <Row>
           <WideCol>
-            <SingleCheckbox name='agreedToDataProtection' label='Ich akzeptiere die Datenschutzerklärung:'
+            <SingleCheckbox name='agreedToDataProtection'
+                            label={<span>Ich akzeptiere die <a target='_blank'
+                                                               href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>:</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
               Ich willige ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
