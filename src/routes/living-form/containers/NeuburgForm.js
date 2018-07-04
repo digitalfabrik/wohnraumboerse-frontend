@@ -93,8 +93,9 @@ export class NeuburgForm extends React.Component {
 
         <h3>Mietobjekt</h3>
         <Row>
-          <WideCol><TextInput name='formData.accommodation.title' label='Kurzbeschreibung der Wohnung'
-                              validations={[required, minMaxLength(10, 40)]} /></WideCol>
+          <WideCol><TextInput name='formData.accommodation.title' label='Kurzbeschreibung des Objekts'
+                              validations={[required, minMaxLength(10, 50)]}
+                              additionalLabel='z.B.: 2 ZKB mit Balkon und Garten, WG-geeignet' /></WideCol>
         </Row>
         <Row>
           <WideCol><TextInput name='formData.accommodation.location' label='Standort (optional)'
