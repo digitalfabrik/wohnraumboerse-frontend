@@ -98,7 +98,7 @@ export class NeuburgForm extends React.Component {
         </Row>
         <Row>
           <WideCol><TextInput name='formData.accommodation.location' label='Standort (optional)'
-                              validations={[maxLength(40)]} /></WideCol>
+                              validations={[maxLength(85)]} /></WideCol>
         </Row>
         <Row>
           <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
