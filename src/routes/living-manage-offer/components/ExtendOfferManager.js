@@ -7,6 +7,7 @@ import required from '../../living-form/validators/required'
 import SelectInput from '../../living-form/components/SelectInput'
 import SubmitButton from '../../living-form/components/SubmitButton'
 
+const MILLISECONDS_IN_DAY = 864E5
 export class ExtendOfferManager extends React.Component {
   static propTypes = {
     send: PropTypes.func.isRequired,
@@ -18,6 +19,7 @@ export class ExtendOfferManager extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     const values = this.state.form.getValues()
+    this.setState({duration: values.duration});
     this.props.send('POST', '/extend', values)
   }
 
@@ -27,9 +29,10 @@ export class ExtendOfferManager extends React.Component {
 
   render () {
     if (this.props.success) {
+      const date = new Date(new Date().valueOf() + MILLISECONDS_IN_DAY * this.state.duration)
       return <React.Fragment>
         <Caption title={'Angebot erneuert'} />
-        <p>Ihr Angebot wurde erfolgreich erneuert.</p>
+        <p>Ihr Angebot wurde erfolgreich erneuert und ist jetzt bist zum <b>{date.toLocaleDateString('de')}</b> gültig.</p>
       </React.Fragment>
     }
 
