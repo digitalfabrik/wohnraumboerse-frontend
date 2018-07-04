@@ -1,7 +1,7 @@
 {
   "extends": [
-    "integreat",
-    "integreat-react",
-    "integreat-jest"
+    "@integreat-app/eslint-config",
+    "@integreat-app/eslint-config-react",
+    "@integreat-app/eslint-config-jest"
   ]
 }
