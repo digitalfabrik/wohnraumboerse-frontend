@@ -22,6 +22,16 @@ export class ConfirmOfferManager extends React.Component {
     this.props.send('POST', `/confirm`)
   }
 
+  getErrorMessage () {
+    switch (this.props.serverError.status) {
+      case STATUS_GONE:
+        return 'Der Bestätigungslink ist ungütltig.'
+      case STATUS_NOT_FOUND:
+        return 'Konnte zugehöriges Angebot nicht finden.'
+    }
+    return this.props.serverError.message
+  }
+
   render () {
     if (this.props.sending) {
       return <Spinner name='line-scale-party' />
@@ -42,17 +52,9 @@ export class ConfirmOfferManager extends React.Component {
       return <React.Fragment>
         <Caption title={'E-Mail-Adresse konnte nicht bestätigt werden'} />
         {this.props.serverError && <p>Folgender Fehler ist aufgetreten:</p>}
-        {this.props.serverError && <p>{getErrorMessage()}</p>}
+        {this.props.serverError && <p>{this.getErrorMessage()}</p>}
       </React.Fragment>
     }
-  }
-
-  getErrorMessage() {
-    switch (this.props.serverError.status) {
-      case STATUS_GONE: return 'Der Bestätigungslink ist ungütltig.'
-      case STATUS_NOT_FOUND: return 'Konnte zugehöriges Angebot nicht finden.'
-    }
-    return this.props.serverError.message
   }
 }
 
