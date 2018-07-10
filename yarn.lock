@@ -189,17 +189,17 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@integreat-app/eslint-config-jest@~0.1.0":
+"@integreat-app/eslint-config-jest@~0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config-jest/-/eslint-config-jest-0.1.1.tgz#fec96ec92de0f5535ec762a9eca4dfefd6d5d863"
 
-"@integreat-app/eslint-config-react@~0.1.0":
+"@integreat-app/eslint-config-react@~0.1.1":
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config-react/-/eslint-config-react-0.1.1.tgz#d1c610ddad21bc3842ecd8a5e711dc6413db292d"
 
-"@integreat-app/eslint-config@~0.1.0":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config/-/eslint-config-0.1.1.tgz#499210fdbf5e4586a980f37a8563258a99fe70f4"
+"@integreat-app/eslint-config@~0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config/-/eslint-config-0.1.3.tgz#9c1b141a63bb0f2bdf9e2133cc2909822fe2d8c1"
 
 "@integreat-app/shared@^0.0.1":
   version "0.0.1"
