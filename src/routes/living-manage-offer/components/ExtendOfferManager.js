@@ -18,9 +18,12 @@ export class ExtendOfferManager extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const values = this.state.form.getValues()
-    this.setState({duration: values.duration});
-    this.props.send('POST', '/extend', values)
+    this.setState(prevState => {
+      const values = prevState.form.getValues()
+      return {duration: values.duration}
+    }, () => {
+      this.props.send('POST', '/extend', this.state.form.getValues())
+    })
   }
 
   validateAll = () => this.state.form.validateAll()
