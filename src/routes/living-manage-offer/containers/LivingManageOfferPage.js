@@ -31,7 +31,7 @@ export class LivingManageOfferPage extends React.Component {
     })
       .then(response => {
         if (response.status === STATUS_OK) {
-          this.setState({success: response.status === STATUS_OK, sending: false})
+          this.setState({success: response.status === STATUS_OK, sending: false, serverError: null})
         } else {
           response.json().then(error => this.setState({
             success: false,
