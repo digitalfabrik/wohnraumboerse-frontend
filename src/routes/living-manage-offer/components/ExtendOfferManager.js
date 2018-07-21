@@ -6,9 +6,9 @@ import Form from 'react-validation/build/form'
 import required from '../../living-form/validators/required'
 import SelectInput from '../../living-form/components/SelectInput'
 import SubmitButton from '../../living-form/components/SubmitButton'
+import { NOT_FOUND } from 'http-status-codes'
 
 const MILLISECONDS_IN_DAY = 864E5
-const STATUS_NOT_FOUND = 404
 
 export class ExtendOfferManager extends React.Component {
   static propTypes = {
@@ -30,7 +30,7 @@ export class ExtendOfferManager extends React.Component {
 
   getErrorMessage () {
     switch (this.props.serverError.status) {
-      case STATUS_NOT_FOUND:
+      case NOT_FOUND:
         return 'Konnte zugehöriges Angebot nicht finden.'
     }
     return this.props.serverError.message

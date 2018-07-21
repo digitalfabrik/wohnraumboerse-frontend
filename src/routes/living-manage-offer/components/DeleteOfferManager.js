@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
 import { Button, FormHelperText } from '@material-ui/core'
-
-const STATUS_NOT_FOUND = 404
+import { NOT_FOUND } from 'http-status-codes'
 
 export class DeleteOfferManager extends React.Component {
   static propTypes = {
@@ -19,7 +18,7 @@ export class DeleteOfferManager extends React.Component {
 
   getErrorMessage () {
     switch (this.props.serverError.status) {
-      case STATUS_NOT_FOUND:
+      case NOT_FOUND:
         return 'Konnte zugehöriges Angebot nicht finden.'
     }
     return this.props.serverError.message

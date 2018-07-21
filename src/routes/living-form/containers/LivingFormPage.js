@@ -4,13 +4,13 @@ import environment from 'environment.config'
 import { Caption } from '@integreat-app/shared'
 import NeuburgForm from './NeuburgForm'
 import Failure from '../../../modules/common/components/Failure'
+import { CREATED } from 'http-status-codes'
 
 const cityConfig = getCurrentCityConfig()
-const STATUS_CREATED = 201
 const SENDER_MAIL = 'wohnraumboerse@integreat-app.de'
 
 export class LivingFormPage extends React.Component {
-  state = { success: false, serverError: null, sending: false, emailAddress: '' }
+  state = {success: false, serverError: null, sending: false, emailAddress: ''}
 
   sendRequest = requestBody => {
     this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
@@ -21,7 +21,7 @@ export class LivingFormPage extends React.Component {
         'Content-Type': 'application/json'
       })
     }).then(response => {
-      if (response.status === STATUS_CREATED) {
+      if (response.status === CREATED) {
         this.setState({success: true, sending: false})
       } else {
         return response.json().then(error => this.setState({serverError: error.errorMessage, sending: false}))
