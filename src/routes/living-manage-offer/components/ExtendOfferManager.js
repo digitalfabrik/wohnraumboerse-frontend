@@ -31,7 +31,7 @@ export class ExtendOfferManager extends React.Component {
   getErrorMessage () {
     switch (this.props.serverError.status) {
       case NOT_FOUND:
-        return 'Konnte zugehöriges Angebot nicht finden.'
+        return 'Das zugehörige Angebot konnte nicht gefunden werden.'
     }
     return this.props.serverError.message
   }

@@ -25,7 +25,7 @@ export class ConfirmOfferManager extends React.Component {
       case GONE:
         return 'Der Bestätigungslink ist ungütltig.'
       case NOT_FOUND:
-        return 'Konnte zugehöriges Angebot nicht finden.'
+        return 'Das zugehörige Angebot konnte nicht gefunden werden.'
     }
     return this.props.serverError.message
   }
