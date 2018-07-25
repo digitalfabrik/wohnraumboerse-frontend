@@ -7,10 +7,9 @@ import Failure from '../../../modules/common/components/Failure'
 import ExtendOfferManager from '../components/ExtendOfferManager'
 import ConfirmOfferManager from '../components/ConfirmOfferManager'
 import { connect } from 'react-redux'
+import { OK } from 'http-status-codes'
 
 const cityConfig = getCurrentCityConfig()
-
-const STATUS_OK = 200
 
 export class LivingManageOfferPage extends React.Component {
   static propTypes = {
@@ -30,14 +29,25 @@ export class LivingManageOfferPage extends React.Component {
       body: body && JSON.stringify(body)
     })
       .then(response => {
-        if (response.status === STATUS_OK) {
-          this.setState({success: response.status === STATUS_OK, sending: false})
+        if (response.status === OK) {
+          this.setState({success: response.status === OK, sending: false, serverError: null})
         } else {
-          response.text().then(text => this.setState({success: false, sending: false, serverError: text}))
+          response.json().then(error => this.setState({
+            success: false,
+            sending: false,
+            serverError: {
+              status: response.status,
+              message: error.errorMessage
+            }
+          }))
         }
       })
       .catch(() => {
-        this.setState({success: false, sending: false, serverError: 'Verbindung fehlgeschlagen'})
+        this.setState({
+          success: false,
+          sending: false,
+          serverError: {status: 0, message: 'Die Verbindung ist fehlgeschlagen.'}
+        })
       })
   }
 

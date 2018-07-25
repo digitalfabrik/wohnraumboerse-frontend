@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
-import {Button, FormHelperText} from '@material-ui/core'
+import { Button, FormHelperText } from '@material-ui/core'
+import { NOT_FOUND } from 'http-status-codes'
 
 export class DeleteOfferManager extends React.Component {
   static propTypes = {
@@ -13,6 +14,14 @@ export class DeleteOfferManager extends React.Component {
 
   handleClick = () => {
     this.props.send('DELETE')
+  }
+
+  getErrorMessage () {
+    switch (this.props.serverError.status) {
+      case NOT_FOUND:
+        return 'Das zugehörige Angebot konnte nicht gefunden werden.'
+    }
+    return this.props.serverError.message
   }
 
   render () {
@@ -28,8 +37,8 @@ export class DeleteOfferManager extends React.Component {
       <p>Wollen Sie das Mietangebot wirklich löschen? Ihre Daten werden permanent gelöscht.</p>
       <Button disabled={this.props.sending} variant='raised' onClick={this.handleClick}>
         {this.props.sending ? 'Wird gelöscht...' : 'Mietangebot Löschen'}
-       </Button>
-      {this.props.serverError && <FormHelperText error>{this.props.serverError}</FormHelperText>}
+      </Button>
+      {this.props.serverError && <FormHelperText error>{this.getErrorMessage()}</FormHelperText>}
     </React.Fragment>
   }
 }

@@ -1,13 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Caption } from '@integreat-app/shared'
-import { MenuItem, FormHelperText, FormControl } from '@material-ui/core'
+import { FormControl, FormHelperText, MenuItem } from '@material-ui/core'
 import Form from 'react-validation/build/form'
 import required from '../../living-form/validators/required'
 import SelectInput from '../../living-form/components/SelectInput'
 import SubmitButton from '../../living-form/components/SubmitButton'
+import { NOT_FOUND } from 'http-status-codes'
 
 const MILLISECONDS_IN_DAY = 864E5
+
 export class ExtendOfferManager extends React.Component {
   static propTypes = {
     send: PropTypes.func.isRequired,
@@ -18,9 +20,20 @@ export class ExtendOfferManager extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    const values = this.state.form.getValues()
-    this.setState({duration: values.duration});
-    this.props.send('POST', '/extend', values)
+    this.setState(prevState => {
+      const values = prevState.form.getValues()
+      return {duration: values.duration}
+    }, () => {
+      this.props.send('POST', '/extend', this.state.form.getValues())
+    })
+  }
+
+  getErrorMessage () {
+    switch (this.props.serverError.status) {
+      case NOT_FOUND:
+        return 'Das zugehörige Angebot konnte nicht gefunden werden.'
+    }
+    return this.props.serverError.message
   }
 
   validateAll = () => this.state.form.validateAll()
@@ -32,7 +45,8 @@ export class ExtendOfferManager extends React.Component {
       const date = new Date(new Date().valueOf() + MILLISECONDS_IN_DAY * this.state.duration)
       return <React.Fragment>
         <Caption title={'Angebot erneuert'} />
-        <p>Ihr Angebot wurde erfolgreich erneuert und ist jetzt bist zum <b>{date.toLocaleDateString('de')}</b> gültig.</p>
+        <p>Ihr Angebot wurde erfolgreich erneuert und ist jetzt bist zum <b>{date.toLocaleDateString('de')}</b> gültig.
+        </p>
       </React.Fragment>
     }
 
@@ -50,7 +64,7 @@ export class ExtendOfferManager extends React.Component {
           <SubmitButton validateAll={this.validateAll} type='submit' disabled={this.props.sending}>
             {this.props.sending ? 'Wird erneuert...' : 'Mietangebot erneuern'}
           </SubmitButton>
-          {this.props.serverError && <FormHelperText error>{this.props.serverError}</FormHelperText>}
+          {this.props.serverError && <FormHelperText error>{this.getErrorMessage()}</FormHelperText>}
         </FormControl>
       </Form>
     </React.Fragment>
