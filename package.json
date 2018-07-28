@@ -6,6 +6,19 @@
     "node": ">=6",
     "npm": ">=3.8"
   },
+  "scripts": {
+    "eslint": "eslint src tools",
+    "stylelint": "stylelint --config stylelint.config.js \"src/**/*.css\"",
+    "lint": "yarn run eslint && yarn run stylelint",
+    "lint:fix": "yarn run eslint --fix && stylefmt -r \"src/**/*.css\"",
+    "build": "node tools/build.js",
+    "build:debug": "node tools/build.js --debug",
+    "start": "node tools/run.js",
+    "test": "jest --config jest.config.json",
+    "test:coverage": "jest --config jest.config.json --coverage",
+    "test:watch": "jest --config jest.config.json --watchAll",
+    "test:update": "jest --config jest.config.json -u"
+  },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.54",
     "@integreat-app/shared": "^0.0.1",
@@ -33,7 +46,7 @@
     "react-transition-group": "^2.4.0",
     "react-validation": "^3.0.7",
     "recompose": "^0.27.0",
-    "reduce-reducers": "^0.3.0",
+    "reduce-reducers": "^0.4.3",
     "redux": "^4.0.0",
     "redux-actions": "^2.3.2",
     "redux-little-router": "^15.1.0",
@@ -108,12 +121,12 @@
     "postcss-custom-media": "^6.0.0",
     "postcss-custom-properties": "^7.0.0",
     "postcss-custom-selectors": "^4.0.1",
-    "postcss-flexbugs-fixes": "^3.3.1",
+    "postcss-flexbugs-fixes": "^4.0.0",
     "postcss-import": "^11.1.0",
     "postcss-loader": "^2.1.5",
     "postcss-media-minmax": "^3.0.0",
     "postcss-mixins": "^6.2.0",
-    "postcss-nesting": "^5.0.0",
+    "postcss-nesting": "^6.0.0",
     "postcss-selector-matches": "^3.0.1",
     "postcss-selector-not": "^3.0.1",
     "prop-types": "^15.6.1",
@@ -136,18 +149,5 @@
     "webpack-dev-middleware": "^3.1.3",
     "webpack-hot-middleware": "^2.22.3",
     "webpack-node-externals": "^1.7.2"
-  },
-  "scripts": {
-    "eslint": "eslint src tools",
-    "stylelint": "stylelint --config stylelint.config.js \"src/**/*.css\"",
-    "lint": "yarn run eslint && yarn run stylelint",
-    "lint:fix": "yarn run eslint --fix && stylefmt -r \"src/**/*.css\"",
-    "build": "node tools/build.js",
-    "build:debug": "node tools/build.js --debug",
-    "start": "node tools/run.js",
-    "test": "jest --config jest.config.json",
-    "test:coverage": "jest --config jest.config.json --coverage",
-    "test:watch": "jest --config jest.config.json --watchAll",
-    "test:update": "jest --config jest.config.json -u"
   }
 }
