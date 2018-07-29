@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should match snapshot with largeViewport 1`] = `
-<Headroom
+<t
   pinStart={0}
   scrollHeight={85}
 >
@@ -11,13 +11,11 @@ exports[`Header should match snapshot with largeViewport 1`] = `
     <div
       className="logoWide"
     >
-      <Connect(Link)
+      <Connect(LinkComponent)
         href="/"
       >
-        <img
-          src="test-file-stub"
-        />
-      </Connect(Link)>
+        <img />
+      </Connect(LinkComponent)>
     </div>
     <HeaderActionBar
       className="actionBar"
@@ -44,11 +42,11 @@ exports[`Header should match snapshot with largeViewport 1`] = `
       }
     />
   </header>
-</Headroom>
+</t>
 `;
 
 exports[`Header should match snapshot with smallViewport 1`] = `
-<Headroom
+<t
   pinStart={0}
   scrollHeight={85}
 >
@@ -58,13 +56,11 @@ exports[`Header should match snapshot with smallViewport 1`] = `
     <div
       className="logoWide"
     >
-      <Connect(Link)
+      <Connect(LinkComponent)
         href="/"
       >
-        <img
-          src="test-file-stub"
-        />
-      </Connect(Link)>
+        <img />
+      </Connect(LinkComponent)>
     </div>
     <HeaderActionBar
       className="actionBar"
@@ -91,5 +87,5 @@ exports[`Header should match snapshot with smallViewport 1`] = `
       }
     />
   </header>
-</Headroom>
+</t>
 `;

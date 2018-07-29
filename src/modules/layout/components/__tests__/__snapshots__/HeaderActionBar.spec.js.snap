@@ -4,14 +4,14 @@ exports[`HeaderActionBar should match snapshot 1`] = `
 <div
   className="testClass actionItems"
 >
-  <Connect(Link)
+  <Connect(LinkComponent)
     href="link1"
     key="0"
   >
     <img
       src="icon1"
     />
-  </Connect(Link)>
+  </Connect(LinkComponent)>
   <OnClickOutside(HeaderDropDown)
     iconSrc="icon2"
     key="1"
