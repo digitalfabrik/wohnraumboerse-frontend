@@ -28,7 +28,8 @@ class App extends React.Component {
     this.routeConfig = new RouteConfig(createRouteConfig())
   }
 
-  componentWillMount () {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount () {
     this.store = createReduxStore(createHistory, {}, this.routeConfig)
   }
 

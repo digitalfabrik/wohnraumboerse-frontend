@@ -66,11 +66,13 @@ export class I18nProvider extends React.Component {
     this.i18n.changeLanguage(targetLanguage)
   }
 
-  componentWillMount () {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillMount () {
     this.setLanguage(this.props.language)
   }
 
-  componentWillReceiveProps (nextProps) {
+  // eslint-disable-next-line camelcase
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.language !== this.props.language) {
       this.setLanguage(nextProps.language)
     }

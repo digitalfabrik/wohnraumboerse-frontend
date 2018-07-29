@@ -50,7 +50,8 @@ export function withFetcher (endpointName, FailureComponent = Failure, hideSpinn
         }
       }
 
-      componentWillMount () {
+      // eslint-disable-next-line camelcase
+      UNSAFE_componentWillMount () {
         // A store dispatch in the componentWillMount (and therefore a state update) does not cause the props to update
         // before render() in the Fetcher component is called the first time.
         // This causes the <WrappedComponent> to be displayed with outdated props.
@@ -58,7 +59,8 @@ export function withFetcher (endpointName, FailureComponent = Failure, hideSpinn
         this.fetch(this.props.state)
       }
 
-      componentWillReceiveProps (nextProps) {
+      // eslint-disable-next-line camelcase
+      UNSAFE_componentWillReceiveProps (nextProps) {
         // Dispatch new requestAction to ask the endpoint whether data is available, if:
         // (a) the Fetcher urlParams prop changed or
         // (b) the Fetcher endpoint.payloadName prop changed because of new data in the store (e.g. because a payload has been fetched)

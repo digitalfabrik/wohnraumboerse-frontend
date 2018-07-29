@@ -15,7 +15,7 @@ export class ConfirmOfferManager extends React.Component {
     })
   }
 
-  componentWillMount () {
+  componentDidMount () {
     // Immediately send confirmRequest
     this.props.send('POST', `/confirm`)
   }

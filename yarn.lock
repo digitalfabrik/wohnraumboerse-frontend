@@ -916,17 +916,17 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@integreat-app/eslint-config-jest@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config-jest/-/eslint-config-jest-0.1.1.tgz#fec96ec92de0f5535ec762a9eca4dfefd6d5d863"
+"@integreat-app/eslint-config-jest@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config-jest/-/eslint-config-jest-0.2.1.tgz#92cf9a9c221883b6194da2cde723f02945b625d1"
 
-"@integreat-app/eslint-config-react@^0.1.1":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config-react/-/eslint-config-react-0.1.3.tgz#5226e713348b8c4b75ead154f663b4d8ed674af5"
+"@integreat-app/eslint-config-react@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config-react/-/eslint-config-react-0.2.1.tgz#7f9037ac3a675ba73c329c2f83c2cf72e8ca41ea"
 
-"@integreat-app/eslint-config@^0.1.3":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config/-/eslint-config-0.1.5.tgz#fcf05a3bf63e9ff22cc02ab9821ee87f064f7ee8"
+"@integreat-app/eslint-config@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@integreat-app/eslint-config/-/eslint-config-0.2.1.tgz#0f82f1b7c9d22367b95134d92c4c21156c2b26c2"
 
 "@integreat-app/shared@^0.0.1":
   version "0.0.1"
@@ -7474,7 +7474,7 @@ react-addons-css-transition-group@^15.6.2:
   dependencies:
     react-transition-group "^1.2.0"
 
-react-dom@^16.3.2:
+react-dom@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.1.tgz#7f8b0223b3a5fbe205116c56deb85de32685dad6"
   dependencies:
@@ -7641,7 +7641,7 @@ react-validation@^3.0.7:
     shallow-equal "^1.0.0"
     uuid "^3.1.0"
 
-react@^16.0.0, react@^16.3.2:
+react@^16.0.0, react@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
