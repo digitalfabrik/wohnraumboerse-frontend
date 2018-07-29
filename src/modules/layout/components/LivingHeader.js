@@ -8,8 +8,6 @@ import HeaderNavigationItem from '../HeaderNavigationItem'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
 
-const cityConfig = getCurrentCityConfig()
-
 class LivingHeader extends React.Component {
   static propTypes = {
     matchRoute: PropTypes.func.isRequired,
@@ -26,7 +24,7 @@ class LivingHeader extends React.Component {
   }
 
   getNavigationItems () {
-    if (!cityConfig.formsEnabled) {
+    if (!getCurrentCityConfig().formsEnabled) {
       return []
     }
     const {matchRoute, currentPath, t} = this.props
@@ -50,7 +48,7 @@ class LivingHeader extends React.Component {
   render () {
     const {matchRoute} = this.props
     return <Header
-      logo={cityConfig.logo}
+      logo={getCurrentCityConfig().logo}
       viewportSmall={this.props.viewportSmall}
       logoHref={matchRoute(CategoriesPage).stringify(this.getCurrentParams())}
       actionItems={[]}

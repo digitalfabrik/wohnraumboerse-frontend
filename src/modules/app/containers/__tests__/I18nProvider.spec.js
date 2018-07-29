@@ -12,7 +12,7 @@ const mockStore = configureMockStore()
 
 describe('I18nProvider', () => {
   it('should match snapshot', () => {
-    const component = mount(<I18nProvider>
+    const component = mount(<I18nProvider setUiDirection={() => {}}>
       <div />
     </I18nProvider>)
     // Check snapshot except for I18nextProvider's props (because there are all resources)
@@ -54,7 +54,7 @@ describe('I18nProvider', () => {
       return i18nInstance
     })
 
-    const component = mount(<I18nProvider>
+    const component = mount(<I18nProvider setUiDirection={() => {}}>
       <div />
     </I18nProvider>)
 
@@ -75,18 +75,18 @@ describe('I18nProvider', () => {
   })
 
   it('should fallback to en', () => {
-    const component = mount(<I18nProvider>
+    const component = mount(<I18nProvider setUiDirection={() => {}}>
       <div />
     </I18nProvider>)
 
     const i18n = component.find(I18nextProvider).prop('i18n')
     expect(i18n.language).toEqual('en')
-    expect(component.state()).toEqual({language: 'en'})
+    expect(component.state()).toEqual({language: 'en', fonts: {lateef: false, openSans: true, raleway: true}})
   })
 
   it('should call setLanguage on property change', () => {
     I18nProvider.prototype.setLanguage = jest.fn(I18nProvider.prototype.setLanguage)
-    const component = mount(<I18nProvider>
+    const component = mount(<I18nProvider setUiDirection={() => {}}>
       <div />
     </I18nProvider>)
     expect(I18nProvider.prototype.setLanguage).toHaveBeenCalledWith(undefined)
@@ -96,7 +96,7 @@ describe('I18nProvider', () => {
   })
 
   it('should connect to the store', () => {
-    const store = mockStore({router: {params: {language: 'language1'}}})
+    const store = mockStore({location: {payload: {language: 'language1'}}})
     const i18n = mount(<Provider store={store}>
       <ConnectedI18nProvider>
         <div />
@@ -108,68 +108,53 @@ describe('I18nProvider', () => {
 
   describe('setLanguage', () => {
     it('should take first i18next language if param is undefined', () => {
-      const component = mount(<I18nProvider>
+      const component = mount(<I18nProvider setUiDirection={() => {}}>
         <div />
       </I18nProvider>)
 
       const i18n = component.find(I18nextProvider).prop('i18n')
-      const instance = component.instance()
 
       const expectedLanguage = i18n.languages[0]
 
-      instance.loadFonts = jest.fn()
+      const originalGetSelectedFonts = I18nProvider.getSelectedFonts
+      I18nProvider.getSelectedFonts = jest.fn(I18nProvider.getSelectedFonts)
       i18n.changeLanguage = jest.fn()
 
       component.instance().setLanguage()
 
       expect(document.documentElement.lang).toEqual(expectedLanguage)
       expect(i18n.changeLanguage).toHaveBeenCalledWith(expectedLanguage)
-      expect(instance.loadFonts).toHaveBeenCalledWith(expectedLanguage)
-      expect(component.state()).toEqual({language: expectedLanguage})
-    })
-
-    it('should ignore invalid languages', () => {
-      const tree = mount(<I18nProvider>
-        <div />
-      </I18nProvider>)
-
-      const i18n = tree.find(I18nextProvider).prop('i18n')
-
-      const expectedLanguage = i18n.languages[0]
-
-      tree.instance().setLanguage('long string')
-
-      expect(document.documentElement.lang).toEqual(expectedLanguage)
+      expect(I18nProvider.getSelectedFonts).toHaveBeenCalledWith(expectedLanguage)
+      expect(component.state()).toEqual({
+        language: expectedLanguage,
+        fonts: {lateef: false, openSans: true, raleway: true}
+      })
+      I18nProvider.getSelectedFonts = originalGetSelectedFonts
     })
 
     it('should take param language if param is defined', () => {
-      const component = mount(<I18nProvider>
+      const component = mount(<I18nProvider setUiDirection={() => {}}>
         <div />
       </I18nProvider>)
 
       const i18n = component.find(I18nextProvider).prop('i18n')
-      const instance = component.instance()
 
       const expectedLanguage = 'ar'
 
-      instance.loadFonts = jest.fn()
+      const originalGetSelectedFonts = I18nProvider.getSelectedFonts
+      I18nProvider.getSelectedFonts = jest.fn(I18nProvider.getSelectedFonts)
       i18n.changeLanguage = jest.fn()
 
       component.instance().setLanguage(expectedLanguage)
 
       expect(document.documentElement.lang).toEqual(expectedLanguage)
       expect(i18n.changeLanguage).toHaveBeenCalledWith(expectedLanguage)
-      expect(instance.loadFonts).toHaveBeenCalledWith(expectedLanguage)
-      expect(component.state()).toEqual({language: expectedLanguage})
+      expect(I18nProvider.getSelectedFonts).toHaveBeenCalledWith(expectedLanguage)
+      expect(component.state()).toEqual({
+        language: expectedLanguage,
+        fonts: {lateef: true, openSans: true, raleway: true}
+      })
+      I18nProvider.getSelectedFonts = originalGetSelectedFonts
     })
-  })
-
-  it('should add direction style depending on language', () => {
-    const component = mount(<I18nProvider language='en'>
-      <div />
-    </I18nProvider>)
-    expect(component.find('div').at(0).prop('style').direction).toEqual('ltr')
-    component.setProps({language: 'ar'})
-    expect(component.find('div').at(0).prop('style').direction).toEqual('rtl')
   })
 })

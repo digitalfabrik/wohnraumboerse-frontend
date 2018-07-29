@@ -18,11 +18,11 @@ describe('disclaimer', () => {
     parent: 0
   }
 
-  const state = {router: {params: {location: 'augsburg', language: 'de'}}}
+  const state = {}
 
   it('should map router to url', () => {
     expect(disclaimer.mapStateToUrl(state)).toEqual(
-      'https://cms.integreat-app.de/augsburg/de/wp-json/extensions/v0/modified_content/disclaimer' +
+      'https://cms.integreat-app.de/neuburgschrobenhausenwohnraum/de/wp-json/extensions/v0/modified_content/disclaimer' +
       '?since=1970-01-01T00:00:00Z'
     )
   })
@@ -36,7 +36,7 @@ describe('disclaimer', () => {
   })
 
   it('should throw if the disclaimer is not published', () => {
-    const unpublishedPage = Object.assign({}, ...pageJson, {status: 'no published'})
+    const unpublishedPage = Object.assign({}, pageJson, {status: 'no published'})
     expect(() => disclaimer.mapResponse([unpublishedPage])).toThrow()
   })
 

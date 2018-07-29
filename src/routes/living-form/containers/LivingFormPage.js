@@ -6,7 +6,6 @@ import NeuburgForm from './NeuburgForm'
 import Failure from '../../../modules/common/components/Failure'
 import { CREATED } from 'http-status-codes'
 
-const cityConfig = getCurrentCityConfig()
 const SENDER_MAIL = 'wohnraumboerse@integreat-app.de'
 
 export class LivingFormPage extends React.Component {
@@ -14,7 +13,7 @@ export class LivingFormPage extends React.Component {
 
   sendRequest = requestBody => {
     this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
-    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/offer/`, {
+    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig().cmsName}/offer/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({
@@ -33,7 +32,7 @@ export class LivingFormPage extends React.Component {
   }
 
   render () {
-    if (cityConfig.cmsName !== 'neuburgschrobenhausenwohnraum') {
+    if (getCurrentCityConfig().cmsName !== 'neuburgschrobenhausenwohnraum') {
       return <Failure error='not-found:page.notFound' />
     }
 
