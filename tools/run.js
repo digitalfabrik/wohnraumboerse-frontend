@@ -23,7 +23,7 @@ module.exports = task('run', () => new Promise(resolve => {
     stats: webpackConfig.stats
   })
 
-  compiler.plugin('done', stats => {
+  compiler.hooks.done.tap('run.js', (stats, callback) => {
     // Generate index.html page
     const bundle = stats.compilation.chunks.find(x => x.name === 'main').files[0]
     const template = fs.readFileSync('./www/index.ejs', 'utf8')

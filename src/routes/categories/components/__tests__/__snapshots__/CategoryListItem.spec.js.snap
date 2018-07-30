@@ -4,7 +4,7 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
 <div
   className="row"
 >
-  <Connect(Link)
+  <Connect(LinkComponent)
     href="/augsburg/de/willkommen"
   >
     <img
@@ -16,12 +16,12 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
     >
       Willkommen
     </div>
-  </Connect(Link)>
+  </Connect(LinkComponent)>
   <div
     className="subRow"
     key="5234"
   >
-    <Connect(Link)
+    <Connect(LinkComponent)
       href="/augsburg/de/test"
     >
       <img
@@ -33,7 +33,7 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
       >
         Child
       </div>
-    </Connect(Link)>
+    </Connect(LinkComponent)>
   </div>
 </div>
 `;
@@ -42,7 +42,7 @@ exports[`CategoryListItem should replace empty thumbnail 1`] = `
 <div
   className="row"
 >
-  <Connect(Link)
+  <Connect(LinkComponent)
     href=""
   >
     <img
@@ -54,12 +54,12 @@ exports[`CategoryListItem should replace empty thumbnail 1`] = `
     >
       GotNoThumb :O
     </div>
-  </Connect(Link)>
+  </Connect(LinkComponent)>
   <div
     className="subRow"
     key="42"
   >
-    <Connect(Link)
+    <Connect(LinkComponent)
       href=""
     >
       <div
@@ -70,7 +70,7 @@ exports[`CategoryListItem should replace empty thumbnail 1`] = `
       >
         GotNoThumb :O
       </div>
-    </Connect(Link)>
+    </Connect(LinkComponent)>
   </div>
 </div>
 `;

@@ -9,8 +9,6 @@ import ConfirmOfferManager from '../components/ConfirmOfferManager'
 import { connect } from 'react-redux'
 import { OK } from 'http-status-codes'
 
-const cityConfig = getCurrentCityConfig()
-
 export class LivingManageOfferPage extends React.Component {
   static propTypes = {
     token: PropTypes.string.isRequired,
@@ -21,7 +19,7 @@ export class LivingManageOfferPage extends React.Component {
 
   send = (method, action = '', body = null) => {
     this.setState({sending: true, serverError: null, success: false})
-    fetch(`${environment.apiBaseUrl}${cityConfig.cmsName}/offer/${this.props.token}${action}`, {
+    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig().cmsName}/offer/${this.props.token}${action}`, {
       method,
       headers: new Headers({
         'Content-Type': 'application/json'

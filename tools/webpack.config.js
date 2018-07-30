@@ -1,22 +1,17 @@
 const path = require('path')
 const webpack = require('webpack')
 const AssetsPlugin = require('assets-webpack-plugin')
-const pkg = require('../package.json')
+const babelConfig = require('../.babelrc.js')
 const getVersion = require('git-repo-version')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const isDebug = global.DEBUG === false ? false : !process.argv.includes('--release')
-const isVerbose = process.argv.includes('--verbose') || process.argv.includes('-v')
 const useHMR = !!global.HMR // Hot Module Replacement (HMR)
-const babelConfig = Object.assign({}, pkg.babel, {
-  babelrc: false,
-  cacheDirectory: useHMR,
-  presets: pkg.babel.presets.map(x => x === 'latest' ? ['latest', {es2015: {modules: false}}] : x)
-})
 
 // Webpack configuration (main.js => www/dist/main.{hash}.js)
 // http://webpack.github.io/docs/configuration.html
 const config = {
+  mode: isDebug ? 'development' : 'production',
   resolve: {
     modules: [
       path.resolve('./src'),
@@ -45,17 +40,7 @@ const config = {
   // http://webpack.github.io/docs/configuration.html#devtool
   devtool: isDebug ? 'source-map' : false,
   // What information should be printed to the console
-  stats: {
-    colors: true,
-    reasons: isDebug,
-    hash: isVerbose,
-    version: isVerbose,
-    timings: true,
-    chunks: isVerbose,
-    chunkModules: isVerbose,
-    cached: isVerbose,
-    cachedAssets: isVerbose
-  },
+  stats: 'minimal',
   // The list of plugins for Webpack compiler
   plugins: [
     new StyleLintPlugin({
@@ -204,20 +189,11 @@ const config = {
 
 // Optimize the bundle in release (production) mode
 if (!isDebug) {
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin({
-    parallel: true,
-    cache: true,
-    sourceMap: true,
-    compress: {
-      warnings: isVerbose
-    }
-  }))
   config.plugins.push(new webpack.optimize.AggressiveMergingPlugin())
 }
 
 // Hot Module Replacement (HMR) + React Hot Reload
 if (isDebug && useHMR) {
-  babelConfig.plugins.unshift('react-hot-loader/babel')
   config.entry.unshift('react-hot-loader/patch', 'webpack-hot-middleware/client')
   config.plugins.push(new webpack.HotModuleReplacementPlugin())
   config.plugins.push(new webpack.NoEmitOnErrorsPlugin())

@@ -10,9 +10,7 @@ import DisclaimerPage from '../../../routes/disclaimer/containers/DisclaimerPage
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
 import { Helmet } from 'react-helmet'
 
-const cityConfig = getCurrentCityConfig()
-
-export class RouterFragment extends React.Component {
+class RouterFragment extends React.Component {
   static propTypes = {
     routeConfig: PropTypes.instanceOf(RouteConfig).isRequired
   }
@@ -26,11 +24,11 @@ export class RouterFragment extends React.Component {
   matchRoute = id => this.props.routeConfig.matchRoute(id)
 
   render () {
+    const cityConfig = getCurrentCityConfig()
     /*
      * For routes inside a <React.Fragment /> the priority decreases with each element
      * So /disclaimer has higher priority than /:language -> '/disclaimer' resolves to /disclaimer
      */
-
     return <Fragment forRoute='/'>
       {/* Routes */}
       <React.Fragment>

@@ -3,8 +3,6 @@
 exports[`I18nProvider should connect to the store 1`] = `
 Object {
   "children": <div />,
-  "dispatch": [Function],
-  "language": "language1",
 }
 `;
 
@@ -12,7 +10,7 @@ exports[`I18nProvider should initialize correct i18next instance 1`] = `
 Object {
   "debug": false,
   "fallbackLng": Array [
-    "en",
+    "de",
   ],
   "load": "languageOnly",
 }
@@ -26,6 +24,44 @@ exports[`I18nProvider should match snapshot 1`] = `
     }
   }
 >
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+  >
+    <SideEffect(NullComponent)
+      defer={true}
+      encodeSpecialCharacters={true}
+      link={
+        Array [
+          Object {
+            "href": "/fonts/open-sans/open-sans.css",
+            "rel": "stylesheet",
+          },
+          Object {
+            "href": "/fonts/raleway/raleway.css",
+            "rel": "stylesheet",
+          },
+        ]
+      }
+    >
+      <NullComponent
+        defer={true}
+        encodeSpecialCharacters={true}
+        link={
+          Array [
+            Object {
+              "href": "/fonts/open-sans/open-sans.css",
+              "rel": "stylesheet",
+            },
+            Object {
+              "href": "/fonts/raleway/raleway.css",
+              "rel": "stylesheet",
+            },
+          ]
+        }
+      />
+    </SideEffect(NullComponent)>
+  </HelmetWrapper>
   <div />
 </div>
 `;
