@@ -7,7 +7,7 @@ import faviconNeuburg from './assets/neuburg_favicon.ico'
 
 const configs = [
   new CityConfig('neuburgschrobenhausenwohnraum', 'raumfrei.neuburg-schrobenhausen.de', true, 'Neuburg-Schrobenhausen', logoNeuburg, faviconNeuburg),
-  new CityConfig('bayreuthwohnraum', 'bayreuth.wohnen.integreat-app.de', false, 'Bayreuth', logoBayreuth, faviconBayreuth)
+  new CityConfig('bayreuthwohnraum', 'wohnraumboerse.bayreuth.de', false, 'Bayreuth', logoBayreuth, faviconBayreuth)
 ]
 
 export default configs
