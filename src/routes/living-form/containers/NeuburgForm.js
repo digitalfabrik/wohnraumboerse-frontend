@@ -116,8 +116,7 @@ export class NeuburgForm extends React.Component {
             <NarrowCol key={key}><ArrayCheckbox name='formData.accommodation.ofRooms' label={label}
                                                 value={key} /></NarrowCol>
           ))}
-          <WideCol><CustomValidation name='customValidation'
-                                     validations={[oneRoom]} /></WideCol>
+          <WideCol><CustomValidation name='customValidation' validations={[oneRoom]} /></WideCol>
         </Row>
         <Row>
           <StdCol><DateInput
@@ -185,23 +184,20 @@ export class NeuburgForm extends React.Component {
                                                                href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>.</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
-              Außerdem willige ich ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an
-              Tür - Digital Factory gGmbH meine personenbezogenen Daten zum Zwecke
-              der Wohnraumakquise für anerkannte Flüchtlinge und bleibeberechtigte
-              Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
+              Außerdem willige ich ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an Tür - Digital Factory
+              gGmbH meine personenbezogenen Daten zum Zwecke der Wohnraumakquise für anerkannte Flüchtlinge und
+              bleibeberechtigte Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
               auf die Bearbeitung meines Mietangebots beschränkt.
             </LawParagraph>
             <LawParagraph>
-              Hierzu stellt die Tür an Tür - Digital Factory gGmbH meine
-              personenbezogenen Daten auf die öffentliche App Integreat, die vom
-              Landkreis Neuburg-Schrobenhausen genutzt wird, um Wohnungen und
-              Mietobjekte zielgerichtet zu vermitteln.
+              <strong>Hierzu stellt die Tür an Tür - Digital Factory gGmbH meine personenbezogenen Daten auf die
+                öffentliche App Integreat</strong>, die vom Landkreis Neuburg-Schrobenhausen genutzt wird, um Wohnungen
+              und Mietobjekte zielgerichtet zu vermitteln.
             </LawParagraph>
             <LawParagraph>
               Die Einwilligung kann verweigert bzw. jederzeit ohne Angabe von Gründen über den in der Bestätigungsmail
-              versendeten Link zur dauerhaften Löschung widerrufen werden. In diesem
-              Fall erfolgt keine Bearbeitung meines Mietangebots; alle gespeicherten
-              personenbezogenen Daten werden gelöscht.
+              versendeten Link zur dauerhaften Löschung widerrufen werden. In diesem Fall erfolgt keine Bearbeitung
+              meines Mietangebots; alle gespeicherten personenbezogenen Daten werden gelöscht.
             </LawParagraph>
           </WideCol>
         </Row>
