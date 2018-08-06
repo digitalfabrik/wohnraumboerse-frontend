@@ -42,7 +42,6 @@ export class LivingFormPage extends React.Component {
       return <Failure error='not-found:page.notFound' />
     }
 
-
     if (this.state.success) {
       return <React.Fragment>
         <Caption title='Fast fertig' />
