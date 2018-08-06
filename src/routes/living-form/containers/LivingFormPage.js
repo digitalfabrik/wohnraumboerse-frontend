@@ -3,10 +3,16 @@ import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import environment from 'environment.config'
 import { Caption } from '@integreat-app/shared'
 import NeuburgForm from './NeuburgForm'
+import TestumgebungForm from './TestumgebungForm'
 import Failure from '../../../modules/common/components/Failure'
 import { CREATED } from 'http-status-codes'
 
 const SENDER_MAIL = 'wohnraumboerse@integreat-app.de'
+
+const availableForms = {
+  'neuburgschrobenhausenwohnraum': NeuburgForm,
+  'testumgebungwohnraum': TestumgebungForm
+}
 
 export class LivingFormPage extends React.Component {
   state = {success: false, serverError: null, sending: false, emailAddress: ''}
@@ -32,9 +38,10 @@ export class LivingFormPage extends React.Component {
   }
 
   render () {
-    if (getCurrentCityConfig().cmsName !== 'neuburgschrobenhausenwohnraum') {
+    if (!availableForms[getCurrentCityConfig().cmsName]) {
       return <Failure error='not-found:page.notFound' />
     }
+
 
     if (this.state.success) {
       return <React.Fragment>
@@ -48,9 +55,11 @@ export class LivingFormPage extends React.Component {
       </React.Fragment>
     }
 
+    const Form = availableForms[getCurrentCityConfig().cmsName]
+
     return <React.Fragment>
       <Caption title={'Mietangebot erstellen'} />
-      <NeuburgForm sendRequest={this.sendRequest} sending={this.state.sending} serverError={this.state.serverError} />
+      <Form sendRequest={this.sendRequest} sending={this.state.sending} serverError={this.state.serverError} />
     </React.Fragment>
   }
 }
