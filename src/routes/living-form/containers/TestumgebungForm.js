@@ -118,10 +118,7 @@ export class TestumgebungForm extends React.Component {
           <WideCol><CustomValidation name='customValidation' validations={[oneRoom]} /></WideCol>
         </Row>
         <Row>
-          <StdCol><DateInput
-            label='Bezugsdatum'
-            name='formData.accommodation.moveInDate'
-          /></StdCol>
+          <StdCol><DateInput label='Bezugsdatum' name='formData.accommodation.moveInDate' /></StdCol>
         </Row>
 
         <h3>Mietkosten</h3>
