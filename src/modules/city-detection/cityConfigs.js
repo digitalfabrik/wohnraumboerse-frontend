@@ -1,13 +1,11 @@
 import CityConfig from './CityConfig'
+import environment from 'environment.config'
 
-import logoNeuburg from './assets/neuburg_logo.svg'
-import logoBayreuth from './assets/bayreuth_logo.png'
-import faviconBayreuth from './assets/bayreuth_favicon.ico'
-import faviconNeuburg from './assets/neuburg_favicon.ico'
+const cityConfigs = fetch(`${environment.apiBaseUrl}city-configs/`, {mode: 'cors'})
+  .then(response => {
+    response.json().then(data => {
+      return data.map(config => new CityConfig(config))
+    })
+  })
 
-const configs = [
-  new CityConfig('neuburgschrobenhausenwohnraum', 'raumfrei.neuburg-schrobenhausen.de', true, 'Neuburg-Schrobenhausen', logoNeuburg, faviconNeuburg),
-  new CityConfig('bayreuthwohnraum', 'wohnraumboerse.bayreuth.de', false, 'Bayreuth', logoBayreuth, faviconBayreuth)
-]
-
-export default configs
+export default cityConfigs

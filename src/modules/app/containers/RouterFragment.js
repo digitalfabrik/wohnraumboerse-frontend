@@ -1,6 +1,7 @@
 import { Fragment } from 'redux-little-router'
 import React from 'react'
 import PropTypes from 'prop-types'
+import environment from 'environment.config'
 import RouteConfig from '../RouteConfig'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 import CategoriesPage from '../../../routes/categories/containers/CategoriesPage'
@@ -34,7 +35,7 @@ class RouterFragment extends React.Component {
       <React.Fragment>
         <Helmet>
           <title>{cityConfig.title}</title>
-          <link rel='icon' href={cityConfig.favicon} />
+          <link rel='icon' href={`${environment.apiBaseUrl}city-configs/image/${cityConfig.favicon}`} />
         </Helmet>
         <LivingLayout matchRoute={this.matchRoute}>
           {/* Matches /form */}
