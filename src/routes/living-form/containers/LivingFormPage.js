@@ -1,19 +1,25 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import environment from 'environment.config'
 import { Caption } from '@integreat-app/shared'
 import NeuburgForm from './NeuburgForm'
 import Failure from '../../../modules/common/components/Failure'
 import { CREATED } from 'http-status-codes'
+import withFetcher from 'modules/endpoint/hocs/withFetcher'
+import CityConfig from 'modules/city-detection/CityConfig'
 
 const SENDER_MAIL = 'wohnraumboerse@integreat-app.de'
 
 export class LivingFormPage extends React.Component {
+  static propTypes = {
+    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
+  }
   state = {success: false, serverError: null, sending: false, emailAddress: ''}
 
   sendRequest = requestBody => {
     this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
-    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig().cmsName}/offer/`, {
+    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig(this.props.cityConfigs).cmsName}/offer/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({
@@ -32,7 +38,7 @@ export class LivingFormPage extends React.Component {
   }
 
   render () {
-    if (getCurrentCityConfig().cmsName !== 'neuburgschrobenhausenwohnraum') {
+    if (getCurrentCityConfig(this.props.cityConfigs).cmsName !== 'neuburgschrobenhausenwohnraum') {
       return <Failure error='not-found:page.notFound' />
     }
 
@@ -55,4 +61,4 @@ export class LivingFormPage extends React.Component {
   }
 }
 
-export default LivingFormPage
+export default withFetcher('cityConfigs')(LivingFormPage)
