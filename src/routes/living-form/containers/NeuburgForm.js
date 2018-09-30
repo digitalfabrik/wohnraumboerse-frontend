@@ -65,7 +65,7 @@ const additionalServices = {
 }
 
 export class NeuburgForm extends React.Component {
-  state = {form: null}
+  state = { form: null }
 
   static propTypes = {
     sendRequest: PropTypes.func.isRequired,
@@ -74,7 +74,7 @@ export class NeuburgForm extends React.Component {
   }
 
   setRef = form => {
-    this.setState({form})
+    this.setState({ form })
   }
 
   validateAll = () => this.state.form.validateAll()
@@ -103,13 +103,13 @@ export class NeuburgForm extends React.Component {
         </Row>
         <Row>
           <StdCol><TextInput name='formData.accommodation.totalArea' label='Gesamtfläche der Wohnung'
-                             validations={[required, nonNegative]} type='number' inputProps={{min: '0', step: '0.01'}}
+                             validations={[required, nonNegative]} type='number' inputProps={{ min: '0', step: '0.01' }}
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>qm</InputAdornment>
                              }} /></StdCol>
           <StdCol><TextInput name='formData.accommodation.totalRooms' label='Räume insgesamt'
                              validations={[required, greaterEquals(1), integer]} type='number'
-                             inputProps={{min: '1', step: '1'}} /></StdCol>
+                             inputProps={{ min: '1', step: '1' }} /></StdCol>
         </Row>
         <Row>
           {map(rooms, (label, key) => (
@@ -130,12 +130,12 @@ export class NeuburgForm extends React.Component {
           <StdCol><TextInput name='formData.costs.baseRent' label='Grundmiete monatlich'
                              validations={[required, nonNegative]}
                              type='number' additionalLabel='Ohne Nebenkosten, Garage und Heizung'
-                             inputProps={{min: '0', step: '0.01'}}
-                             InputProps={{startAdornment: <InputAdornment position='start'>€</InputAdornment>}}
+                             inputProps={{ min: '0', step: '0.01' }}
+                             InputProps={{ startAdornment: <InputAdornment position='start'>€</InputAdornment> }}
           /></StdCol>
           <StdCol><TextInput name='formData.costs.runningCosts' label='Nebenkosten monatlich'
                              validations={[required, nonNegative]}
-                             type='number' inputProps={{min: '0', step: '0.01'}}
+                             type='number' inputProps={{ min: '0', step: '0.01' }}
                              InputProps={{
                                startAdornment: <InputAdornment position='start'>€</InputAdornment>
                              }} /></StdCol>
@@ -153,7 +153,7 @@ export class NeuburgForm extends React.Component {
                                       label='Warmwasser in Heizung enthalten' /></WideCol></Row>
         <Row><StdCol><TextInput name='formData.costs.additionalCosts' label='Zusatzkosten monatlich'
                                 validations={[required, nonNegative]}
-                                type='number' inputProps={{min: '0', step: '0.01'}}
+                                type='number' inputProps={{ min: '0', step: '0.01' }}
                                 InputProps={{
                                   startAdornment: <InputAdornment position='start'>€</InputAdornment>
                                 }} /></StdCol></Row>
@@ -201,7 +201,7 @@ export class NeuburgForm extends React.Component {
             </LawParagraph>
           </WideCol>
         </Row>
-        <Row style={{margin: '20px 0', justifyContent: 'center'}}>
+        <Row style={{ margin: '20px 0', justifyContent: 'center' }}>
           <Col center='true'>
             <FormControl>
               <SubmitButton validateAll={this.validateAll} type='submit' disabled={this.props.sending}>
@@ -211,9 +211,9 @@ export class NeuburgForm extends React.Component {
             </FormControl>
           </Col>
         </Row>
-        <Row style={{justifyContent: 'center'}}>
+        <Row style={{ justifyContent: 'center' }}>
           <StdCol>
-            <img src={staatLogo} style={{width: '100%'}} />
+            <img src={staatLogo} style={{ width: '100%' }} />
           </StdCol>
         </Row>
       </Grid>

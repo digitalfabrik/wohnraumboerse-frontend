@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -18,7 +20,7 @@ export class LivingLayout extends React.Component {
   }
 
   render () {
-    const {matchRoute} = this.props
+    const { matchRoute } = this.props
     return <Layout header={<LivingHeader viewportSmall={this.props.viewportSmall}
                                          matchRoute={matchRoute} location={cityConfig.cmsName}
                                          currentPath={this.props.currentPath} />}

@@ -16,7 +16,7 @@ export class Failure extends React.Component {
   }
 
   render () {
-    const {t, error} = this.props
+    const { t, error } = this.props
     return <div>
       <div className={style.centerText}>{t(error)}</div>
       <div className={style.centerText}><FontAwesome name='frown-o' size='5x' /></div>

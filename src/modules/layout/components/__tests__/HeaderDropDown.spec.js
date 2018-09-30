@@ -26,7 +26,7 @@ describe('HeaderDropDown', () => {
   describe('closeDropDown()', () => {
     it('should close DropDown if active', () => {
       const component = wrapperComponent.dive()
-      component.setState({dropDownActive: true})
+      component.setState({ dropDownActive: true })
       component.instance().closeDropDown()
       expect(component.instance().state.dropDownActive).toBe(false)
     })
@@ -41,7 +41,7 @@ describe('HeaderDropDown', () => {
   describe('toggleDropDown()', () => {
     it('should close DropDown if active', () => {
       const component = wrapperComponent.dive()
-      component.setState({dropDownActive: true})
+      component.setState({ dropDownActive: true })
       component.instance().toggleDropDown()
       expect(component.instance().state.dropDownActive).toBe(false)
     })
@@ -73,7 +73,7 @@ describe('HeaderDropDown', () => {
   it('should add class if active', () => {
     const component = wrapperComponent.dive()
     expect(component.find('.dropDown').hasClass('dropDownActive')).toEqual(false)
-    component.setState({dropDownActive: true})
+    component.setState({ dropDownActive: true })
     expect(component.find('.dropDown').hasClass('dropDownActive')).toEqual(true)
   })
 })

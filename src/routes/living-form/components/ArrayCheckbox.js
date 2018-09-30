@@ -10,15 +10,15 @@ class ArrayCheckbox extends React.PureComponent {
     value: PropTypes.string
   }
 
-  state = {checked: false}
+  state = { checked: false }
 
   handleChange = (event, checked) => {
-    this.setState({checked})
+    this.setState({ checked })
   }
 
   render () {
     const checked = this.state.checked
-    const {label, name, value, ...otherProps} = this.props
+    const { label, name, value, ...otherProps } = this.props
     return <FormControl>
       <FormControlLabel control={<Checkbox checked={checked} onChange={this.handleChange} {...otherProps} />} label={label} />
       {checked && <Input type='hidden' name={name} value={value} />}

@@ -13,7 +13,7 @@ class CustomValidation extends React.Component {
   }
 
   render () {
-    const {error, isChanged, isUsed, ...otherProps} = this.props
+    const { error, isChanged, isUsed, ...otherProps } = this.props
     return <FormControl fullWidth>
       <input type='hidden' name='custom-validation' {...otherProps} value='' />
       <FormHelperText error>{error}</FormHelperText>

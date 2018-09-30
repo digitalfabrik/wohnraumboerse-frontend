@@ -4,7 +4,7 @@ import { control } from 'react-validation'
 import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@material-ui/core'
 
 export class SingleCheckbox extends React.PureComponent {
-  state = {checked: false}
+  state = { checked: false }
 
   static propTypes = {
     label: PropTypes.string,
@@ -16,14 +16,14 @@ export class SingleCheckbox extends React.PureComponent {
   }
 
   handleChange = (event, checked) => {
-    this.setState({checked})
+    this.setState({ checked })
     event.target.value = checked
     this.props.onChange(event)
   }
 
   render () {
     const checked = this.state.checked
-    const {label, name, isUsed, isChanged, error, ...otherProps} = this.props
+    const { label, name, isUsed, isChanged, error, ...otherProps } = this.props
     delete otherProps.onBlur
     delete otherProps.onChange
     return <FormControl>

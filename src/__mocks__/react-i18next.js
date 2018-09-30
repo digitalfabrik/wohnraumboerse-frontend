@@ -7,4 +7,4 @@ export const translate = namespace => Component => {
   return Translated
 }
 
-export const I18nextProvider = ({children}) => children
+export const I18nextProvider = ({ children }) => children

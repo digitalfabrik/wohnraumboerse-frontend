@@ -7,8 +7,8 @@ describe('HeaderNavigationBar', () => {
   it('should match snapshot', () => {
     const component = shallow(
       <HeaderNavigationBar className='testClass' items={[
-        new HeaderNavigationItem({href: 'link1', text: 'text1'}),
-        new HeaderNavigationItem({href: 'link2', text: 'text2'})
+        new HeaderNavigationItem({ href: 'link1', text: 'text1' }),
+        new HeaderNavigationItem({ href: 'link2', text: 'text2' })
       ]} />
     )
     expect(component).toMatchSnapshot()

@@ -12,7 +12,7 @@ const createReduxStore = (createHistory, initialState = {}, routes = new RouteCo
   const basename = ''
 
   // Additional reducers
-  const {enhancer: routerEnhancer, reducer: routerReducer, middleware: routerMiddleware} = routerForBrowser({
+  const { enhancer: routerEnhancer, reducer: routerReducer, middleware: routerMiddleware } = routerForBrowser({
     routes: routes.toPlainObject(),
     basename,
     history
@@ -33,7 +33,7 @@ const createReduxStore = (createHistory, initialState = {}, routes = new RouteCo
 
   const reducer = combineReducers({
     ...endpointReducers,
-    viewport: createResponsiveStateReducer({small: 750}, {infinity: 'large'}),
+    viewport: createResponsiveStateReducer({ small: 750 }, { infinity: 'large' }),
     router: routerReducer
   })
 

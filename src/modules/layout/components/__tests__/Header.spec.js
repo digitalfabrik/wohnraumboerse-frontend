@@ -10,8 +10,8 @@ describe('Header', () => {
     const component = shallow(
       <Header
         logoHref={'/'}
-        actionItems={[new HeaderActionItem({href: '/action1'})]}
-        navigationItems={[new HeaderNavigationItem({href: '/nav1'})]} />
+        actionItems={[new HeaderActionItem({ href: '/action1' })]}
+        navigationItems={[new HeaderNavigationItem({ href: '/nav1' })]} />
     )
     expect(component).toMatchSnapshot()
   })
@@ -20,8 +20,8 @@ describe('Header', () => {
     const component = shallow(
       <Header
         logoHref={'/'}
-        actionItems={[new HeaderActionItem({href: '/action1'})]}
-        navigationItems={[new HeaderNavigationItem({href: '/nav1'})]} />
+        actionItems={[new HeaderActionItem({ href: '/action1' })]}
+        navigationItems={[new HeaderNavigationItem({ href: '/nav1' })]} />
     )
     expect(component).toMatchSnapshot()
   })

@@ -15,10 +15,10 @@ export class LivingManageOfferPage extends React.Component {
     action: PropTypes.string.isRequired
   }
 
-  state = {sending: false, success: false, serverError: null}
+  state = { sending: false, success: false, serverError: null }
 
   send = (method, action = '', body = null) => {
-    this.setState({sending: true, serverError: null, success: false})
+    this.setState({ sending: true, serverError: null, success: false })
     fetch(`${environment.apiBaseUrl}${getCurrentCityConfig().cmsName}/offer/${this.props.token}${action}`, {
       method,
       headers: new Headers({
@@ -28,7 +28,7 @@ export class LivingManageOfferPage extends React.Component {
     })
       .then(response => {
         if (response.status === OK) {
-          this.setState({success: response.status === OK, sending: false, serverError: null})
+          this.setState({ success: response.status === OK, sending: false, serverError: null })
         } else {
           response.json().then(error => this.setState({
             success: false,
@@ -44,7 +44,7 @@ export class LivingManageOfferPage extends React.Component {
         this.setState({
           success: false,
           sending: false,
-          serverError: {status: 0, message: 'Die Verbindung ist fehlgeschlagen.'}
+          serverError: { status: 0, message: 'Die Verbindung ist fehlgeschlagen.' }
         })
       })
   }

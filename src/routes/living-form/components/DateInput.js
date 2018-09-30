@@ -6,7 +6,7 @@ import Input from 'react-validation/build/input'
 import moment from 'moment'
 
 class DateInput extends React.Component {
-  state = {value: moment()}
+  state = { value: moment() }
 
   static propTypes = {
     label: PropTypes.string,
@@ -14,12 +14,12 @@ class DateInput extends React.Component {
   }
 
   handleChange = value => {
-    this.setState({value})
+    this.setState({ value })
   }
 
   render () {
     const value = this.state.value
-    const {label, name, ...otherProps} = this.props
+    const { label, name, ...otherProps } = this.props
     return <FormControl fullWidth>
       <DatePicker {...otherProps} value={value} onChange={this.handleChange} label={label} disablePast
                   autoOk okLabel='OK' cancelLabel='Abbrechen' format='Do MMMM YYYY' />

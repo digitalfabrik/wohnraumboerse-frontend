@@ -1,7 +1,7 @@
 import Payload from '../Payload'
 
 describe('Payload', () => {
-  const data = {data: 'something'}
+  const data = { data: 'something' }
   const error = 'Something bad happened'
   const fetchUrl = 'https://weird-endpoint/api.json'
   const fetchDate = 0

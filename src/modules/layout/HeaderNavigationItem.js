@@ -2,7 +2,7 @@
  * HeaderNavigationItem is the data class which needs to be supplied to HeaderNavigationBar.
  */
 class HeaderNavigationItem {
-  constructor ({text, href, active}) {
+  constructor ({ text, href, active }) {
     this._text = text
     this._href = href
     this._active = active

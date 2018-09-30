@@ -171,8 +171,8 @@ const config = {
               },
               svgo: {
                 plugins: [
-                  {removeTitle: true},
-                  {convertPathData: false}
+                  { removeTitle: true },
+                  { convertPathData: false }
                 ]
               }
             }

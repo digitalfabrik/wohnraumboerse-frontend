@@ -17,7 +17,7 @@ class HeaderDropDown extends React.Component {
 
   constructor (props) {
     super(props)
-    this.state = {dropDownActive: false}
+    this.state = { dropDownActive: false }
     this.toggleDropDown = this.toggleDropDown.bind(this)
     this.closeDropDown = this.closeDropDown.bind(this)
     this.handleClickOutside = this.handleClickOutside.bind(this)
@@ -43,7 +43,7 @@ class HeaderDropDown extends React.Component {
         <img src={this.props.iconSrc} onClick={this.toggleDropDown} />
         <div className={cx(style.dropDown, this.state.dropDownActive ? style.dropDownActive : '')}>
           {/* Pass dropDownCallback to child element */}
-          {React.cloneElement(this.props.children, {closeDropDownCallback: this.closeDropDown})}
+          {React.cloneElement(this.props.children, { closeDropDownCallback: this.closeDropDown })}
         </div>
       </span>
     )
