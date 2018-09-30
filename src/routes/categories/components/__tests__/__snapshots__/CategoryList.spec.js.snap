@@ -31,7 +31,9 @@ exports[`CategoryList should render and display a caption 1`] = `
         }
       }
       key="35"
-    />
+    >
+      <Component />
+    </CategoryListItem>
     <CategoryListItem
       category={
         CategoryModel {
@@ -80,7 +82,9 @@ exports[`CategoryList should render and not display a caption 1`] = `
         }
       }
       key="35"
-    />
+    >
+      <Component />
+    </CategoryListItem>
     <CategoryListItem
       category={
         CategoryModel {
