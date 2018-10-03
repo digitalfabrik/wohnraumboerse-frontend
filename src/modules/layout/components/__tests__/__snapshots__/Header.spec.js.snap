@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should match snapshot with largeViewport 1`] = `
-<t
+<e
   pinStart={0}
   scrollHeight={85}
 >
@@ -42,11 +42,11 @@ exports[`Header should match snapshot with largeViewport 1`] = `
       }
     />
   </header>
-</t>
+</e>
 `;
 
 exports[`Header should match snapshot with smallViewport 1`] = `
-<t
+<e
   pinStart={0}
   scrollHeight={85}
 >
@@ -87,5 +87,5 @@ exports[`Header should match snapshot with smallViewport 1`] = `
       }
     />
   </header>
-</t>
+</e>
 `;
