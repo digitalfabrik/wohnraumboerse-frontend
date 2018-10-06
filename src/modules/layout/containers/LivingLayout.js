@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect, compose } from 'react-redux'
+import { connect } from 'react-redux'
+import compose from 'lodash/fp/compose'
 
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import Layout from '../components/Layout'
@@ -15,14 +16,14 @@ export class LivingLayout extends React.Component {
     currentPath: PropTypes.string.isRequired,
     viewportSmall: PropTypes.bool.isRequired,
     children: PropTypes.node,
-    cityConfig: PropTypes.arrayOf(CityConfig).isRequired
+    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
   }
 
   render () {
     const {matchRoute} = this.props
     return <Layout header={<LivingHeader viewportSmall={this.props.viewportSmall}
                                          matchRoute={matchRoute}
-                                         location={getCurrentCityConfig(this.props.cityConfig.cmsName)}
+                                         location={getCurrentCityConfig(this.props.cityConfigs).cmsName}
                                          currentPath={this.props.currentPath} />}
                    footer={<LivingFooter matchRoute={matchRoute} />}>
       {this.props.children}
@@ -32,7 +33,8 @@ export class LivingLayout extends React.Component {
 
 const mapStateToProps = state => ({
   currentPath: state.router.route,
-  viewportSmall: state.viewport.is.small
+  viewportSmall: state.viewport.is.small,
+  cityConfigs: state.cityConfigs
 })
 
 export default compose(

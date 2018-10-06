@@ -9,11 +9,16 @@ import LivingManageOfferPage from '../../../routes/living-manage-offer/container
 import LivingLayout from '../../layout/containers/LivingLayout'
 import DisclaimerPage from '../../../routes/disclaimer/containers/DisclaimerPage'
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
+import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import { Helmet } from 'react-helmet'
+import CityConfig from '../../city-detection/CityConfig'
+import compose from 'lodash/fp/compose'
+import connect from 'react-redux/es/connect/connect'
 
 class RouterFragment extends React.Component {
   static propTypes = {
-    routeConfig: PropTypes.instanceOf(RouteConfig).isRequired
+    routeConfig: PropTypes.instanceOf(RouteConfig).isRequired,
+    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
   }
 
   /**
@@ -25,7 +30,8 @@ class RouterFragment extends React.Component {
   matchRoute = id => this.props.routeConfig.matchRoute(id)
 
   render () {
-    const cityConfig = getCurrentCityConfig()
+    console.log(`CityConfigs: ${JSON.stringify(this.props.cityConfigs)}`)
+    const cityConfig = getCurrentCityConfig(this.props.cityConfigs)
     /*
      * For routes inside a <React.Fragment /> the priority decreases with each element
      * So /disclaimer has higher priority than /:language -> '/disclaimer' resolves to /disclaimer
@@ -60,4 +66,11 @@ class RouterFragment extends React.Component {
   }
 }
 
-export default RouterFragment
+const mapStateToProps = state => ({
+  cityConfigs: state.cityConfigs
+})
+
+export default compose(
+  connect(mapStateToProps),
+  withFetcher('cityConfigs')
+)(RouterFragment)
