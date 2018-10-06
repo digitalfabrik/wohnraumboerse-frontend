@@ -8,7 +8,6 @@ import { FormControl, FormHelperText, InputAdornment, MenuItem } from '@material
 import styled from 'styled-components'
 
 import ArrayCheckbox from '../components/ArrayCheckbox'
-import staatLogo from './assets/logo-stmas.jpg'
 import { TextInput } from '../components/TextInput'
 import required from '../validators/required'
 import isEmail from '../validators/isEmail'
@@ -64,7 +63,7 @@ const additionalServices = {
   other: 'Sonstiges'
 }
 
-export class NeuburgForm extends React.Component {
+export class TestumgebungForm extends React.Component {
   state = {form: null}
 
   static propTypes = {
@@ -119,10 +118,7 @@ export class NeuburgForm extends React.Component {
           <WideCol><CustomValidation name='customValidation' validations={[oneRoom]} /></WideCol>
         </Row>
         <Row>
-          <StdCol><DateInput
-            label='Bezugsdatum'
-            name='formData.accommodation.moveInDate'
-          /></StdCol>
+          <StdCol><DateInput label='Bezugsdatum' name='formData.accommodation.moveInDate' /></StdCol>
         </Row>
 
         <h3>Mietkosten</h3>
@@ -184,14 +180,14 @@ export class NeuburgForm extends React.Component {
                                                                href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>.</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
-              Außerdem willige ich ein, dass der Landkreis Neuburg-Schrobenhausen und die Tür an Tür - Digital Factory
+              Außerdem willige ich ein, dass der Landkreis Testumgebung und die Tür an Tür - Digital Factory
               gGmbH meine personenbezogenen Daten zum Zwecke der Wohnraumakquise für anerkannte Flüchtlinge und
               bleibeberechtigte Migranten erheben, verarbeiten und nutzen. Der Zweck ist ausschließlich
               auf die Bearbeitung meines Mietangebots beschränkt.
             </LawParagraph>
             <LawParagraph>
               <strong>Hierzu stellt die Tür an Tür - Digital Factory gGmbH meine personenbezogenen Daten auf die
-                öffentliche App Integreat</strong>, die vom Landkreis Neuburg-Schrobenhausen genutzt wird, um Wohnungen
+                öffentliche App Integreat</strong>, die vom Landkreis Testumgebung genutzt wird, um Wohnungen
               und Mietobjekte zielgerichtet zu vermitteln.
             </LawParagraph>
             <LawParagraph>
@@ -211,11 +207,6 @@ export class NeuburgForm extends React.Component {
             </FormControl>
           </Col>
         </Row>
-        <Row style={{justifyContent: 'center'}}>
-          <StdCol>
-            <img src={staatLogo} style={{width: '100%'}} />
-          </StdCol>
-        </Row>
       </Grid>
     </Form>
   }
@@ -234,12 +225,12 @@ export class NeuburgForm extends React.Component {
     // Remove customValidation, since it's only a virtual input
     delete requestBody.customValidation
     // Make ofAdditionalCosts, ofRooms, ofAdditionalServices arrays (if not already)
-    NeuburgForm.transformFieldToArray(requestBody.formData.accommodation, 'ofRooms')
-    NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofAdditionalServices')
-    NeuburgForm.transformFieldToArray(requestBody.formData.costs, 'ofRunningServices')
+    TestumgebungForm.transformFieldToArray(requestBody.formData.accommodation, 'ofRooms')
+    TestumgebungForm.transformFieldToArray(requestBody.formData.costs, 'ofAdditionalServices')
+    TestumgebungForm.transformFieldToArray(requestBody.formData.costs, 'ofRunningServices')
     // Convert boolean values to actual bools
-    NeuburgForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
-    NeuburgForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
+    TestumgebungForm.transformFieldToBool(requestBody, 'agreedToDataProtection')
+    TestumgebungForm.transformFieldToBool(requestBody.formData.costs, 'hotWaterInHeatingCosts')
     return requestBody
   }
 
@@ -256,4 +247,4 @@ export class NeuburgForm extends React.Component {
   }
 }
 
-export default NeuburgForm
+export default TestumgebungForm

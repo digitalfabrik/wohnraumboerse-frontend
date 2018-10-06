@@ -6,4 +6,4 @@ You can [view our bugs](https://integreat.atlassian.net/) or [create new ones](h
 
 # Deployment
 
-Example: `tools/deploy/ssh-deploy.sh max@wohnen.integreat-app.de /var/www/html passauermodell:web`
+Example: `tools/deploy/ssh-deploy.sh max@wohnen.integreat-app.de /var/www/html wohnen:wohnen`
