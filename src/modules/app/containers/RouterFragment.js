@@ -18,7 +18,7 @@ import connect from 'react-redux/es/connect/connect'
 class RouterFragment extends React.Component {
   static propTypes = {
     routeConfig: PropTypes.instanceOf(RouteConfig).isRequired,
-    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
+    cityConfigs: PropTypes.arrayOf(CityConfig)
   }
 
   /**

@@ -7,6 +7,10 @@ import CategoriesPage from '../../../routes/categories/containers/CategoriesPage
 import HeaderNavigationItem from '../HeaderNavigationItem'
 import LivingFormPage from '../../../routes/living-form/containers/LivingFormPage'
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
+import CityConfig from '../../city-detection/CityConfig'
+import compose from 'lodash/fp/compose'
+import { connect } from 'react-redux'
+import withFetcher from '../../endpoint/hocs/withFetcher'
 
 class LivingHeader extends React.Component {
   static propTypes = {
@@ -14,6 +18,7 @@ class LivingHeader extends React.Component {
     location: PropTypes.string.isRequired,
     currentPath: PropTypes.string.isRequired,
     viewportSmall: PropTypes.bool.isRequired,
+    cityConfigs: PropTypes.arrayOf(CityConfig),
     t: PropTypes.func.isRequired
   }
 
@@ -24,7 +29,7 @@ class LivingHeader extends React.Component {
   }
 
   getNavigationItems () {
-    if (!getCurrentCityConfig().formsEnabled) {
+    if (!getCurrentCityConfig(this.props.cityConfigs).formsEnabled) {
       return []
     }
     const {matchRoute, currentPath, t} = this.props
@@ -48,7 +53,7 @@ class LivingHeader extends React.Component {
   render () {
     const {matchRoute} = this.props
     return <Header
-      logo={getCurrentCityConfig().logo}
+      logo={getCurrentCityConfig(this.props.cityConfigs).logo}
       viewportSmall={this.props.viewportSmall}
       logoHref={matchRoute(CategoriesPage).stringify(this.getCurrentParams())}
       actionItems={[]}
@@ -56,4 +61,12 @@ class LivingHeader extends React.Component {
   }
 }
 
-export default translate('app')(LivingHeader)
+const mapStateToProps = state => ({
+  cityConfigs: state.cityConfigs
+})
+
+export default compose(
+  translate('app'),
+  connect(mapStateToProps),
+  withFetcher('cityConfigs')
+)(LivingHeader)
