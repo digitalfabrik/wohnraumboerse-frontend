@@ -1,10 +1,12 @@
 import disclaimerEndpoint from '../endpoints/disclaimer'
 import categoriesEndpoint from '../endpoints/categories'
+import cityConfigsEndpoint from '../endpoints/cityConfigs'
 
 /**
  * Contains all reducers from all endpoints which are defined in {@link './endpoints/'}
  */
 const endpoints = [
+  cityConfigsEndpoint,
   categoriesEndpoint,
   disclaimerEndpoint
 ]
