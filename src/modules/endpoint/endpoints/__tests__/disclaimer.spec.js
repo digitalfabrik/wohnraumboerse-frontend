@@ -18,7 +18,18 @@ describe('disclaimer', () => {
     parent: 0
   }
 
-  const state = {}
+  const state = {
+    cityConfigs: {
+      _data: [{
+        'cmsName': 'neuburgschrobenhausenwohnraum',
+        'hostName': 'raumfrei.neuburg-schrobenhausen.de',
+        'formsEnabled': true,
+        'title': 'Raumfrei Neuburg-Schrobenhausen',
+        'logo': 'http://127.0.0.1:8080/v0/city-configs/image/neuburg_logo.svg',
+        'favicon': 'http://127.0.0.1:8080/v0/city-configs/image/neuburg_favicon.ico'
+      }]
+    }
+  }
 
   it('should map router to url', () => {
     expect(disclaimer.mapStateToUrl(state)).toEqual(

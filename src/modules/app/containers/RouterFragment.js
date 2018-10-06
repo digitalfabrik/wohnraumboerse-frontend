@@ -30,7 +30,6 @@ class RouterFragment extends React.Component {
   matchRoute = id => this.props.routeConfig.matchRoute(id)
 
   render () {
-    console.log(`CityConfigs: ${JSON.stringify(this.props.cityConfigs)}`)
     const cityConfig = getCurrentCityConfig(this.props.cityConfigs)
     /*
      * For routes inside a <React.Fragment /> the priority decreases with each element

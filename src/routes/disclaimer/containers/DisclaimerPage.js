@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import compose from 'lodash/fp/compose'
 
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import { Page } from '@integreat-app/shared'
@@ -18,4 +19,7 @@ class DisclaimerPage extends React.Component {
   }
 }
 
-export default withFetcher('disclaimer')(DisclaimerPage)
+export default compose(
+  withFetcher('disclaimer'),
+  withFetcher('cityConfigs')
+)(DisclaimerPage)
