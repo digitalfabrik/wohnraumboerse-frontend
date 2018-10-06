@@ -37,7 +37,7 @@ class Header extends React.Component {
         <header className={style.header}>
           <div className={style.logoWide}>
             <Link href={this.props.logoHref}>
-              <img src={`${environment.apiBaseUrl}city-configs/image/${this.props.logo}`} />
+              <img src={this.props.logo} />
             </Link>
           </div>
           <HeaderActionBar className={style.actionBar} items={this.props.actionItems} />
