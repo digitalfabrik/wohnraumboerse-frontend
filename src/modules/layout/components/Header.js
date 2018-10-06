@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import environment from 'environment.config'
 import style from './Header.css'
 import HeaderNavigationBar from './HeaderNavigationBar'
 import HeaderActionBar from './HeaderActionBar'
