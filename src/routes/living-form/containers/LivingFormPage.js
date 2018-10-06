@@ -44,7 +44,8 @@ export class LivingFormPage extends React.Component {
   }
 
   render () {
-    if (!availableForms[getCurrentCityConfig(this.props.cityConfigs).cmsName]) {
+    const currentCmsName = getCurrentCityConfig(this.props.cityConfigs).cmsName
+    if (!availableForms[currentCmsName]) {
       return <Failure error='not-found:page.notFound' />
     }
 
@@ -60,7 +61,7 @@ export class LivingFormPage extends React.Component {
       </React.Fragment>
     }
 
-    const Form = availableForms[getCurrentCityConfig().cmsName]
+    const Form = availableForms[currentCmsName]
 
     return <React.Fragment>
       <Caption title={'Mietangebot erstellen'} />
