@@ -33,8 +33,7 @@ export class LivingLayout extends React.Component {
 
 const mapStateToProps = state => ({
   currentPath: state.router.route,
-  viewportSmall: state.viewport.is.small,
-  cityConfigs: state.cityConfigs
+  viewportSmall: state.viewport.is.small
 })
 
 export default compose(

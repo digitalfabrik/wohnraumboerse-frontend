@@ -9,7 +9,6 @@ import LivingFormPage from '../../../routes/living-form/containers/LivingFormPag
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
 import CityConfig from '../../city-detection/CityConfig'
 import compose from 'lodash/fp/compose'
-import { connect } from 'react-redux'
 import withFetcher from '../../endpoint/hocs/withFetcher'
 
 class LivingHeader extends React.Component {
@@ -61,12 +60,7 @@ class LivingHeader extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  cityConfigs: state.cityConfigs
-})
-
 export default compose(
   translate('app'),
-  connect(mapStateToProps),
   withFetcher('cityConfigs')
 )(LivingHeader)
