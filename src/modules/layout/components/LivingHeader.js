@@ -17,7 +17,7 @@ class LivingHeader extends React.Component {
     location: PropTypes.string.isRequired,
     currentPath: PropTypes.string.isRequired,
     viewportSmall: PropTypes.bool.isRequired,
-    cityConfigs: PropTypes.arrayOf(CityConfig),
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)),
     t: PropTypes.func.isRequired
   }
 

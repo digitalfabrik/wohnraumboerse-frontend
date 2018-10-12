@@ -16,7 +16,7 @@ export class LivingManageOfferPage extends React.Component {
   static propTypes = {
     token: PropTypes.string.isRequired,
     action: PropTypes.string.isRequired,
-    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
 
   state = {sending: false, success: false, serverError: null}

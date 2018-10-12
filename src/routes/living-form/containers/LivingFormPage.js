@@ -19,7 +19,7 @@ const availableForms = {
 
 export class LivingFormPage extends React.Component {
   static propTypes = {
-    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
   state = {success: false, serverError: null, sending: false, emailAddress: ''}
 

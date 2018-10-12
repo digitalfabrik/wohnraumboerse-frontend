@@ -16,7 +16,7 @@ export class LivingLayout extends React.Component {
     currentPath: PropTypes.string.isRequired,
     viewportSmall: PropTypes.bool.isRequired,
     children: PropTypes.node,
-    cityConfigs: PropTypes.arrayOf(CityConfig).isRequired
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
 
   render () {

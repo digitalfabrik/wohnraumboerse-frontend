@@ -15,7 +15,7 @@ import CityConfig from '../../city-detection/CityConfig'
 export class RouterFragment extends React.Component {
   static propTypes = {
     routeConfig: PropTypes.instanceOf(RouteConfig).isRequired,
-    cityConfigs: PropTypes.arrayOf(CityConfig)
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
 
   /**
