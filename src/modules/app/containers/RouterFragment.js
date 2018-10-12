@@ -11,10 +11,8 @@ import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import { Helmet } from 'react-helmet'
 import CityConfig from '../../city-detection/CityConfig'
-import compose from 'lodash/fp/compose'
-import connect from 'react-redux/es/connect/connect'
 
-class RouterFragment extends React.Component {
+export class RouterFragment extends React.Component {
   static propTypes = {
     routeConfig: PropTypes.instanceOf(RouteConfig).isRequired,
     cityConfigs: PropTypes.arrayOf(CityConfig)
@@ -64,11 +62,4 @@ class RouterFragment extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  cityConfigs: state.cityConfigs
-})
-
-export default compose(
-  connect(mapStateToProps),
-  withFetcher('cityConfigs')
-)(RouterFragment)
+export default withFetcher('cityConfigs')(RouterFragment)
