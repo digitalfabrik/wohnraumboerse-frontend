@@ -47,7 +47,7 @@ describe('disclaimer', () => {
   })
 
   it('should throw if the disclaimer is not published', () => {
-    const unpublishedPage = ({...pageJson, status: 'no published'})
+    const unpublishedPage = ({ ...pageJson, status: 'no published' })
     expect(() => disclaimer.mapResponse([unpublishedPage])).toThrow()
   })
 

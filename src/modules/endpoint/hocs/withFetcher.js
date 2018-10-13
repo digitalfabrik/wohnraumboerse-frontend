@@ -39,7 +39,7 @@ export function withFetcher (endpointName, FailureComponent = Failure, hideSpinn
 
       constructor (props, context) {
         super()
-        this.state = {isDataAvailable: false}
+        this.state = { isDataAvailable: false }
 
         if (props.getEndpoint) {
           this.endpoint = props.getEndpoint(endpointName)
@@ -77,7 +77,7 @@ export function withFetcher (endpointName, FailureComponent = Failure, hideSpinn
        */
       fetch (state) {
         const storeResponse = this.props.requestAction(state)
-        this.setState({isDataAvailable: storeResponse.dataAvailable})
+        this.setState({ isDataAvailable: storeResponse.dataAvailable })
       }
 
       errorVisible () {
@@ -99,7 +99,7 @@ export function withFetcher (endpointName, FailureComponent = Failure, hideSpinn
           return FailureComponent ? <FailureComponent error={payload.error} /> : null
         }
 
-        const allProps = ({...this.props, [this.endpoint.stateName]: payload.data})
+        const allProps = ({ ...this.props, [this.endpoint.stateName]: payload.data })
         // Strip all internal data
         delete allProps[this.endpoint.payloadName]
         delete allProps.getEndpoint

@@ -10,9 +10,9 @@ describe('EndpointBuilder', () => {
     // Not equal test
     expect(endpoint.shouldRefetch({}, {})).toBeFalsy()
     // Simple equal test
-    expect(endpoint.shouldRefetch({a: 'b'}, {})).toBeTruthy()
+    expect(endpoint.shouldRefetch({ a: 'b' }, {})).toBeTruthy()
     // Deep equal test
-    expect(endpoint.shouldRefetch({a: {b: 'c'}}, {a: {b: null}})).toBeTruthy()
+    expect(endpoint.shouldRefetch({ a: { b: 'c' } }, { a: { b: null } })).toBeTruthy()
   })
 
   it('should produce the correct endpoint', () => {
@@ -20,7 +20,7 @@ describe('EndpointBuilder', () => {
     const name = 'endpoint'
     const refetchLogic = () => false
     const mapper = json => json
-    const override = {test: 'random'}
+    const override = { test: 'random' }
 
     const endpoint = new EndpointBuilder(name)
       .withStateToUrlMapper(() => url)

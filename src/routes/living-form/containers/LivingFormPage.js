@@ -21,10 +21,10 @@ export class LivingFormPage extends React.Component {
   static propTypes = {
     cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
-  state = {success: false, serverError: null, sending: false, emailAddress: ''}
+  state = { success: false, serverError: null, sending: false, emailAddress: '' }
 
   sendRequest = requestBody => {
-    this.setState({sending: true, serverError: null, emailAddress: requestBody.email})
+    this.setState({ sending: true, serverError: null, emailAddress: requestBody.email })
     fetch(`${environment.apiBaseUrl}${getCurrentCityConfig(this.props.cityConfigs).cmsName}/offer/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
@@ -33,13 +33,13 @@ export class LivingFormPage extends React.Component {
       })
     }).then(response => {
       if (response.status === CREATED) {
-        this.setState({success: true, sending: false})
+        this.setState({ success: true, sending: false })
       } else {
-        return response.json().then(error => this.setState({serverError: error.errorMessage, sending: false}))
+        return response.json().then(error => this.setState({ serverError: error.errorMessage, sending: false }))
       }
     })
       .catch(() => {
-        this.setState({success: false, sending: false, serverError: 'Verbindung fehlgeschlagen'})
+        this.setState({ success: false, sending: false, serverError: 'Verbindung fehlgeschlagen' })
       })
   }
 

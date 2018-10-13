@@ -22,7 +22,7 @@ export class ExtendOfferManager extends React.Component {
     event.preventDefault()
     this.setState(prevState => {
       const values = prevState.form.getValues()
-      return {duration: values.duration}
+      return { duration: values.duration }
     }, () => {
       this.props.send('POST', '/extend', this.state.form.getValues())
     })
@@ -38,7 +38,7 @@ export class ExtendOfferManager extends React.Component {
 
   validateAll = () => this.state.form.validateAll()
 
-  setRef = form => this.setState({form})
+  setRef = form => this.setState({ form })
 
   render () {
     if (this.props.success) {

@@ -10,7 +10,7 @@ describe('CategoryModel', () => {
       content: 'test content blablabla',
       thumbnail: '/test/url/thumbnail',
       order: 5,
-      availableLanguages: {en: 5, de: 74}}
+      availableLanguages: { en: 5, de: 74 } }
     const category = new CategoryModel(props)
     expect(category.id).toBe(props.id)
     expect(category.url).toBe(props.url)
@@ -23,7 +23,7 @@ describe('CategoryModel', () => {
   })
 
   it('should have correct default attributes', () => {
-    const category = new CategoryModel({id: 4, url: '/test/url'})
+    const category = new CategoryModel({ id: 4, url: '/test/url' })
     expect(category.parentId).toBe(-1)
     expect(category.parentUrl).toBeNull()
     expect(category.content).toBe('')

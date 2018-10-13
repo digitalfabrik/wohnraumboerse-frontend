@@ -34,7 +34,7 @@ export class I18nProvider extends React.Component {
         debug: __DEV__
       })
 
-    this.state = {language: FALLBACK_LANGUAGE, fonts: I18nProvider.getSelectedFonts(FALLBACK_LANGUAGE)}
+    this.state = { language: FALLBACK_LANGUAGE, fonts: I18nProvider.getSelectedFonts(FALLBACK_LANGUAGE) }
   }
 
   /**
@@ -46,7 +46,7 @@ export class I18nProvider extends React.Component {
   static transformResources (resources) {
     return reduce(resources, (accumulator, namespace, namespaceName) => {
       forEach(namespace, (language, languageCode) => {
-        accumulator[languageCode] = {...accumulator[languageCode], [namespaceName]: language}
+        accumulator[languageCode] = { ...accumulator[languageCode], [namespaceName]: language }
       })
       return accumulator
     }, {})
@@ -56,7 +56,7 @@ export class I18nProvider extends React.Component {
     const targetLanguage = language || this.i18n.languages[0]
 
     const fonts = I18nProvider.getSelectedFonts(targetLanguage)
-    this.setState({language: targetLanguage, fonts})
+    this.setState({ language: targetLanguage, fonts })
 
     if (document.documentElement) {
       document.documentElement.lang = targetLanguage
@@ -88,7 +88,7 @@ export class I18nProvider extends React.Component {
   }
 
   render () {
-    const {lateef, openSans, raleway} = this.state.fonts
+    const { lateef, openSans, raleway } = this.state.fonts
     return (
       <I18nextProvider i18n={this.i18n}>
         <div

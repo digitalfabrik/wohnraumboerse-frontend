@@ -31,7 +31,7 @@ class LivingHeader extends React.Component {
     if (!getCurrentCityConfig(this.props.cityConfigs).formsEnabled) {
       return []
     }
-    const {matchRoute, currentPath, t} = this.props
+    const { matchRoute, currentPath, t } = this.props
     const currentParams = this.getCurrentParams()
 
     const form = new HeaderNavigationItem({
@@ -50,7 +50,7 @@ class LivingHeader extends React.Component {
   }
 
   render () {
-    const {matchRoute} = this.props
+    const { matchRoute } = this.props
     return <Header
       logo={getCurrentCityConfig(this.props.cityConfigs).logo}
       viewportSmall={this.props.viewportSmall}

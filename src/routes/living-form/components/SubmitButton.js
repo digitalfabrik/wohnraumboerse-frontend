@@ -10,20 +10,20 @@ class SubmitButton extends React.Component {
     validateAll: PropTypes.func,
     onClick: PropTypes.func
   }
-  state = {clicked: false}
+  state = { clicked: false }
 
   handleClick = event => {
     if (this.props.hasErrors) {
       this.props.validateAll()
-      this.setState({clicked: true})
+      this.setState({ clicked: true })
       event.preventDefault()
     }
   }
 
   render () {
-    const {hasErrors, ...otherProps} = this.props
+    const { hasErrors, ...otherProps } = this.props
     delete otherProps.validateAll
-    return <div style={{textAlign: 'center'}}>
+    return <div style={{ textAlign: 'center' }}>
       <Button variant='raised' {...otherProps} onClick={this.handleClick} />
       <FormHelperText error>{hasErrors && this.state.clicked && 'Sie haben ungültige Eingaben.'}</FormHelperText>
     </div>

@@ -19,10 +19,10 @@ export class LivingManageOfferPage extends React.Component {
     cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
 
-  state = {sending: false, success: false, serverError: null}
+  state = { sending: false, success: false, serverError: null }
 
   send = (method, action = '', body = null) => {
-    this.setState({sending: true, serverError: null, success: false})
+    this.setState({ sending: true, serverError: null, success: false })
     const cmsName = getCurrentCityConfig(this.props.cityConfigs).cmsName
     fetch(`${environment.apiBaseUrl}${cmsName}/offer/${this.props.token}${action}`, {
       method,
@@ -33,7 +33,7 @@ export class LivingManageOfferPage extends React.Component {
     })
       .then(response => {
         if (response.status === OK) {
-          this.setState({success: response.status === OK, sending: false, serverError: null})
+          this.setState({ success: response.status === OK, sending: false, serverError: null })
         } else {
           response.json().then(error => this.setState({
             success: false,
@@ -49,7 +49,7 @@ export class LivingManageOfferPage extends React.Component {
         this.setState({
           success: false,
           sending: false,
-          serverError: {status: 0, message: 'Die Verbindung ist fehlgeschlagen.'}
+          serverError: { status: 0, message: 'Die Verbindung ist fehlgeschlagen.' }
         })
       })
   }

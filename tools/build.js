@@ -10,8 +10,8 @@ const html = task('html', () => {
   const webpackConfig = require('./webpack.config')
   const assets = JSON.parse(fs.readFileSync('./www/dist/assets.json', 'utf8'))
   const template = fs.readFileSync('./www/index.ejs', 'utf8')
-  const render = ejs.compile(template, {filename: './www/index.ejs'})
-  const output = render({debug: webpackConfig.debug, bundle: assets.main.js, config})
+  const render = ejs.compile(template, { filename: './www/index.ejs' })
+  const output = render({ debug: webpackConfig.debug, bundle: assets.main.js, config })
   fs.writeFileSync('./www/index.html', output, 'utf8')
 })
 
@@ -35,7 +35,7 @@ const bundle = task('bundle', () => {
 // -----------------------------------------------------------------------------
 module.exports = task('build', () => {
   global.DEBUG = process.argv.includes('--debug') || false
-  rimraf.sync('www/dist/*', {nosort: true, dot: true})
+  rimraf.sync('www/dist/*', { nosort: true, dot: true })
   return Promise.resolve()
     .then(bundle)
     .then(html)

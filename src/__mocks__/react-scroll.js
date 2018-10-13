@@ -1,1 +1,1 @@
-export const animateScroll = {scrollTo: jest.fn()}
+export const animateScroll = { scrollTo: jest.fn() }

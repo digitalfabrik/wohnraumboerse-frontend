@@ -12,15 +12,15 @@ class SelectInput extends React.Component {
     label: PropTypes.string
   }
 
-  state = {value: ''}
+  state = { value: '' }
 
   handleChange = event => {
-    this.setState({value: event.target.value})
+    this.setState({ value: event.target.value })
     this.props.onChange(event)
   }
 
   render () {
-    const {error, isChanged, isUsed, label, ...otherProps} = this.props
+    const { error, isChanged, isUsed, label, ...otherProps } = this.props
     // onBlur is not supported by MaterialUi's SelectInput
     delete otherProps.onBlur
     return <FormControl fullWidth>

@@ -81,7 +81,7 @@ describe('I18nProvider', () => {
 
     const i18n = component.find(I18nextProvider).prop('i18n')
     expect(i18n.language).toEqual('en')
-    expect(component.state()).toEqual({language: 'en', fonts: {lateef: false, openSans: true, raleway: true}})
+    expect(component.state()).toEqual({ language: 'en', fonts: { lateef: false, openSans: true, raleway: true } })
   })
 
   it('should call setLanguage on property change', () => {
@@ -91,12 +91,12 @@ describe('I18nProvider', () => {
     </I18nProvider>)
     expect(I18nProvider.prototype.setLanguage).toHaveBeenCalledWith(undefined)
 
-    component.setProps({language: 'de'})
+    component.setProps({ language: 'de' })
     expect(I18nProvider.prototype.setLanguage).toHaveBeenCalledWith('de')
   })
 
   it('should connect to the store', () => {
-    const store = mockStore({location: {payload: {language: 'language1'}}})
+    const store = mockStore({ location: { payload: { language: 'language1' } } })
     const i18n = mount(<Provider store={store}>
       <ConnectedI18nProvider>
         <div />
@@ -127,7 +127,7 @@ describe('I18nProvider', () => {
       expect(I18nProvider.getSelectedFonts).toHaveBeenCalledWith(expectedLanguage)
       expect(component.state()).toEqual({
         language: expectedLanguage,
-        fonts: {lateef: false, openSans: true, raleway: true}
+        fonts: { lateef: false, openSans: true, raleway: true }
       })
       I18nProvider.getSelectedFonts = originalGetSelectedFonts
     })
@@ -152,7 +152,7 @@ describe('I18nProvider', () => {
       expect(I18nProvider.getSelectedFonts).toHaveBeenCalledWith(expectedLanguage)
       expect(component.state()).toEqual({
         language: expectedLanguage,
-        fonts: {lateef: true, openSans: true, raleway: true}
+        fonts: { lateef: true, openSans: true, raleway: true }
       })
       I18nProvider.getSelectedFonts = originalGetSelectedFonts
     })

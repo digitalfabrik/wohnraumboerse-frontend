@@ -40,7 +40,7 @@ describe('CategoryListItem', () => {
   })
 
   it('should replace empty thumbnail', () => {
-    const noThumbCategory = new CategoryModel({id: 42, url: '', title: 'GotNoThumb :O', parentId: 2})
+    const noThumbCategory = new CategoryModel({ id: 42, url: '', title: 'GotNoThumb :O', parentId: 2 })
     const wrapper = shallow(
       <CategoryListItem category={noThumbCategory} children={[noThumbCategory]} />
     )

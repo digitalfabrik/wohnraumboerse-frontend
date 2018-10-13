@@ -17,7 +17,7 @@ class CategoryListItem extends React.Component {
   }
 
   render () {
-    const {category, children} = this.props
+    const { category, children } = this.props
     return (
       <div className={style.row}>
         <Link href={category.url}>
