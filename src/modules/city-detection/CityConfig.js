@@ -8,7 +8,7 @@ class CityConfig {
   logo: string
   favicon: string
 
-  constructor ({cmsName, hostName, formsEnabled, title, logo, favicon}: {|
+  constructor ({ cmsName, hostName, formsEnabled, title, logo, favicon }: {|
     cmsName: string, hostName: string, formsEnabled: boolean,
     title: string, logo: string, favicon: string
   |}) {

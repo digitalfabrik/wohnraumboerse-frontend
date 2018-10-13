@@ -20,7 +20,8 @@ class ArrayCheckbox extends React.PureComponent {
     const checked = this.state.checked
     const { label, name, value, ...otherProps } = this.props
     return <FormControl>
-      <FormControlLabel control={<Checkbox checked={checked} onChange={this.handleChange} {...otherProps} />} label={label} />
+      <FormControlLabel control={<Checkbox checked={checked} onChange={this.handleChange} {...otherProps} />}
+                        label={label} />
       {checked && <Input type='hidden' name={name} value={value} />}
     </FormControl>
   }

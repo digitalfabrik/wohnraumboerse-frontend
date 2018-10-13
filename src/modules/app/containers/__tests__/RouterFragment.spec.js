@@ -50,7 +50,7 @@ describe('RouterFragment', () => {
 
   it('should match routes and use route config', () => {
     const id = 0xBABE
-    const route = new Route({id, path: '/'})
+    const route = new Route({ id, path: '/' })
     const tree = shallow(
       <RouterFragment cityConfigs={cityConfigs} routeConfig={new RouteConfig([route])} scrollHeight={0} />)
 

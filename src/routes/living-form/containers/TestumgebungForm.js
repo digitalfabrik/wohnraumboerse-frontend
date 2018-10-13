@@ -83,11 +83,19 @@ export class TestumgebungForm extends React.Component {
       <Grid>
         <h3>Kontaktdaten VermieterIn</h3>
         <Row>
-          <StdCol><TextInput name='formData.landlord.firstName' type='text' label='Vorname' validations={[required]} /></StdCol>
-          <StdCol><TextInput name='formData.landlord.lastName' type='text' label='Nachname' validations={[required]} /></StdCol>
-          <StdCol><TextInput name='email' type='text' label='E-Mail-Adresse'
-                             validations={[required, isEmail]} /></StdCol>
-          <StdCol><TextInput name='formData.landlord.phone' type='text' label='Telefon' /></StdCol>
+          <StdCol>
+            <TextInput name='formData.landlord.firstName' type='text' label='Vorname' validations={[required]} />
+          </StdCol>
+          <StdCol>
+            <TextInput name='formData.landlord.lastName' type='text' label='Nachname' validations={[required]} />
+          </StdCol>
+          <StdCol>
+            <TextInput name='email' type='text' label='E-Mail-Adresse'
+                       validations={[required, isEmail]} />
+          </StdCol>
+          <StdCol>
+            <TextInput name='formData.landlord.phone' type='text' label='Telefon' />
+          </StdCol>
         </Row>
 
         <h3>Mietobjekt</h3>
@@ -176,8 +184,9 @@ export class TestumgebungForm extends React.Component {
         <Row>
           <WideCol>
             <SingleCheckbox name='agreedToDataProtection'
-                            label={<span>Ich akzeptiere die <a target='_blank'
-                                                               href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>.</span>}
+                            label={<span>Ich akzeptiere die
+                              <a target='_blank' href={'/datenschutz-und-kontakt'}>Datenschutzerklärung</a>
+                              .</span>}
                             validations={[needsAcceptance]} />
             <LawParagraph>
               Außerdem willige ich ein, dass der Landkreis Testumgebung und die Tür an Tür - Digital Factory
