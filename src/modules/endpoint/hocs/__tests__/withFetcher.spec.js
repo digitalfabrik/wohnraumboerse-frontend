@@ -20,7 +20,11 @@ describe('withFetcher', () => {
     .build()
 
   // eslint-disable-next-line react/prop-types
-  const createComponent = ({ endpoint, FailureComponent, hideSpinner = false, state = {}, requestAction, otherProps = { [endpoint.payloadName]: new Payload(false) } }) => {
+  const createComponent = (
+    {
+      endpoint, FailureComponent, hideSpinner = false, state = {}, requestAction,
+      otherProps = { [endpoint.payloadName]: new Payload(false) }
+    }) => {
     const HOC = withFetcher(endpoint.stateName, FailureComponent, hideSpinner)
 
     class WrappedComponent extends React.Component {

@@ -59,7 +59,8 @@ class Endpoint {
    */
 
   /**
-   * @param {string} name The name of this endpoint. This is used as key in the state and as Payload name. The Payload name is name + 'Paylaod'
+   * @param {string} name The name of this endpoint. This is used as key in the state and as Payload name. The Payload
+   * name is name + 'Paylaod'
    * @param {function} mapStateToUrl The mapper which maps the state to a request url
    * @param {function} mapResponse Transforms the response from the fetch to a result
    * @param shouldRefetch Takes the current and the next props and should return whether we should refetch

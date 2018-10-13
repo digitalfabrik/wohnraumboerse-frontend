@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 import environment from 'environment.config'
 import { Caption } from '@integreat-app/shared'
@@ -6,6 +7,8 @@ import NeuburgForm from './NeuburgForm'
 import TestumgebungForm from './TestumgebungForm'
 import Failure from '../../../modules/common/components/Failure'
 import { CREATED } from 'http-status-codes'
+import withFetcher from 'modules/endpoint/hocs/withFetcher'
+import CityConfig from 'modules/city-detection/CityConfig'
 
 const SENDER_MAIL = 'wohnraumboerse@integreat-app.de'
 
@@ -15,11 +18,14 @@ const availableForms = {
 }
 
 export class LivingFormPage extends React.Component {
+  static propTypes = {
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
+  }
   state = { success: false, serverError: null, sending: false, emailAddress: '' }
 
   sendRequest = requestBody => {
     this.setState({ sending: true, serverError: null, emailAddress: requestBody.email })
-    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig().cmsName}/offer/`, {
+    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig(this.props.cityConfigs).cmsName}/offer/`, {
       body: JSON.stringify(requestBody),
       method: 'PUT',
       headers: new Headers({
@@ -38,7 +44,8 @@ export class LivingFormPage extends React.Component {
   }
 
   render () {
-    if (!availableForms[getCurrentCityConfig().cmsName]) {
+    const currentCmsName = getCurrentCityConfig(this.props.cityConfigs).cmsName
+    if (!availableForms[currentCmsName]) {
       return <Failure error='not-found:page.notFound' />
     }
 
@@ -54,7 +61,7 @@ export class LivingFormPage extends React.Component {
       </React.Fragment>
     }
 
-    const Form = availableForms[getCurrentCityConfig().cmsName]
+    const Form = availableForms[currentCmsName]
 
     return <React.Fragment>
       <Caption title={'Mietangebot erstellen'} />
@@ -63,4 +70,4 @@ export class LivingFormPage extends React.Component {
   }
 }
 
-export default LivingFormPage
+export default withFetcher('cityConfigs')(LivingFormPage)

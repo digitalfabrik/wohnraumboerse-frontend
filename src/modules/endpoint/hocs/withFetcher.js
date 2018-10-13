@@ -63,7 +63,8 @@ export function withFetcher (endpointName, FailureComponent = Failure, hideSpinn
       UNSAFE_componentWillReceiveProps (nextProps) {
         // Dispatch new requestAction to ask the endpoint whether data is available, if:
         // (a) the Fetcher urlParams prop changed or
-        // (b) the Fetcher endpoint.payloadName prop changed because of new data in the store (e.g. because a payload has been fetched)
+        // (b) the Fetcher endpoint.payloadName prop changed because of new data in the store
+        // (e.g. because a payload has been fetched)
         const endpoint = this.endpoint
         if (endpoint.shouldRefetch(this.props.state, nextProps.state) ||
           this.props[endpoint.payloadName] !== nextProps[endpoint.payloadName]) {

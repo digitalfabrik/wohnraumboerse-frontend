@@ -5,6 +5,7 @@ import createHistory from '../createHistory'
 import EndpointProvider from '../../endpoint/EndpointProvider'
 import disclaimerEndpoint from '../../endpoint/endpoints/disclaimer'
 import categoriesEndpoint from '../../endpoint/endpoints/categories'
+import cityConfigsEndpoint from '../../endpoint/endpoints/cityConfigs'
 import RouteConfig from '../RouteConfig'
 import RouterFragment from './RouterFragment'
 import { ThemeProvider } from 'styled-components'
@@ -36,7 +37,7 @@ class App extends React.Component {
   render () {
     return <Provider store={this.store}>
       <EndpointProvider
-        endpoints={[categoriesEndpoint, disclaimerEndpoint]}>
+        endpoints={[cityConfigsEndpoint, categoriesEndpoint, disclaimerEndpoint]}>
         <I18nProvider>
           <ThemeProvider theme={theme}>
             <MuiThemeProvider theme={muiTheme}>

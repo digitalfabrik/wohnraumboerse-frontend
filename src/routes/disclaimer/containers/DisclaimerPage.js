@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import compose from 'lodash/fp/compose'
 
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import { Page } from '@integreat-app/shared'
@@ -19,4 +20,7 @@ class DisclaimerPage extends React.Component<PropsType> {
   }
 }
 
-export default withFetcher('disclaimer')(DisclaimerPage)
+export default compose(
+  withFetcher('disclaimer'),
+  withFetcher('cityConfigs')
+)(DisclaimerPage)

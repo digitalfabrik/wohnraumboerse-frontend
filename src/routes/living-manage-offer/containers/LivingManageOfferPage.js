@@ -1,25 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import environment from 'environment.config'
-import getCurrentCityConfig from '../../../modules/city-detection/getCurrentCityConfig'
 import DeleteOfferManager from '../components/DeleteOfferManager'
 import Failure from '../../../modules/common/components/Failure'
 import ExtendOfferManager from '../components/ExtendOfferManager'
 import ConfirmOfferManager from '../components/ConfirmOfferManager'
+import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import { connect } from 'react-redux'
+import compose from 'lodash/fp/compose'
 import { OK } from 'http-status-codes'
+import CityConfig from 'modules/city-detection/CityConfig'
+import getCurrentCityConfig from 'modules/city-detection/getCurrentCityConfig'
 
 export class LivingManageOfferPage extends React.Component {
   static propTypes = {
     token: PropTypes.string.isRequired,
-    action: PropTypes.string.isRequired
+    action: PropTypes.string.isRequired,
+    cityConfigs: PropTypes.arrayOf(PropTypes.instanceOf(CityConfig)).isRequired
   }
 
   state = { sending: false, success: false, serverError: null }
 
   send = (method, action = '', body = null) => {
     this.setState({ sending: true, serverError: null, success: false })
-    fetch(`${environment.apiBaseUrl}${getCurrentCityConfig().cmsName}/offer/${this.props.token}${action}`, {
+    const cmsName = getCurrentCityConfig(this.props.cityConfigs).cmsName
+    fetch(`${environment.apiBaseUrl}${cmsName}/offer/${this.props.token}${action}`, {
       method,
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -78,4 +83,7 @@ const mapStateToProps = state => ({
   action: state.router.params.action
 })
 
-export default connect(mapStateToProps)(LivingManageOfferPage)
+export default compose(
+  connect(mapStateToProps),
+  withFetcher('cityConfigs')
+)(LivingManageOfferPage)

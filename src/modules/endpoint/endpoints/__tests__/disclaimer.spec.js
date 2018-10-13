@@ -18,12 +18,23 @@ describe('disclaimer', () => {
     parent: 0
   }
 
-  const state = {}
+  const state = {
+    cityConfigs: {
+      _data: [{
+        'cmsName': 'neuburgschrobenhausenwohnraum',
+        'hostName': 'raumfrei.neuburg-schrobenhausen.de',
+        'formsEnabled': true,
+        'title': 'Raumfrei Neuburg-Schrobenhausen',
+        'logo': 'http://127.0.0.1:8080/v0/city-configs/image/neuburg_logo.svg',
+        'favicon': 'http://127.0.0.1:8080/v0/city-configs/image/neuburg_favicon.ico'
+      }]
+    }
+  }
 
   it('should map router to url', () => {
     expect(disclaimer.mapStateToUrl(state)).toEqual(
-      'https://cms.integreat-app.de/neuburgschrobenhausenwohnraum/de/wp-json/extensions/v0/modified_content/disclaimer' +
-      '?since=1970-01-01T00:00:00Z'
+      'https://cms.integreat-app.de/neuburgschrobenhausenwohnraum/de/wp-json/extensions/v0/modified_content' +
+      '/disclaimer?since=1970-01-01T00:00:00Z'
     )
   })
 

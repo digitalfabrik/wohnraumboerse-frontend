@@ -70,5 +70,6 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
-  withFetcher('categories')
+  withFetcher('categories'),
+  withFetcher('cityConfigs')
 )(CategoriesPage)
