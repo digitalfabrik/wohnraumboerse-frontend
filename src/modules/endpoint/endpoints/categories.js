@@ -43,6 +43,8 @@ export default new EndpointBuilder('categories')
       })
     })
 
+    // Set the page with path '/' as root page
+    categories.find(categoryModel => categoryModel.path === '/').id = 0
     return new CategoriesMapModel(categories)
   })
   .build()

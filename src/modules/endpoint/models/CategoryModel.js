@@ -14,8 +14,10 @@ class CategoryModel {
   _availableLanguages: Map<string, string>
   _lastUpdate: ?Moment
 
-  constructor (params: {| id: number, path: string, title: string, content: string, thumbnail: string,
-    parentPath: string, order: number, availableLanguages: Map<string, string>, lastUpdate: ?Moment |}) {
+  constructor (params: {|
+    id: number, path: string, title: string, content: string, thumbnail: string,
+    parentPath: string, order: number, availableLanguages: Map<string, string>, lastUpdate: ?Moment
+  |}) {
     this._id = params.id
     this._path = params.path
     this._title = params.title
@@ -29,6 +31,10 @@ class CategoryModel {
 
   get thumbnail (): string {
     return this._thumbnail
+  }
+
+  set id (id: number) {
+    this._id = id
   }
 
   get id (): number {
