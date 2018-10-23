@@ -39,17 +39,17 @@ describe('CategoriesMapModel', () => {
 
   const categoriesMapModel = new CategoriesMapModel(categories)
 
-  const category1 = categoriesMapModel.getCategoryByUrl('/augsburg/de/')
-  const category2 = categoriesMapModel.getCategoryByUrl('/augsburg/de/willkommen')
-  const category3 = categoriesMapModel.getCategoryByUrl('/augsburg/de/erste-schritte')
-  const category4 = categoriesMapModel.getCategoryByUrl('/augsburg/de/erste-schritte/asylantrag')
+  const category1 = categoriesMapModel.getCategoryByPath('/augsburg/de/')
+  const category2 = categoriesMapModel.getCategoryByPath('/augsburg/de/willkommen')
+  const category3 = categoriesMapModel.getCategoryByPath('/augsburg/de/erste-schritte')
+  const category4 = categoriesMapModel.getCategoryByPath('/augsburg/de/erste-schritte/asylantrag')
 
   it('should get the right categories and normalize urls', () => {
     expect(category1).toEqual(categories[0])
     expect(category2).toEqual(categories[1])
     expect(category3).toEqual(categories[2])
     expect(category4).toEqual(categories[3])
-    expect(categoriesMapModel.getCategoryByUrl('/test/url')).toBe(undefined)
+    expect(categoriesMapModel.getCategoryByPath('/test/url')).toBe(undefined)
   })
 
   it('should find category by id', () => {

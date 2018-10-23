@@ -1,4 +1,4 @@
-import normalizeUrl from 'normalize-url'
+import normalizePath from 'normalize-path'
 
 /**
  * Contains a Map [string -> CategoryModel] and some helper functions
@@ -10,7 +10,7 @@ class CategoriesMapModel {
    * @param categories CategoryModels as array
    */
   constructor (categories = []) {
-    this._categories = new Map(categories.map(category => ([category.url, category])))
+    this._categories = new Map(categories.map(category => ([category.path, category])))
   }
 
   /**
@@ -22,23 +22,11 @@ class CategoriesMapModel {
 
   /**
    * Returns the category with the given url
-   * @param {String} url The url
+   * @param {String} path The path
    * @return {CategoryModel | undefined} The category
    */
-  getCategoryByUrl (url) {
-    if (url === '') {
-      return this._categories.get(url)
-    }
-    return this._categories.get(normalizeUrl(url))
-  }
-
-  /**
-   * Returns the category with the given id
-   * @param id The url
-   * @return {CategoryModel | undefined} The category
-   */
-  getCategoryById (id) {
-    return this.toArray().find(category => category.id === Number(id))
+  findCategoryByPath (path) {
+    return this._categories.get(decodeURIComponent(normalizePath(path)))
   }
 
   /**
@@ -48,7 +36,7 @@ class CategoriesMapModel {
    */
   getChildren (category) {
     return this.toArray()
-      .filter(_category => _category.parentUrl === category.url)
+      .filter(_category => _category.parentPath === category.path)
       .sort((category1, category2) => (category1.order - category2.order))
   }
 
@@ -60,8 +48,13 @@ class CategoriesMapModel {
   getAncestors (category) {
     const parents = []
 
-    while (category.id !== 0) {
-      category = this.getCategoryByUrl(category.parentUrl)
+    while (category.path !== '/') {
+      const temp = this.findCategoryByPath(category.parentPath)
+      if (!temp) {
+        throw new Error(`The category '${category.parentPath}' ` +
+          `does not exist but should be the parent of '${category.path}'`)
+      }
+      category = temp
       parents.unshift(category)
     }
     return parents

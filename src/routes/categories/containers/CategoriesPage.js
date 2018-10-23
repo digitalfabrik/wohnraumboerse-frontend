@@ -5,7 +5,7 @@ import compose from 'lodash/fp/compose'
 
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import CategoriesMapModel from 'modules/endpoint/models/CategoriesMapModel'
-import { Page, Breadcrumbs } from '@integreat-app/shared'
+import { Breadcrumbs, Page } from '@integreat-app/shared'
 
 import CategoryList from 'routes/categories/components/CategoryList'
 import Failure from '../../../modules/common/components/Failure'
@@ -29,7 +29,7 @@ export class CategoriesPage extends React.Component {
     const categories = this.props.categories
     const children = categories.getChildren(category)
 
-    if (children.length === 0) {
+    if (category.isLeaf(categories)) {
       // last level, our category is a simple page
       return <Page title={category.title}
                    content={category.content} />
@@ -51,7 +51,7 @@ export class CategoriesPage extends React.Component {
   }
 
   render () {
-    const category = this.props.categories.getCategoryByUrl(this.props.path)
+    const category = this.props.categories.findCategoryByPath(this.props.path)
     if (!category) {
       return <Failure error='not-found:page.notFound' />
     }

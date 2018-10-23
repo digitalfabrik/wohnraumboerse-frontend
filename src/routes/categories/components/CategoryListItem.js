@@ -20,13 +20,13 @@ class CategoryListItem extends React.Component {
     const { category, children } = this.props
     return (
       <div className={style.row}>
-        <Link href={category.url}>
+        <Link href={category.path}>
           <img className={style.categoryThumbnail} src={category.thumbnail || iconPlaceholder} />
           <div className={style.categoryCaption}>{category.title}</div>
         </Link>
         {children.map(child =>
           <div key={child.id} className={style.subRow}>
-            <Link href={child.url}>
+            <Link href={child.path}>
               {
                 child.thumbnail
                 ? <img src={child.thumbnail} className={style.categoryThumbnail} />
