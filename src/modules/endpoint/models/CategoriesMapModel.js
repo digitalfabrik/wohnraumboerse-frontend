@@ -48,7 +48,7 @@ class CategoriesMapModel {
   getAncestors (category) {
     const parents = []
 
-    while (category.path !== '/') {
+    while (category.id !== 0) {
       const temp = this.findCategoryByPath(category.parentPath)
       if (!temp) {
         throw new Error(`The category '${category.parentPath}' ` +
