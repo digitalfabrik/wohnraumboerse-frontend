@@ -46,7 +46,7 @@ export class CategoriesPage extends React.Component {
 
   getBreadcrumbs (category) {
     return this.props.categories.getAncestors(category).map(
-      category => <Link key={category.url} href={category.url}>{category.title}</Link>
+      category => <Link key={category.path} href={category.path}>{category.title}</Link>
     )
   }
 

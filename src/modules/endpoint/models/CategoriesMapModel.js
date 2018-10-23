@@ -36,7 +36,7 @@ class CategoriesMapModel {
    */
   getChildren (category) {
     return this.toArray()
-      .filter(_category => _category.parentPath === category.path)
+      .filter(_category => _category.parentPath === category.path && _category !== category)
       .sort((category1, category2) => (category1.order - category2.order))
   }
 
