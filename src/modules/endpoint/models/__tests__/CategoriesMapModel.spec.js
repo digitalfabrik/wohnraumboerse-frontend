@@ -21,7 +21,7 @@ describe('CategoriesMapModel', () => {
   })
 
   const categories = [
-    new CategoryModel({id: 0, path: '/augsburg/de', title: 'augsburg', parentPath: ''}),
+    new CategoryModel({ id: 0, path: '/augsburg/de', title: 'augsburg', parentPath: '' }),
     new CategoryModel({
       id: 20,
       path: '/augsburg/de/willkommen',
@@ -60,7 +60,8 @@ describe('CategoriesMapModel', () => {
 
   it('should normalize url components correctly for special characters', () => {
     const map = new CategoriesMapModel([farsiCategory])
-    const foundFarsiCategory = map.findCategoryByPath('/augsburg/fa/erste-schritte/%D9%86%D9%82%D8%B4%D9%87-%D8%B4%D9%87%D8%B1')
+    const foundFarsiCategory =
+      map.findCategoryByPath('/augsburg/fa/erste-schritte/%D9%86%D9%82%D8%B4%D9%87-%D8%B4%D9%87%D8%B1')
     expect(foundFarsiCategory).toEqual(farsiCategory)
   })
 
