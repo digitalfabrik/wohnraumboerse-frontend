@@ -4,13 +4,18 @@ import CategoryModel from '../models/CategoryModel'
 import CategoriesMapModel from '../models/CategoriesMapModel'
 import getCurrentCityConfig from '../../city-detection/getCurrentCityConfig'
 import moment from 'moment'
-import { compose, toPairs } from 'lodash'
+import { toPairs } from 'lodash/object'
+import { compose } from 'lodash/fp'
 import normalizePath from 'normalize-path'
 
 const PREFIX_LENGTH = 3
 
-// Removes the (unnecessary) path prefix
+// Removes the (unnecessary) path prefix ':cmsname/:lang/:parent_topic',
+// e.g. '/neuburgschrobenhausenwohnraum/de/raumfrei
 function getPathWithoutPrefix (url) {
+  if (!url) {
+    return null
+  }
   const tempUrl = url.split('/').slice(PREFIX_LENGTH)
   return tempUrl.join('/')
 }
@@ -24,7 +29,7 @@ export default new EndpointBuilder('categories')
     const normalize = compose([decodeURIComponent, normalizePath])
     const basePath = ``
     const categories = json.map(category => {
-      return new CategoryModel({
+      const categoryModel = new CategoryModel({
         id: category.id,
         path: normalize(getPathWithoutPrefix(category.path)),
         title: category.title,
@@ -36,6 +41,8 @@ export default new EndpointBuilder('categories')
         parentPath: normalize(getPathWithoutPrefix(category.parent.path) || basePath),
         lastUpdate: moment(category.modified_gmt)
       })
+      console.log(categoryModel)
+      return categoryModel
     })
 
     return new CategoriesMapModel(categories)
