@@ -4,9 +4,7 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
 <div
   className="row"
 >
-  <Connect(LinkComponent)
-    href="/augsburg/de/willkommen"
-  >
+  <Connect(LinkComponent)>
     <img
       className="categoryThumbnail"
       src="https://cms.integreat-ap…03/Beratung-150x150.png"
@@ -21,9 +19,7 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
     className="subRow"
     key="5234"
   >
-    <Connect(LinkComponent)
-      href="/augsburg/de/test"
-    >
+    <Connect(LinkComponent)>
       <img
         className="categoryThumbnail"
         src="https://cms.integreat-ap…03/Beratung-150x150.png"
@@ -42,9 +38,7 @@ exports[`CategoryListItem should replace empty thumbnail 1`] = `
 <div
   className="row"
 >
-  <Connect(LinkComponent)
-    href=""
-  >
+  <Connect(LinkComponent)>
     <img
       className="categoryThumbnail"
       src="test-file-stub"
@@ -59,9 +53,7 @@ exports[`CategoryListItem should replace empty thumbnail 1`] = `
     className="subRow"
     key="42"
   >
-    <Connect(LinkComponent)
-      href=""
-    >
+    <Connect(LinkComponent)>
       <div
         className="categoryThumbnail"
       />
