@@ -49,12 +49,12 @@ class CategoriesMapModel {
     const parents = []
 
     while (category.id !== 0) {
-      const temp = this.findCategoryByPath(category.parentPath)
-      if (!temp) {
+      const parent = this.findCategoryByPath(category.parentPath)
+      if (!parent) {
         throw new Error(`The category '${category.parentPath}' ` +
           `does not exist but should be the parent of '${category.path}'`)
       }
-      category = temp
+      category = parent
       parents.unshift(category)
     }
     return parents
