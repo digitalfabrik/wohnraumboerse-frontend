@@ -4,7 +4,9 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
 <div
   className="row"
 >
-  <Connect(LinkComponent)>
+  <Connect(LinkComponent)
+    href="/augsburg/de/willkommen"
+  >
     <img
       className="categoryThumbnail"
       src="https://cms.integreat-ap…03/Beratung-150x150.png"
@@ -19,7 +21,9 @@ exports[`CategoryListItem should render and match snapshot 1`] = `
     className="subRow"
     key="5234"
   >
-    <Connect(LinkComponent)>
+    <Connect(LinkComponent)
+      href="/augsburg/de/test"
+    >
       <img
         className="categoryThumbnail"
         src="https://cms.integreat-ap…03/Beratung-150x150.png"
