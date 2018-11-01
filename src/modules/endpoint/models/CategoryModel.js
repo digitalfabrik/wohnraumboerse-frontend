@@ -1,73 +1,80 @@
+// @flow
+
+import type Moment from 'moment'
+import CategoriesMapModel from './CategoriesMapModel'
+
 class CategoryModel {
-  constructor
-  ({
-    id,
-    url,
-    title,
-    parentId = -1,
-    parentUrl = null,
-    content = '',
-    thumbnail = null,
-    order = 0,
-    availableLanguages = {}
-  }) {
-    this._id = id
-    this._url = url
-    this._title = title
-    this._content = content
-    this._parentId = parentId
-    this._parentUrl = parentUrl
-    this._thumbnail = thumbnail
-    this._order = order
-    this._availableLanguages = availableLanguages
+  _id: number
+  _path: string
+  _title: string
+  _content: string
+  _parentPath: string
+  _thumbnail: string
+  _order: number
+  _availableLanguages: Map<string, string>
+  _lastUpdate: ?Moment
+
+  constructor (params: {|
+    id: number, path: string, title: string, content: string, thumbnail: string,
+    parentPath: string, order: number, availableLanguages: Map<string, string>, lastUpdate: ?Moment
+  |}) {
+    this._id = params.id
+    this._path = params.path
+    this._title = params.title
+    this._content = params.content
+    this._parentPath = params.parentPath
+    this._thumbnail = params.thumbnail
+    this._order = params.order
+    this._availableLanguages = params.availableLanguages
+    this._lastUpdate = params.lastUpdate
   }
 
-  get thumbnail () {
+  get thumbnail (): string {
     return this._thumbnail
   }
 
-  get id () {
+  set id (id: number) {
+    this._id = id
+  }
+
+  get id (): number {
     return this._id
   }
 
-  get url () {
-    return this._url
+  get path (): string {
+    return this._path
   }
 
-  get title () {
+  get title (): string {
     return this._title
   }
 
-  get content () {
+  get content (): string {
     return this._content
   }
 
-  get parentId () {
-    return this._parentId
+  get parentPath (): string {
+    return this._parentPath
   }
 
-  get parentUrl () {
-    return this._parentUrl
-  }
-
-  setParentUrl (parentUrl) {
-    this._parentUrl = parentUrl
-  }
-
-  setId (Id) {
-    this._id = Id
-  }
-
-  setParentId (parentId) {
-    this._parentId = parentId
-  }
-
-  get order () {
+  get order (): number {
     return this._order
   }
 
-  get availableLanguages () {
+  get availableLanguages (): Map<string, string> {
     return this._availableLanguages
+  }
+
+  get lastUpdate (): ?Moment {
+    return this._lastUpdate
+  }
+
+  isRoot (): boolean {
+    return this.id === 0
+  }
+
+  isLeaf (categories: CategoriesMapModel): boolean {
+    return categories.getChildren(this).length === 0
   }
 }
 

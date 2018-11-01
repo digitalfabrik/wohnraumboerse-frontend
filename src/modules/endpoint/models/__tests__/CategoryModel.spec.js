@@ -1,34 +1,30 @@
 import CategoryModel from '../CategoryModel'
 
 describe('CategoryModel', () => {
-  it('should return correct attributes', () => {
-    const props = {
-      id: 1,
-      url: '/test/url',
-      parentId: 40,
-      parentUrl: 'random parent url',
-      content: 'test content blablabla',
-      thumbnail: '/test/url/thumbnail',
-      order: 5,
-      availableLanguages: { en: 5, de: 74 } }
-    const category = new CategoryModel(props)
-    expect(category.id).toBe(props.id)
-    expect(category.url).toBe(props.url)
-    expect(category.parentId).toBe(props.parentId)
-    expect(category.parentUrl).toBe(props.parentUrl)
-    expect(category.content).toBe(props.content)
-    expect(category.thumbnail).toBe(props.thumbnail)
-    expect(category.order).toBe(props.order)
-    expect(category.availableLanguages).toBe(props.availableLanguages)
+  const rootCategory = new CategoryModel({
+    id: 0,
+    path: '/augsburg/en/',
+    title: 'Welcome',
+    content: '',
+    parentPath: '/augsburg/en',
+    order: 75,
+    availableLanguages: new Map([['de', '/augsburg/de/']]),
+    thumbnail: 'https://cms.integreat-ap…/03/Hotline-150x150.png'
   })
 
-  it('should have correct default attributes', () => {
-    const category = new CategoryModel({ id: 4, url: '/test/url' })
-    expect(category.parentId).toBe(-1)
-    expect(category.parentUrl).toBeNull()
-    expect(category.content).toBe('')
-    expect(category.thumbnail).toBeNull()
-    expect(category.order).toBe(0)
-    expect(category.availableLanguages).toEqual({})
+  const category = new CategoryModel({
+    id: 5463,
+    path: '/augsburg/en/welcome',
+    title: 'Welcome',
+    content: '',
+    parentPath: '/augsburg/en',
+    order: 75,
+    availableLanguages: new Map([['de', '/augsburg/de/willkommen']]),
+    thumbnail: 'https://cms.integreat-ap…/03/Hotline-150x150.png'
+  })
+
+  it('should be conscious about being a root', () => {
+    expect(category.isRoot()).toBe(false)
+    expect(rootCategory.isRoot()).toBe(true)
   })
 })
