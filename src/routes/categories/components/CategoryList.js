@@ -18,7 +18,7 @@ class CategoryList extends React.Component {
     })).isRequired,
     title: PropTypes.string,
     content: PropTypes.string,
-    hijackRegExp: PropTypes.string
+    hijackRegExp: PropTypes.instanceOf(RegExp)
   }
 
   render () {
