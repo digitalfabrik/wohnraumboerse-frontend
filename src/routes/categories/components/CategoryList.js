@@ -27,9 +27,9 @@ class CategoryList extends React.Component {
         {this.props.title && <Caption title={this.props.title} />}
         <RemoteContent hijackRegExp={this.props.hijackRegExp}
                        centered
-                       dangerouslySetInnerHTML={{__html: this.props.content}} />
+                       dangerouslySetInnerHTML={{ __html: this.props.content }} />
         <div className={style.list}>
-          {this.props.categories.map(({model, children}) =>
+          {this.props.categories.map(({ model, children }) =>
             <CategoryListItem key={model.id} category={model} children={children} />)}
         </div>
       </div>
