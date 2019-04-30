@@ -50,9 +50,9 @@ class LivingHeader extends React.Component {
   }
 
   render () {
-    const { matchRoute } = this.props
+    const { matchRoute, cityConfigs } = this.props
     return <Header
-      logo={getCurrentCityConfig(this.props.cityConfigs).logo}
+      logo={getCurrentCityConfig(cityConfigs).logo}
       viewportSmall={this.props.viewportSmall}
       logoHref={matchRoute(CategoriesPage).stringify(this.getCurrentParams())}
       actionItems={[]}

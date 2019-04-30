@@ -9,12 +9,14 @@ import Failure from '../../../modules/common/components/Failure'
 import { CREATED } from 'http-status-codes'
 import withFetcher from 'modules/endpoint/hocs/withFetcher'
 import CityConfig from 'modules/city-detection/CityConfig'
+import HeidenheimForm from './HeidenheimForm'
 
 const SENDER_MAIL = 'wohnraumboerse@integreat-app.de'
 
 const availableForms = {
   'neuburgschrobenhausenwohnraum': NeuburgForm,
-  'testumgebungwohnraum': TestumgebungForm
+  'testumgebungwohnraum': TestumgebungForm,
+  'lkheidenheimwohnraum': HeidenheimForm
 }
 
 export class LivingFormPage extends React.Component {
