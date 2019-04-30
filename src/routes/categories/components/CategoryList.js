@@ -17,16 +17,19 @@ class CategoryList extends React.Component {
       children: PropTypes.arrayOf(PropTypes.instanceOf(CategoryModel)).isRequired
     })).isRequired,
     title: PropTypes.string,
-    content: PropTypes.string
+    content: PropTypes.string,
+    hijackRegExp: PropTypes.string
   }
 
   render () {
     return (
       <div>
         {this.props.title && <Caption title={this.props.title} />}
-        <RemoteContent centered dangerouslySetInnerHTML={{ __html: this.props.content }} />
+        <RemoteContent hijackRegExp={this.props.hijackRegExp}
+                       centered
+                       dangerouslySetInnerHTML={{__html: this.props.content}} />
         <div className={style.list}>
-          {this.props.categories.map(({ model, children }) =>
+          {this.props.categories.map(({model, children}) =>
             <CategoryListItem key={model.id} category={model} children={children} />)}
         </div>
       </div>
