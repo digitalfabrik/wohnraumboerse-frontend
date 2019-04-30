@@ -11,6 +11,8 @@ import CategoryList from 'routes/categories/components/CategoryList'
 import Failure from '../../../modules/common/components/Failure'
 import { Link } from 'redux-little-router'
 
+const matchNothingRegexp = /a^/ // https://stackoverflow.com/questions/940822/regular-expression-syntax-for-match-nothing
+
 export class CategoriesPage extends React.Component {
   static propTypes = {
     categories: PropTypes.instanceOf(CategoriesMapModel).isRequired,
@@ -32,6 +34,7 @@ export class CategoriesPage extends React.Component {
     if (category.isLeaf(categories)) {
       // last level, our category is a simple page
       return <Page title={category.title}
+                   hijackRegExp={matchNothingRegexp}
                    content={category.content} />
     }
     // some level between, we want to display a list
@@ -41,7 +44,8 @@ export class CategoriesPage extends React.Component {
         children: categories.getChildren(model)
       }))}
       title={category.title}
-      content={category.content} />
+      content={category.content}
+      hijackRegExp={matchNothingRegexp} />
   }
 
   getBreadcrumbs (category) {
